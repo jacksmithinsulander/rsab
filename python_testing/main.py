@@ -34,11 +34,11 @@ contract = w3.eth.contract(address=Web3.toChecksumAddress(
     uniswap3), abi=uniswap3abi)
 #events = contract.events.Transfer.getLogs(fromBlock=CONTRACT_CREATION_BLOCK)
 PoolCreatedLast1000Blocks = contract.events.PoolCreated.getLogs(
-    fromBlock=w3.eth.block_number - 1000)
+    fromBlock=w3.eth.block_number - 5000)
 
 for pool in PoolCreatedLast1000Blocks:
     print("============================================")
-    print(f"Found Pool {pool['address']}")
+    print(f"Found Pool {pool['args']['pool']}")
     token1 = w3.eth.contract(pool['args']['token0'], abi=tokenAbi)
     token1name = token1.functions.name().call()
     token1symbol = token1.functions.symbol().call()
@@ -51,5 +51,3 @@ for pool in PoolCreatedLast1000Blocks:
     dateTime = datetime.datetime.utcfromtimestamp(
         unixTime).strftime('%Y-%m-%d %H:%M:%S')
     print(f"Created: {dateTime}")
-
-contract.events.PoolCreated.getLogs()
