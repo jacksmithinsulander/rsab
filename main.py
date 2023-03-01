@@ -6,7 +6,7 @@ import json
 
 from apiKey import apiKey
 
-with open("./python_testing/uniswap3abi.json") as f:
+with open("./uniswap3abi.json") as f:
     info_json = json.load(f)
 uniswap3abi = info_json["result"]
 
@@ -36,18 +36,28 @@ contract = w3.eth.contract(address=Web3.toChecksumAddress(
 PoolCreatedLast1000Blocks = contract.events.PoolCreated.getLogs(
     fromBlock=w3.eth.block_number - 5000)
 
+def json_mkr(pool_addr, token_1, token_2, time_created):
+	token_info = '{"poolAddr": "' + pool_addr + '", "token1": "' + token_1 + '", "token2": "' +  token_2 + '", "timeCreated": "' +  str(time_created) + '"}'
+	token_json = json.loads(token_info)
+	print(json.dumps(token_json, indent=4))
+	with open("datascraped.json", "a") as file:
+		json.dump(token_json, file, indent=4)
+
 for pool in PoolCreatedLast1000Blocks:
     print("============================================")
-    print(f"Found Pool {pool['args']['pool']}")
+    pool_name = pool['args']['pool']
+    #print(f"Found Pool {pool['args']['pool']}")
+    #print(f"Found Pool {pool_name}")
     token1 = w3.eth.contract(pool['args']['token0'], abi=tokenAbi)
     token1name = token1.functions.name().call()
     token1symbol = token1.functions.symbol().call()
-    print(f"Token 1: {token1name} ({token1symbol})")
+    #print(f"Token 1: {token1name} ({token1symbol})")
     token2 = w3.eth.contract(pool['args']['token1'], abi=tokenAbi)
     token2name = token2.functions.name().call()
     token2symbol = token2.functions.symbol().call()
-    print(f"Token 2: {token2name} ({token2symbol})")
+    #print(f"Token 2: {token2name} ({token2symbol})")
     unixTime = w3.eth.getBlock(pool['blockNumber']).timestamp
     dateTime = datetime.datetime.utcfromtimestamp(
         unixTime).strftime('%Y-%m-%d %H:%M:%S')
-    print(f"Created: {dateTime}")
+    #print(f"Created: {dateTime} {unixTime}")
+    json_mkr(pool_name, token1symbol, token2symbol, unixTime)
