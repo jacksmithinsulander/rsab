@@ -1,6 +1,6 @@
 def main(con, 
             net,
-            poolContract,
+            poolMainContract,
             poolAddress,
             timeCreated,
             token1Address,
@@ -8,8 +8,8 @@ def main(con,
             token2Address,
             token2Symbol):
     try:
-        sql = 'INSERT INTO pools (net, poolContract, poolAddress, timeCreated,token1Address,token1Symbol,token2Address,token2Symbol) values(?,?,?,?,?,?,?,?);'
-        data = [(net, poolContract, poolAddress, timeCreated, str(token1Address),
+        sql = 'INSERT INTO pools (net, poolMainContract, poolAddress, timeCreated,token1Address,token1Symbol,token2Address,token2Symbol) values(?,?,?,?,?,?,?,?);'
+        data = [(net, poolMainContract, poolAddress, timeCreated, str(token1Address),
                  token1Symbol, str(token2Address), token2Symbol)]
         with con:
             con.executemany(sql, data)
