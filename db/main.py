@@ -16,7 +16,7 @@ with con:
         CREATE TABLE if not exists pools(
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             net TEXT,
-            poolContract TEXT,
+            poolMainContract TEXT,
             poolAddress TEXT UNIQUE,
             timeCreated INTEGER,
             token1Address TEXT,
@@ -27,7 +27,7 @@ with con:
     """)
 
 def addPool(net,
-            poolContract,
+            poolMainContract,
             poolAddress,
             timeCreated,
             token1Address,
@@ -35,7 +35,7 @@ def addPool(net,
             token2Address,
             token2Symbol):
     db.addPool.main(con, net,
-            poolContract,
+            poolMainContract,
             poolAddress,
             timeCreated,
             token1Address,
