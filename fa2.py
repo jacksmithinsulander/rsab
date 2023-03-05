@@ -13,6 +13,7 @@ token_chain_short = "eth"
 token_chain = "ethereum"
 token_chain_extra = "ether"
 token_lp_pair = "0x9e0905249CeEFfFB9605E034b534544684A58BE6"
+token_name = "Hex"
 
 #Website links
 tokensniffer_url = "https://tokensniffer.com/token/"
@@ -30,27 +31,39 @@ def multi_fa(link, token, chain):
 	fa_score = WebDriverWait(driver, timeout=40).until(
 		EC.presence_of_element_located((By.XPATH, element_xpath))
 	)
-	result = fa_score.text
-	if "/100" in result:
-		result_int = int(result.removesuffix("/100"))
+	if "/100" in fa_score.text:
+		result_int = int(fa_score.text.removesuffix("/100"))
 	else:
-		result_int = int(result)
-	print(result_int) 
-
-multi_fa(tokensniffer_url, token_address, token_chain_short)
-multi_fa(dextools_url, token_lp_pair, token_chain_extra)
+		result_int = int(fa_score.text)
+	if result_int >= 70:
+		is_passed = 1
+	else:
+		is_passed = 0 
+	return is_passed
 
 def dexscreener_fa(token, chain):
 	token_url = "https://cfw.dexscreener.com/sc/dex:" + chain + ":" + token + "/counter"
 	scraper = cloudscraper.create_scraper(delay=10,   browser={'custom': 'ScraperBot/1.0',})
 	r = scraper.get(token_url)
 	y = json.loads(r.text)
-	#Want to make this part more DRY by making a function that creates these through iteration
-	scam_ratings = str(y["report"]["scam"]["total"])
-	shit_ratings = str(y["rating"]["poop"]["total"])
-	fire_rating = str(y["rating"]["fire"]["total"])
-	moon_rating = str(y["rating"]["rocket"]["total"])
-	print("scam ratings = " + scam_ratings + " And shit ratings = " + shit_ratings + " And fire = " + fire_rating + " And the moon is " + moon_rating)
+	#Wanna add a separate function that  creates these ratings though some kind of iteration
+	scam_ratings = y["report"]["scam"]["total"]
+	shit_ratings = y["rating"]["poop"]["total"]
+	fire_ratings = y["rating"]["fire"]["total"]
+	moon_ratings = y["rating"]["rocket"]["total"]
+	bear_ratings = scam_ratings + shit_ratings
+	bull_ratings = fire_ratings + moon_ratings
+	if bull_ratings >= (bear_ratings* 1.5):
+		is_passed = 1
+	else:
+		is_passed = 0
+	return is_passed 
 
-dexscreener_fa(token_lp_pair, token_chain)
+def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, chain):
+	tokensniffer_result = multi_fa(tokensniffer, token, chain_short)
+	dextools_result = multi_fa(dextools, lp, chain_extra)
+	dexscreener_result = dexscreener_fa(lp, chain)
+	full_result = tokensniffer_result + dextools_result + dexscreener_result
+	print("Token " + name + " passed " + str(full_result) + "/3")
 
+full_fa(token_name, tokensniffer_url, dextools_url, token_address, token_lp_pair, token_chain_short, token_chain_extra, token_chain)
