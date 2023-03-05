@@ -1,4 +1,5 @@
 /target
 apiKey.py
 /__pycache__
+datascraped.json
 foundPools.db
