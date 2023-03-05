@@ -41,3 +41,4 @@ while True:
     print(f"Currently {db.countPools()} pools saved")
     print(f"Sleeping 30 seconds before next check")
     sleep(30)
+    print("###########################################")
