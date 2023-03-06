@@ -3,3 +3,4 @@ apiKey.py
 /__pycache__
 datascraped.json
 foundPools.db
+db/__pycache__
