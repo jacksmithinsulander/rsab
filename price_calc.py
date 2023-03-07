@@ -11,6 +11,7 @@ def btmtop_finder(prices):
 		" And the lowest price before that is " + str(lowest))
 	fibretracement_finder(highest, lowest)
 
+#function that calculates .786 retracement and .618 retracement
 def fibretracement_finder(btm, top):
 	x = top - btm
 	_786 = top - (0.786 * x)
