@@ -1,0 +1,1 @@
+[{'nativePrice': {'value': '13718795961511525920', 'decimals': 18, 'name': 'Ether', 'symbol': 'ETH'}, 'usdPrice': 16670.80688581794, 'exchangeAddress': '0x1f98431c8ad98523631ae4a59f267346ea31f984', 'exchangeName': 'Uniswap v3'}]

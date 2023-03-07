@@ -2,7 +2,8 @@ from moralis import evm_api
 
 from moralis_key import moralis_key
 
-api_key = 
+api_key = moralis_key
+
 price_data = []
 
 for to_block in range(16323500, 16323550, 10):
@@ -14,8 +15,7 @@ for to_block in range(16323500, 16323550, 10):
 	result = evm_api.token.get_token_price(
 		api_key=api_key,
 		params=params,
-		)
-
-price_data.append(result)
+	)
+	price_data.append(result)
 
 print(price_data)
