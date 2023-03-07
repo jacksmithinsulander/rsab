@@ -6,9 +6,11 @@ api_key = moralis_key
 
 price_data = []
 
-for to_block in range(16323500, 16323550, 10):
+#Mockdata with a random shitcoin that is new rn
+
+for to_block in range(16776814, 16777061, 10):
 	params = {
-		"address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+		"address": "0x474EB08D814C048D92c07Dc3D1d382254abfF08d",
 		"chain": "eth",
 		"to_block": to_block
 	}
