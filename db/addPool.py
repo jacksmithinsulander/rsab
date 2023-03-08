@@ -1,15 +1,16 @@
-def main(con, 
-            net,
-            poolMainContract,
-            poolAddress,
-            timeCreated,
-            token1Address,
-            token1Symbol,
-            token2Address,
-            token2Symbol):
+def main(con, net,
+         netShort,
+         netExtra,
+         poolMainContract,
+         poolAddress,
+         timeCreated,
+         token1Address,
+         token1Symbol,
+         token2Address,
+         token2Symbol):
     try:
-        sql = 'INSERT INTO pools (net, poolMainContract, poolAddress, timeCreated,token1Address,token1Symbol,token2Address,token2Symbol) values(?,?,?,?,?,?,?,?);'
-        data = [(net, poolMainContract, poolAddress, timeCreated, str(token1Address),
+        sql = 'INSERT INTO pools (net, netShort, netExtra, poolMainContract, poolAddress, timeCreated,token1Address,token1Symbol,token2Address,token2Symbol) values(?,?,?,?,?,?,?,?,?,?);'
+        data = [(net, netShort, netExtra, poolMainContract, poolAddress, timeCreated, str(token1Address),
                  token1Symbol, str(token2Address), token2Symbol)]
         with con:
             con.executemany(sql, data)

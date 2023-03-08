@@ -5,3 +5,4 @@ datascraped.json
 db/foundPools.db
 db/__pycache__
 moralis_key.py
+apiKeys.py
