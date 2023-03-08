@@ -9,9 +9,12 @@ import db.getPoolsByTokenAddress
 import db.getPoolsByTokenSymbol
 import db.printAllPools
 
-con = sqlite3.connect("db/foundPools.db")
+# Real data
+# con = sqlite3.connect("db/foundPools.db")
 
-# key for output
+# Mock data
+con = sqlite3.connect("mockdata/foundPools.db")
+
 _net = 1
 _netShort = 2
 _netExtra = 3
