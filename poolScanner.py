@@ -45,7 +45,7 @@ while True:
                     token2symbol = token2.functions.symbol().call()
 
                     unixTime = w3.eth.getBlock(pool['blockNumber']).timestamp
-                    db.addPool(net, "test", poolAddress, unixTime,
+                    db.addPool(net, rpcList[net]['short'], rpcList[net]['extra'], swapList[net][swap]['address'], poolAddress, unixTime,
                                token1address, token1symbol, token2address, token2symbol)
     print(f"Currently {db.countPools()} pools saved")
     print(f"Sleeping 30 seconds before next check")
