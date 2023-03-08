@@ -26,10 +26,10 @@ swapList = {
             'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
             'eventName': 'PairCreated',
             'poolAddress': 'pair'},
-        # 'quickswapv3': {
-        #     'address': '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32',
-        #     'eventName': 'PairCreated',
-        #     'poolAddress': 'pair'},
+        'quickswapv3': {
+            'address': '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32',
+            'eventName': 'PairCreated',
+            'poolAddress': 'pair'},
         'apeswap': {
             'address': '0xCf083Be4164828f00cAE704EC15a36D711491284',
             'eventName': 'PairCreated',

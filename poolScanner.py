@@ -4,6 +4,7 @@ from web3 import Web3
 import db.main as db
 from swapList import swapList
 from rpcList import rpcList
+from web3.middleware import geth_poa_middleware
 
 import abi
 
@@ -13,6 +14,8 @@ while True:
     print(f"# {now} ######################################")
     for net in rpcList:
         w3 = Web3(Web3.HTTPProvider(rpcList[net]['link']))
+        if (net == 'polygon'):
+            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         lastBlock = w3.eth.block_number
         fromBlock = lastBlock - 5000
         print(f"  # Checking {net} # Blocks {fromBlock}-{lastBlock}")
@@ -21,7 +24,7 @@ while True:
             print(
                 f"    # Checking for pools by {swap}")
             contract = w3.eth.contract(address=Web3.toChecksumAddress(
-                swapList[net][swap]['address']), abi=abi.swaps[swap])
+                swapList[net][swap]['address']), abi=abi.swaps[net][swap])
 
             exec(
                 f"getPool = contract.events.{swapList[net][swap]['eventName']}.getLogs")
