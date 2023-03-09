@@ -32,7 +32,7 @@ for to_block in range(16776982, int(current_block['timestamp']), 10):
 	)
 	price_data.append(result)
 
-#print(price_data)
+print(price_data)
 
 price_arr = [obj["usdPrice"] for obj in price_data]
 
