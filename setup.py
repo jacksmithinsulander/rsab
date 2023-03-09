@@ -22,6 +22,10 @@ chains = input("Ethereum mainnet (E), Arbitrum (A), Optimism (O), Polygon (P), A
 #		print("Input error, you messed up, try again")
 #apparently the debian package didnt have python3.10, so righ tnow I have to use
 #this outdated and totally AWFUL syntax
+#the idea however is that i will iterate over this statement, and write it as 
+#a function that builds up an object, and once that object is created
+#the program will push it into a new file, which will act as the configuration 
+#file, then everything else is taking in parameters from that program
 if "E" in chains:
 	print("You have chosen Ethereum mainnet.")
 elif "A" in chains:
