@@ -26,19 +26,28 @@ chains = input("Ethereum mainnet (E), Arbitrum (A), Optimism (O), Polygon (P), A
 #a function that builds up an object, and once that object is created
 #the program will push it into a new file, which will act as the configuration 
 #file, then everything else is taking in parameters from that program
-if "E" in chains:
-	print("You have chosen Ethereum mainnet.")
-elif "A" in chains:
-	print("You have chosen Arbitrum.")
-elif "O" in chains:
-	print("You have chosen Optimism.")
-elif "P" in chains:
-	print("You have chosen Polygon.")
-elif "V" in chains:
-	print("You have chosen Avalanche.")
-elif "F" in chains:
-	print("You have chosen Fantom.")
-elif "B" in chains:
-	print("You have chosen Binance Smart Chain.")
-else:
-	print("Input error. Please try again.")
+
+chains_arr = chains.split(", ")
+print(chains_arr)
+
+#now that i see this its kind of stupid, figure out a way to write it cleaner
+def chain_chooser(chainarr):
+	for x in chainarr:
+		if x == "E":
+			print("You have chosen Ethereum mainnet.")
+		elif x == "A":
+			print("You have chosen Arbitrum.")
+		elif x == "O":
+			print("You have chosen Optimism.")
+		elif x == "P":
+			print("You have chosen Polygon.")
+		elif x == "V":
+			print("You have chosen Avalanche.")
+		elif x == "F":
+			print("You have chosen Fantom.")
+		elif x == "B":
+			print("You have chosen Binance Smart Chain.")
+		else:
+			print("Input error. Please try again.")
+
+chain_chooser(chains_arr)
