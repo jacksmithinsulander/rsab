@@ -49,8 +49,8 @@ def chain_chooser(chainarr):
 			print("You have chosen Binance Smart Chain.")
 		else:
 			print("Input error. Please try again.")
-
 chain_chooser(chains_arr)
+
 print("=======================================================================")
 print("Ait, now for the trading bot parameters, such as stop loss and profit taking")
 param_choose = input("Do you want the standard (1) or custom (2) settings? Show standard settings (3)")
@@ -61,7 +61,6 @@ def param_choose_results(choice):
 	elif choice == "2":
 		print("You want to be adventurous and tinker with you own settings")
 	elif choice == "3":
-		print("=======================================================================")
 		print("=======================================================================")
 		print('The standard settings are inspired by the "little old lady" trading strategy.')
 		print("The idea is that it basically takes profit each time that the value you hold is double to the value you initially bought")
@@ -85,3 +84,16 @@ def param_choose_results(choice):
 		print("Didnt understand your input, try again")
 
 param_choose_results(param_choose)
+
+print("=======================================================================")
+change_selection = input("Do you want to change all of these parameters (A) or only some (B) of them?")
+
+def param_selection_define(selecs):
+	if selecs == "A":
+		print("You chose changing all parameters, lets go!")
+	elif selecs == "B":
+		print("Alright, lets define what parameters you want to change")
+	else:
+		print("Input error, try not missing the a or b keys next time.")
+
+param_selection_define(change_selection)
