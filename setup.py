@@ -1,7 +1,36 @@
+"""
+Planing flow
+1. Function for checking if config file already exisist
+	if exisist:
+		redo it
+	else
+		cancel setup
+
+	else do it #same path as redoing it
+2. Program thats sets everything up
+	2.1. Choose chains #will have to do it even if sticking with defaul config later on
+	2.2. Choose if sticking with default options or custom ones
+	if default, send it into the config file and end the setup
+	else:
+		2.2.1. Choose if changing all or just some of the settings
+		2.2.2. Start a function that just calls the other functions to set each configuration. IF just changing some settings this master function skips the ones not selected
+			2.2.2.1. Set profit taking size
+			2.2.2.2. Set profit taking levels
+			2.2.2.3. Set on / off rebalancing
+			2.2.2.4. Set buy sizes
+			2.2.2.5. Set stoploss rules
+			2.2.2.6. FA on or off
+				2.2.2.6.1. Finetune points thresholds
+					2.2.2.6.1.1. Tokensniffer
+					2.2.2.6.1.2. Dextools
+					2.2.2.6.1.3. Dexscreener
+				2.2.2.6.2. Finetune pass thresholds
+3. Pass selection into a new config file
+"""
 print("Hello you filthy, degenerate ape. Lets set up this shitcoinbot of yours")
 print("=======================================================================")
 print('First of what EVMs would you like to "trade"(read gamble) on? Answer with the coresponding capitalized letters, separated by commas')
-chains = input("Ethereum mainnet (E), Arbitrum (A), Optimism (O), Polygon (P), Avalanche (V), Fantom (F), Binance smart chain (B)")
+chains = input("Ethereum mainnet (E), Arbitrum (A), Optimism (O), Polygon (P), Avalanche (V), Fantom (F), Binance smart chain (B)\n")
 #print(chains)
 #match chains: 
 #	case "E":
@@ -48,12 +77,12 @@ def chain_chooser(chainarr):
 		elif x == "B":
 			print("You have chosen Binance Smart Chain.")
 		else:
-			print("Input error. Please try again.")
+			print("Input error. Please try again.\n")
 chain_chooser(chains_arr)
 
 print("=======================================================================")
 print("Ait, now for the trading bot parameters, such as stop loss and profit taking")
-param_choose = input("Do you want the standard (1) or custom (2) settings? Show standard settings (3)")
+param_choose = input("Do you want the standard (1) or custom (2) settings? Show standard settings (3)\n")
 
 def param_choose_results(choice):
 	if choice == "1":
@@ -76,21 +105,33 @@ def param_choose_results(choice):
 		print('Our "sophisticated" FA, is just that we check the token on dextools ratings, dexscreener ratings and tokensniffer')
 		print('Our standard settings are that it has to reach a certain amount of "points" to "pass" each step')
 		print('And in order to be a valid entry, a token must fullfill at least 2/3 passes')
-		print('You can booth choose to finetune the pass threshold, as well as the pass threshold')
+		print('You can booth choose to finetune the points threshold, as well as the pass threshold')
 		print('Or (NOT RECOMENDED) decide to remove the FA completly')
 		print('However that would be stupid, because the fa is mostly checking the token on a contract level')
 		print('Checking things like if it is possible to sell the token, if the liquidity is locked etc.')
 	else:
-		print("Didnt understand your input, try again")
+		print("Didnt understand your input, try again\n")
 
 param_choose_results(param_choose)
 
 print("=======================================================================")
-change_selection = input("Do you want to change all of these parameters (A) or only some (B) of them?")
+change_selection = input("Do you want to change all of these parameters (A) or only some (B) of them?\n")
+
+#thinking through it all now and realising that this will need a massive rewrite
+#at a later time, with a LOT of return functions
+def profit_taking_config():
+	print("=======================================================================")
+	profit_taking = input('How many % profits do you want to take on each target levels? Answer with letters ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
+	if (profit_taking[:-2].isdigit() and 
+		int(profit_taking.removesuffix(" %")) <= 100):
+		print("Yes!")
+	else:
+		print("Something went wrong, retry")
 
 def param_selection_define(selecs):
 	if selecs == "A":
 		print("You chose changing all parameters, lets go!")
+		profit_taking_config()
 	elif selecs == "B":
 		print("Alright, lets define what parameters you want to change")
 	else:
