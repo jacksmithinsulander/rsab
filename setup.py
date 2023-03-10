@@ -51,3 +51,37 @@ def chain_chooser(chainarr):
 			print("Input error. Please try again.")
 
 chain_chooser(chains_arr)
+print("=======================================================================")
+print("Ait, now for the trading bot parameters, such as stop loss and profit taking")
+param_choose = input("Do you want the standard (1) or custom (2) settings? Show standard settings (3)")
+
+def param_choose_results(choice):
+	if choice == "1":
+		print("You selected the standard settings. wagmi")
+	elif choice == "2":
+		print("You want to be adventurous and tinker with you own settings")
+	elif choice == "3":
+		print("=======================================================================")
+		print("=======================================================================")
+		print('The standard settings are inspired by the "little old lady" trading strategy.')
+		print("The idea is that it basically takes profit each time that the value you hold is double to the value you initially bought")
+		print('Just google (or use a better search engine like searx / gigablast / yandex) for the "little old lady" strategy to get a better idea of how it works')
+		print('You are free to change booth the amount of profit taking and the actual levels of profit taking')
+		print('Other than that, standard is also that the bot will rebalance your Eth / stables so that you hold "dry powder" for booth kinds of pairs')
+		print('You can turn the rebalancing off')
+		print('The bot will buy for 1% of the combined worth of eth / stables that your wallet has for each entry')
+		print('You can change this to a static number if you like')
+		print('Also, standard is to have a tiling stop loss att the 200 MA (read on the 4h chart)')
+		print("This means that it will take this means that for the first (200 * 4h = 800 h = 33.33 days) you're without a stoploss")
+		print('You can either choose to change this to a static stoploss, or a timebased one or a combination of stoplosses')
+		print('Our "sophisticated" FA, is just that we check the token on dextools ratings, dexscreener ratings and tokensniffer')
+		print('Our standard settings are that it has to reach a certain amount of "points" to "pass" each step')
+		print('And in order to be a valid entry, a token must fullfill at least 2/3 passes')
+		print('You can booth choose to finetune the pass threshold, as well as the pass threshold')
+		print('Or (NOT RECOMENDED) decide to remove the FA completly')
+		print('However that would be stupid, because the fa is mostly checking the token on a contract level')
+		print('Checking things like if it is possible to sell the token, if the liquidity is locked etc.')
+	else:
+		print("Didnt understand your input, try again")
+
+param_choose_results(param_choose)
