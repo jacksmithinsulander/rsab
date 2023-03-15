@@ -27,8 +27,8 @@ while True:
                 swapList[net][swap]['address']), abi=abi.swaps[net][swap])
 
             exec(
-                f"getPool = contract.events.{swapList[net][swap]['eventName']}.getLogs")
-            latestPools = getPool(fromBlock=fromBlock)
+                f"getPools = contract.events.{swapList[net][swap]['eventName']}.getLogs")
+            latestPools = getPools(fromBlock=fromBlock)
 
             for pool in latestPools:
                 poolAddress = pool['args'][swapList[net][swap]

@@ -1,4 +1,7 @@
 import sqlite3
+import mysql.connector
+from mysql.connector import Error
+import apiKeys
 import db.addPool
 import db.checkIfSaved
 import db.countPools
@@ -9,7 +12,25 @@ import db.getPoolsByTokenAddress
 import db.getPoolsByTokenSymbol
 import db.printAllPools
 
-con = sqlite3.connect("db/foundPools.db")
+
+def create_connection(host_name, user_name, user_password, db_name):
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host=host_name,
+            user=user_name,
+            passwd=user_password,
+            database=db_name
+        )
+        print("Connection to MySQL DB successful")
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+    return connection
+
+
+con = create_connection(
+    "192.168.0.237", apiKeys.sql_user, apiKeys.sql_pass, "wagmi")
 
 # key for output
 _net = 1
@@ -23,22 +44,22 @@ _token1Symbol = 8
 _token2Address = 9
 _token2Symbol = 10
 
-with con:
-    con.execute("""
+query = """
         CREATE TABLE if not exists pools(
-            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             net TEXT,
             netShort TEXT,
             netExtra TEXT,
             poolMainContract TEXT,
-            poolAddress TEXT UNIQUE,
+            poolAddress TEXT,
             timeCreated INTEGER,
             token1Address TEXT,
             token1Symbol TEXT,
             token2Address TEXT,
             token2Symbol TEXT
         );
-    """)
+    """
+con.cursor().execute(query)
+con.commit()
 
 
 def addPool(net,
