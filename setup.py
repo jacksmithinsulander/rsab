@@ -152,8 +152,35 @@ def bag_sizing():
 	elif dynamic_or_static == "B":
 		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?")
 
+def fa_on():
+	print("=======================================================================")
+	fa_toggle = input("FA (A) on or (B) off? (NOT RECOMENDED TO TURN OFF SINCE ITS ONLY CHECKING WETHER OR NOT YOU CAN ACTUALLY SELL THE SHITCOINS)")
+	if fa_toggle == "A":
+		print("FA is turned on")
+	elif fa_toggle == "B":
+		print("FA is turned off")
 
 
+
+def stoploss_management():
+	print("=======================================================================")
+	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them.")
+	if stoploss_settings == "A":
+		print("You selected 200MA stoploss")
+	elif stoploss_settings == "B":
+		print("You selected a static stoploss")
+	elif stoploss_settings == "C":
+		print("You selected a timebased stoploss")
+	elif stoploss_settings == "D":
+		print("You selected all of the options.")
+		#will need more configuring
+	elif stoploss_settings  == "E":
+		print("You selected some of them, lets specify your selection.")
+		#will need more configuration
+	elif stoploss_settings == "F":
+		print("You selected none of them, crazy.")
+	else:
+		print("Input error. Please try again.\n")
 
 def param_selection_define(selecs):
 	if selecs == "A":
