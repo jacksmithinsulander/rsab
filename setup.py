@@ -121,12 +121,39 @@ change_selection = input("Do you want to change all of these parameters (A) or o
 #at a later time, with a LOT of return functions
 def profit_taking_config():
 	print("=======================================================================")
-	profit_taking = input('How many % profits do you want to take on each target levels? Answer with letters ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
+	profit_taking = input('How many % profits do you want to take on each target levels? Answer with numbers ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
 	if (profit_taking[:-2].isdigit() and 
 		int(profit_taking.removesuffix(" %")) <= 100):
 		print("Yes!")
 	else:
 		print("Something went wrong, retry")
+
+def profit_target_config();
+	print("=======================================================================")
+	tp = input('Standard profit taking is each time the worth of what you hold is worth double of what you initially bought. So if you bought for $10, the bot will take profit each time the bag is worth $20. How many % gains would you prefer for each profit taking? answer with numbers ended by % sign.')
+	if tp[:-2].isdigit():
+		print("Perfect!")
+	else:
+		print("Something went wrong, retry")
+
+def rebalancing_config();
+	print("=======================================================================")
+	want_rebalancing = input('Do you want autorebalancing? (Y / N)'):
+	if want_rebalancing == "Y":
+		print("Rebalancing is ON")
+	elif want_rebalancing == "N":
+		print("Rebalancing is OFF")
+
+def bag_sizing():
+	print("=======================================================================")
+	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what")
+	if dynamic_or_static == "A":
+		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?")
+	elif dynamic_or_static == "B":
+		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?")
+
+
+
 
 def param_selection_define(selecs):
 	if selecs == "A":
