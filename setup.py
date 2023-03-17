@@ -160,7 +160,15 @@ def fa_on():
 	elif fa_toggle == "B":
 		print("FA is turned off")
 
-
+def fa_passes_settings():
+	print("=======================================================================")
+	fa_passes = input("The standard amount of passes for the 3 FA parameters are 2/3. Would you like to make it (A) 1/3, (B) 3/3 or (C) leave it as is?")
+	if fa_passes == "A":
+		print("1/3")
+	elif fa_passes == "B":
+		print("3/3")
+	elif fa_passes == "C":
+		print("2/3")
 
 def stoploss_management():
 	print("=======================================================================")
@@ -186,6 +194,12 @@ def param_selection_define(selecs):
 	if selecs == "A":
 		print("You chose changing all parameters, lets go!")
 		profit_taking_config()
+		profit_target_config()
+		rebalancing_config()
+		bag_sizing()
+		fa_on()
+		fa_passes_setting()
+		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
 	elif selecs == "B":
 		print("Alright, lets define what parameters you want to change")
 	else:
