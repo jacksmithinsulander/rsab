@@ -1,0 +1,17 @@
+apeConf = {
+	"chains":["eth", "arb", "op", "matic", "avax", "ftm", "bnb"], 
+	"profitSizePercentages": 50,
+	"profitTargets": 100,
+	"rebalancing": true, 
+	"bagSizing": {
+		"type": "dynamic",
+		"universalSize": 1
+	},
+	"stoplossManagement": [
+		{"type": "200MA"}
+		//{"type": "static", "percentLoss": 15}
+		//{"type": "Days", "durationsInDays": 5}
+	],
+	"fa": true,
+	"faStrictness": 2 
+}
