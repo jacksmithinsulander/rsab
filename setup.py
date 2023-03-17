@@ -130,7 +130,7 @@ def profit_taking_config():
 
 def profit_target_config():
 	print("=======================================================================")
-	tp = input('Standard profit taking is each time the worth of what you hold is worth double of what you initially bought. So if you bought for $10, the bot will take profit each time the bag is worth $20. How many % gains would you prefer for each profit taking? answer with numbers ended by % sign.')
+	tp = input('Standard profit taking is each time the worth of what you hold is worth double of what you initially bought. So if you bought for $10, the bot will take profit each time the bag is worth $20. How many % gains would you prefer for each profit taking? answer with numbers ended by % sign. \n')
 	if tp[:-2].isdigit():
 		print("Perfect!")
 	else:
@@ -138,7 +138,7 @@ def profit_target_config():
 
 def rebalancing_config():
 	print("=======================================================================")
-	want_rebalancing = input('Do you want autorebalancing? (Y / N)'):
+	want_rebalancing = input('Do you want autorebalancing? (Y / N) \n')
 	if want_rebalancing == "Y":
 		print("Rebalancing is ON")
 	elif want_rebalancing == "N":
@@ -146,15 +146,15 @@ def rebalancing_config():
 
 def bag_sizing():
 	print("=======================================================================")
-	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what")
+	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what\n")
 	if dynamic_or_static == "A":
-		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?")
+		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?\n")
 	elif dynamic_or_static == "B":
-		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?")
+		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?\n")
 
 def fa_on():
 	print("=======================================================================")
-	fa_toggle = input("FA (A) on or (B) off? (NOT RECOMENDED TO TURN OFF SINCE ITS ONLY CHECKING WETHER OR NOT YOU CAN ACTUALLY SELL THE SHITCOINS)")
+	fa_toggle = input("FA (A) on or (B) off? (NOT RECOMENDED TO TURN OFF SINCE ITS ONLY CHECKING WETHER OR NOT YOU CAN ACTUALLY SELL THE SHITCOINS)\n")
 	if fa_toggle == "A":
 		print("FA is turned on")
 	elif fa_toggle == "B":
@@ -162,7 +162,7 @@ def fa_on():
 
 def fa_passes_settings():
 	print("=======================================================================")
-	fa_passes = input("The standard amount of passes for the 3 FA parameters are 2/3. Would you like to make it (A) 1/3, (B) 3/3 or (C) leave it as is?")
+	fa_passes = input("The standard amount of passes for the 3 FA parameters are 2/3. Would you like to make it (A) 1/3, (B) 3/3 or (C) leave it as is?\n")
 	if fa_passes == "A":
 		print("1/3")
 	elif fa_passes == "B":
@@ -172,7 +172,7 @@ def fa_passes_settings():
 
 def stoploss_management():
 	print("=======================================================================")
-	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them.")
+	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them. \n")
 	if stoploss_settings == "A":
 		print("You selected 200MA stoploss")
 	elif stoploss_settings == "B":
@@ -198,7 +198,7 @@ def param_selection_define(selecs):
 		rebalancing_config()
 		bag_sizing()
 		fa_on()
-		fa_passes_setting()
+		fa_passes_settings()
 		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
 	elif selecs == "B":
 		print("Alright, lets define what parameters you want to change")
