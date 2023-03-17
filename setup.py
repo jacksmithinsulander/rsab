@@ -72,21 +72,6 @@ def stoploss_management():
 	else:
 		print("Input error. Please try again.\n")
 
-def param_selection_define(selecs):
-	if selecs == "A":
-		print("You chose changing all parameters, lets go!")
-		profit_taking_config()
-		profit_target_config()
-		rebalancing_config()
-		bag_sizing()
-		fa_on()
-		fa_passes_settings()
-		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
-	elif selecs == "B":
-		print("Alright, lets define what parameters you want to change")
-	else:
-		print("Input error, try not missing the a or b keys next time.")
-
 def custom_choose():
 	print("=======================================================================")
 	print('The standard settings are inspired by the "little old lady" trading strategy.')
@@ -113,6 +98,8 @@ def custom_choose():
 		return 0
 	elif change_selection == "B":
 		return 1
+
+#add recursion for retrys like this https://stackoverflow.com/questions/12828771/how-to-go-back-to-first-if-statement-if-no-choices-are-valid
 
 def param_choose_results():
 	print("=======================================================================")
@@ -156,6 +143,17 @@ def chain_chooser():
 
 def conf_tinker():
 	conf_specify = custom_choose()
+	if bool(conf_specify):
+		print("Alright, lets define what parameters you want to change")
+	elif not bool(conf_specify):
+		print("You chose changing all parameters, lets go!")
+		profit_taking_config()
+		profit_target_config()
+		rebalancing_config()
+		bag_sizing()
+		fa_on()
+		fa_passes_settings()
+		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
 
 def conf_setup():
 	chains = chain_chooser()
