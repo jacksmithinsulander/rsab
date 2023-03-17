@@ -72,6 +72,14 @@ def stoploss_management():
 	else:
 		print("Input error. Please try again.\n")
 
+def spec_params():
+	print("=======================================================================")
+	print("What parameters would you like to tweak, ser?")
+	print('Answer with just numbers, separated by commas i.e. "1, 2, 3" etc ')
+	choosen_params = input("Profit taking size (1), profit targets (2), purchasing asset rebalancing (3), bag sizing (4), FA on off toggle (5), FA strictness (6), stoploss management (7)\n")
+	params_arr = choosen_params.split(", ")
+	return params_arr
+
 def custom_choose():
 	print("=======================================================================")
 	print('The standard settings are inspired by the "little old lady" trading strategy.')
@@ -145,6 +153,10 @@ def conf_tinker():
 	conf_specify = custom_choose()
 	if bool(conf_specify):
 		print("Alright, lets define what parameters you want to change")
+		params = spec_params()
+		for x in params:
+			if x == "1":
+				print("hello")
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking_config()
