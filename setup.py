@@ -156,7 +156,19 @@ def conf_tinker():
 		params = spec_params()
 		for x in params:
 			if x == "1":
-				print("hello")
+				profit_taking_config()
+			if x == "2":
+				profit_target_config()
+			if x == "3":
+				rebalancing_config()
+			if x == "4":
+				bag_sizing()
+			if x == "5":
+				fa_on()
+			if x == "6":
+				fa_passes_settings()
+			if x == "7":
+				stoploss_management()
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking_config()
