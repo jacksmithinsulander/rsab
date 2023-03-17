@@ -1,37 +1,5 @@
-"""
-Planing flow
-1. Function for checking if config file already exisist
-	if exisist:
-		redo it
-	else
-		cancel setup
-
-	else do it #same path as redoing it
-2. Program thats sets everything up
-	2.1. Choose chains #will have to do it even if sticking with defaul config later on
-	2.2. Choose if sticking with default options or custom ones
-	if default, send it into the config file and end the setup
-	else:
-		2.2.1. Choose if changing all or just some of the settings
-		2.2.2. Start a function that just calls the other functions to set each configuration. IF just changing some settings this master function skips the ones not selected
-			2.2.2.1. Set profit taking size
-			2.2.2.2. Set profit taking levels
-			2.2.2.3. Set on / off rebalancing
-			2.2.2.4. Set buy sizes
-			2.2.2.5. Set stoploss rules
-			2.2.2.6. FA on or off
-				2.2.2.6.1. Finetune points thresholds
-					2.2.2.6.1.1. Tokensniffer
-					2.2.2.6.1.2. Dextools
-					2.2.2.6.1.3. Dexscreener
-				2.2.2.6.2. Finetune pass thresholds
-3. Pass selection into a new config file
-"""
 import os.path
 import json
-
-#chain_chooser(chains_arr)
-#param_choose_results(param_choose)
 
 def profit_taking_config():
 	print("=======================================================================")
@@ -141,7 +109,10 @@ def custom_choose():
 	print('Checking things like if it is possible to sell the token, if the liquidity is locked etc.')
 	print("=======================================================================")
 	change_selection = input("Do you want to change all of these parameters (A) or only some (B) of them?\n")
-	#if change_selection ==
+	if change_selection == "A":
+		return 0
+	elif change_selection == "B":
+		return 1
 
 def param_choose_results():
 	print("=======================================================================")
@@ -183,11 +154,18 @@ def chain_chooser():
 			print("Input error. Please try again.\n")
 	return chainarr
 
+def conf_tinker():
+	conf_specify = custom_choose()
+
 def conf_setup():
 	chains = chain_chooser()
 	print(chains)
 	params = param_choose_results()
-	print(bool(params))
+	if bool(params):
+		print("Lets tinker")
+		conf_tinker()
+	elif not bool(params):
+		print("Standard setup")
 
 check_file = os.path.isfile("./conf.json")
 
@@ -200,6 +178,3 @@ def conf_checker(file_exists):
 		conf_setup()
 
 conf_checker(check_file)
-
-
-#param_selection_define(change_selection)
