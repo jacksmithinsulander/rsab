@@ -8,8 +8,8 @@ apeConf = {
 		"universalSize": 1
 	},
 	"stoplossManagement": [
-		{"type": "200MA"}
-		//{"type": "static", "percentLoss": 15}
+		{"type": "200MA"},
+		//{"type": "static", "percentLoss": 15},
 		//{"type": "Days", "durationsInDays": 5}
 	],
 	"fa": true,
