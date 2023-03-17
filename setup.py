@@ -128,7 +128,7 @@ def profit_taking_config():
 	else:
 		print("Something went wrong, retry")
 
-def profit_target_config();
+def profit_target_config():
 	print("=======================================================================")
 	tp = input('Standard profit taking is each time the worth of what you hold is worth double of what you initially bought. So if you bought for $10, the bot will take profit each time the bag is worth $20. How many % gains would you prefer for each profit taking? answer with numbers ended by % sign.')
 	if tp[:-2].isdigit():
@@ -136,7 +136,7 @@ def profit_target_config();
 	else:
 		print("Something went wrong, retry")
 
-def rebalancing_config();
+def rebalancing_config():
 	print("=======================================================================")
 	want_rebalancing = input('Do you want autorebalancing? (Y / N)'):
 	if want_rebalancing == "Y":
