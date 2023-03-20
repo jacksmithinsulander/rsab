@@ -38,14 +38,16 @@ def rebalancing_config():
 def bag_sizing():
 	print("=======================================================================")
 	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what\n")
+	sizing = Object()
 	if dynamic_or_static == "A":
 		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?\n")
-		return "dynamic"
-		return int(dynamic_size.removesuffix(" %"))
+		sizing.type = "dynamic"
+		sizing.universalSize =  int(dynamic_size.removesuffix(" %"))
 	elif dynamic_or_static == "B":
 		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?\n")
-		return "static"
-		return ubt(static_size.removesuffix(" %"))
+		sizing.type = "static"
+		sizing.universalSize = int(static_size.removesuffix(" %"))
+	return sizing
 
 def fa_on():
 	print("=======================================================================")
@@ -226,12 +228,15 @@ def conf_setup():
 	configuration.chains = chains
 	configuration.profitSizePercentages = tinker_results[0]
 	configuration.profitTargets = tinker_results[1]
-	configuration.rebalancing = tinker_results[2]
+	configuration.rebalancing = bool(tinker_results[2])
 	configuration.bagSizing = tinker_results[3]
-	configuration.stoplossManagement = tinker_results[4]
-	configuration.fa = tinker_results[5]
-	configuration.faStrictness = tinker_results[6] 
+	configuration.fa = bool(tinker_results[4])
+	configuration.faStrictness = tinker_results[5]
+	configuration.stoplossManagement = tinker_results[6] 
 	print(configuration.toJSON())
+	f = open("conf.json", "x")
+	f.write(configuration.toJSON())
+	f.close
 
 check_file = os.path.isfile("./conf.json")
 
