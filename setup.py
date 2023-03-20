@@ -1,6 +1,18 @@
 import os.path
 import json
 
+class Config:
+	def __init__(chains, profitSizePercentages, profitTargets, rebalancing, 
+		bagSizing, stoplossManagement, fa, faStrictness):
+		self.chains = chains
+		self.profitSizePercentages = profitSizePercentages
+		self.profitTargets = profitTargets
+		self.rebalancing = rebalansig
+		self.bagSizing = bagSizing
+		self.stoplossManagement = stoplossManagement
+		self.fa = fa
+		self.faStrictness = faStrictness
+
 def profit_taking_config():
 	print("=======================================================================")
 	profit_taking = input('How many % profits do you want to take on each target levels? Answer with numbers ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
@@ -155,7 +167,6 @@ def conf_tinker():
 				return sl
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
-		#tinker_results = []
 		profit_taking = profit_taking_config()
 		tp = profit_target_config()
 		rebalance = rebalancing_config()
@@ -163,9 +174,7 @@ def conf_tinker():
 		fa = fa_on()
 		fa_passes = fa_passes_settings()
 		sl = stoploss_management()
-		#tinker_results.append(profit_taking, tp, rebalance, bag, fa, fa_passes, sl) 
 		tinker_results = [profit_taking, tp, rebalance, bag, fa, fa_passes, sl]
-		#return profit_taking, tp, rebalance, bag, fa, fa_passes, sl
 		return tinker_results
 
 def param_choose_results():
@@ -219,7 +228,6 @@ def conf_setup():
 		tinker_results = conf_tinker()
 		chains.append(tinker_results)
 		print(chains)
-		#print(tinker_results)
 	elif not bool(params):
 		print("Standard setup")
 
