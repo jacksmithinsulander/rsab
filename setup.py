@@ -70,13 +70,17 @@ def stoploss_management():
 	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them. \n")
 	if stoploss_settings == "A":
 		print("You selected 200MA stoploss")
+		return "200MA"
 	elif stoploss_settings == "B":
 		print("You selected a static stoploss")
+		return "stoploss"
 	elif stoploss_settings == "C":
 		print("You selected a timebased stoploss")
+		return "timebased"
 	elif stoploss_settings == "D":
 		print("You selected all of the options.")
 		#will need more configuring
+		return "all"
 	elif stoploss_settings  == "E":
 		print("You selected some of them, lets specify your selection.")
 		#will need more configuration
@@ -141,7 +145,7 @@ def conf_tinker():
 			if x == "6":
 				fa_passes = fa_passes_settings()
 			if x == "7":
-				stoploss_management()
+				sl = stoploss_management()
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking = profit_taking_config()
@@ -150,9 +154,7 @@ def conf_tinker():
 		bag = bag_sizing()
 		fa = fa_on()
 		fa_passes = fa_passes_settings()
-		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
-
-
+		sl = stoploss_management() 
 
 def param_choose_results():
 	print("=======================================================================")
