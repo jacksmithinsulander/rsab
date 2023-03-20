@@ -25,34 +25,45 @@ def rebalancing_config():
 	want_rebalancing = input('Do you want autorebalancing? (Y / N) \n')
 	if want_rebalancing == "Y":
 		print("Rebalancing is ON")
+		return 1
 	elif want_rebalancing == "N":
 		print("Rebalancing is OFF")
+		return 0
 
 def bag_sizing():
 	print("=======================================================================")
 	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what\n")
 	if dynamic_or_static == "A":
 		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?\n")
+		return "dynamic"
+		return int(dynamic_size.removesuffix(" %"))
 	elif dynamic_or_static == "B":
 		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?\n")
+		return "static"
+		return ubt(static_size.removesuffix(" %"))
 
 def fa_on():
 	print("=======================================================================")
 	fa_toggle = input("FA (A) on or (B) off? (NOT RECOMENDED TO TURN OFF SINCE ITS ONLY CHECKING WETHER OR NOT YOU CAN ACTUALLY SELL THE SHITCOINS)\n")
 	if fa_toggle == "A":
 		print("FA is turned on")
+		return 1
 	elif fa_toggle == "B":
 		print("FA is turned off")
+		return 0
 
 def fa_passes_settings():
 	print("=======================================================================")
 	fa_passes = input("The standard amount of passes for the 3 FA parameters are 2/3. Would you like to make it (A) 1/3, (B) 3/3 or (C) leave it as is?\n")
 	if fa_passes == "A":
 		print("1/3")
+		return 1
 	elif fa_passes == "B":
 		print("3/3")
+		return 3
 	elif fa_passes == "C":
 		print("2/3")
+		return 2
 
 def stoploss_management():
 	print("=======================================================================")
@@ -122,23 +133,23 @@ def conf_tinker():
 			if x == "2":
 				tp = profit_target_config()
 			if x == "3":
-				rebalancing_config()
+				rebalance = rebalancing_config()
 			if x == "4":
-				bag_sizing()
+				bag = bag_sizing()
 			if x == "5":
-				fa_on()
+				fa = fa_on()
 			if x == "6":
-				fa_passes_settings()
+				fa_passes = fa_passes_settings()
 			if x == "7":
 				stoploss_management()
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking = profit_taking_config()
 		tp = profit_target_config()
-		rebalancing_config()
-		bag_sizing()
-		fa_on()
-		fa_passes_settings()
+		rebalance = rebalancing_config()
+		bag = bag_sizing()
+		fa = fa_on()
+		fa_passes = fa_passes_settings()
 		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
 
 
