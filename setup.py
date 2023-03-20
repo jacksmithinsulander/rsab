@@ -6,19 +6,6 @@ class Object:
 		return json.dumps(self, default=lambda o: o.__dict__,
 			sort_keys=True, indent=4)
 
-
-class Config:
-	def __init__(self, chains, profitSizePercentages, profitTargets, rebalancing, 
-		bagSizing, stoplossManagement, fa, faStrictness):
-		self.chains = chains
-		self.profitSizePercentages = profitSizePercentages
-		self.profitTargets = profitTargets
-		self.rebalancing = rebalancing
-		self.bagSizing = bagSizing
-		self.stoplossManagement = stoplossManagement
-		self.fa = fa
-		self.faStrictness = faStrictness
-
 def profit_taking_config():
 	print("=======================================================================")
 	profit_taking = input('How many % profits do you want to take on each target levels? Answer with numbers ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
@@ -235,9 +222,6 @@ def conf_setup():
 		print(tinker_results)
 	elif not bool(params):
 		print("Standard setup")
-	#configuration = Config(chains, tinker_results[0], tinker_results[1], 
-	#	tinker_results[2], tinker_results[3], tinker_results[4], 
-	#	tinker_results[5], tinker_results[6])
 	configuration = Object()
 	configuration.chains = chains
 	configuration.profitSizePercentages = tinker_results[0]
