@@ -9,15 +9,13 @@ class Object:
 default = Object()
 default.profitSizePercentages = 50
 default.profitTargets = 100
-default.rebalancing = true
-default.bagSizing = {
-		"type": "dynamic",
-		"universalSize": 1
-	}
-default.stoplossManagement = [{
-		"type": 
-	}]
-default.fa = true
+default.rebalancing = "true"
+default.bagSizing = Object()
+default.bagSizing.type  =  "dynamic"
+default.bagSizing.universalSize = 1
+default.stoplossManagement = Object()
+default.stoplossManagement.type =  "200MA"
+default.fa = "true"
 default.faStrictness = 2
 
 def profit_taking_config():
@@ -236,17 +234,19 @@ def conf_setup():
 		print("Lets tinker")
 		tinker_results = conf_tinker()
 		print(tinker_results)
+		configuration = Object()
+		#configuration.chains = chains
+		configuration.profitSizePercentages = tinker_results[0]
+		configuration.profitTargets = tinker_results[1]
+		configuration.rebalancing = bool(tinker_results[2])
+		configuration.bagSizing = tinker_results[3]
+		configuration.fa = bool(tinker_results[4])
+		configuration.faStrictness = tinker_results[5]
+		configuration.stoplossManagement = tinker_results[6] 
 	elif not bool(params):
 		print("Standard setup")
-	configuration = Object()
+		configuration = default
 	configuration.chains = chains
-	configuration.profitSizePercentages = tinker_results[0]
-	configuration.profitTargets = tinker_results[1]
-	configuration.rebalancing = bool(tinker_results[2])
-	configuration.bagSizing = tinker_results[3]
-	configuration.fa = bool(tinker_results[4])
-	configuration.faStrictness = tinker_results[5]
-	configuration.stoplossManagement = tinker_results[6] 
 	print(configuration.toJSON())
 	f = open("conf.json", "x")
 	f.write(configuration.toJSON())

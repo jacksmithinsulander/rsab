@@ -1,0 +1,20 @@
+{
+    "bagSizing": {
+        "type": "dynamic",
+        "universalSize": 1
+    },
+    "chains": [
+        "eth",
+        "arb",
+        "op",
+        "matic"
+    ],
+    "fa": "true",
+    "faStrictness": 2,
+    "profitSizePercentages": 50,
+    "profitTargets": 100,
+    "rebalancing": "true",
+    "stoplossManagement": {
+        "type": "200MA"
+    }
+}
