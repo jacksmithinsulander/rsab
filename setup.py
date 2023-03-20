@@ -6,6 +6,20 @@ class Object:
 		return json.dumps(self, default=lambda o: o.__dict__,
 			sort_keys=True, indent=4)
 
+default = Object()
+default.profitSizePercentages = 50
+default.profitTargets = 100
+default.rebalancing = true
+default.bagSizing = {
+		"type": "dynamic",
+		"universalSize": 1
+	}
+default.stoplossManagement = [{
+		"type": 
+	}]
+default.fa = true
+default.faStrictness = 2
+
 def profit_taking_config():
 	print("=======================================================================")
 	profit_taking = input('How many % profits do you want to take on each target levels? Answer with numbers ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
