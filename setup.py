@@ -134,27 +134,39 @@ def conf_tinker():
 		for x in params:
 			if x == "1":
 				profit_taking = profit_taking_config()
+				return profit_taking
 			if x == "2":
 				tp = profit_target_config()
+				return tp
 			if x == "3":
 				rebalance = rebalancing_config()
+				return rebalance
 			if x == "4":
 				bag = bag_sizing()
+				return bag
 			if x == "5":
 				fa = fa_on()
+				return fa
 			if x == "6":
 				fa_passes = fa_passes_settings()
+				return fa_passes
 			if x == "7":
 				sl = stoploss_management()
+				return sl
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
+		#tinker_results = []
 		profit_taking = profit_taking_config()
 		tp = profit_target_config()
 		rebalance = rebalancing_config()
 		bag = bag_sizing()
 		fa = fa_on()
 		fa_passes = fa_passes_settings()
-		sl = stoploss_management() 
+		sl = stoploss_management()
+		#tinker_results.append(profit_taking, tp, rebalance, bag, fa, fa_passes, sl) 
+		tinker_results = [profit_taking, tp, rebalance, bag, fa, fa_passes, sl]
+		#return profit_taking, tp, rebalance, bag, fa, fa_passes, sl
+		return tinker_results
 
 def param_choose_results():
 	print("=======================================================================")
@@ -204,7 +216,10 @@ def conf_setup():
 	params = param_choose_results()
 	if bool(params):
 		print("Lets tinker")
-		conf_tinker()
+		tinker_results = conf_tinker()
+		chains.append(tinker_results)
+		print(chains)
+		#print(tinker_results)
 	elif not bool(params):
 		print("Standard setup")
 
