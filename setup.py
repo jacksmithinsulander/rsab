@@ -7,6 +7,7 @@ def profit_taking_config():
 	if (profit_taking[:-2].isdigit() and 
 		int(profit_taking.removesuffix(" %")) <= 100):
 		print("Yes!")
+		return int(profit_taking.removesuffix(" %"))
 	else:
 		print("Something went wrong, retry")
 
@@ -15,6 +16,7 @@ def profit_target_config():
 	tp = input('Standard profit taking is each time the worth of what you hold is worth double of what you initially bought. So if you bought for $10, the bot will take profit each time the bag is worth $20. How many % gains would you prefer for each profit taking? answer with numbers ended by % sign. \n')
 	if tp[:-2].isdigit():
 		print("Perfect!")
+		return int(tp.removesuffix(" %"))
 	else:
 		print("Something went wrong, retry")
 
@@ -23,34 +25,45 @@ def rebalancing_config():
 	want_rebalancing = input('Do you want autorebalancing? (Y / N) \n')
 	if want_rebalancing == "Y":
 		print("Rebalancing is ON")
+		return 1
 	elif want_rebalancing == "N":
 		print("Rebalancing is OFF")
+		return 0
 
 def bag_sizing():
 	print("=======================================================================")
 	dynamic_or_static = input("For bagsizing, would you like each bag to be (A) a dynamic %age of the ammount of dry powder your wallet holds or (B) a static number? Examples: Every time buy for 1 % of the dry powder or everytime buy for 1 dollar no matter what\n")
 	if dynamic_or_static == "A":
 		dynamic_size = input("You chose dynamic bag sizing. How many percentages should each buy be?\n")
+		return "dynamic"
+		return int(dynamic_size.removesuffix(" %"))
 	elif dynamic_or_static == "B":
 		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?\n")
+		return "static"
+		return ubt(static_size.removesuffix(" %"))
 
 def fa_on():
 	print("=======================================================================")
 	fa_toggle = input("FA (A) on or (B) off? (NOT RECOMENDED TO TURN OFF SINCE ITS ONLY CHECKING WETHER OR NOT YOU CAN ACTUALLY SELL THE SHITCOINS)\n")
 	if fa_toggle == "A":
 		print("FA is turned on")
+		return 1
 	elif fa_toggle == "B":
 		print("FA is turned off")
+		return 0
 
 def fa_passes_settings():
 	print("=======================================================================")
 	fa_passes = input("The standard amount of passes for the 3 FA parameters are 2/3. Would you like to make it (A) 1/3, (B) 3/3 or (C) leave it as is?\n")
 	if fa_passes == "A":
 		print("1/3")
+		return 1
 	elif fa_passes == "B":
 		print("3/3")
+		return 3
 	elif fa_passes == "C":
 		print("2/3")
+		return 2
 
 def stoploss_management():
 	print("=======================================================================")
@@ -109,6 +122,38 @@ def custom_choose():
 
 #add recursion for retrys like this https://stackoverflow.com/questions/12828771/how-to-go-back-to-first-if-statement-if-no-choices-are-valid
 
+def conf_tinker():
+	conf_specify = custom_choose()
+	if bool(conf_specify):
+		print("Alright, lets define what parameters you want to change")
+		params = spec_params()
+		for x in params:
+			if x == "1":
+				profit_taking = profit_taking_config()
+			if x == "2":
+				tp = profit_target_config()
+			if x == "3":
+				rebalance = rebalancing_config()
+			if x == "4":
+				bag = bag_sizing()
+			if x == "5":
+				fa = fa_on()
+			if x == "6":
+				fa_passes = fa_passes_settings()
+			if x == "7":
+				stoploss_management()
+	elif not bool(conf_specify):
+		print("You chose changing all parameters, lets go!")
+		profit_taking = profit_taking_config()
+		tp = profit_target_config()
+		rebalance = rebalancing_config()
+		bag = bag_sizing()
+		fa = fa_on()
+		fa_passes = fa_passes_settings()
+		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
+
+
+
 def param_choose_results():
 	print("=======================================================================")
 	print("Ait, now for the trading bot parameters, such as stop loss and profit taking")
@@ -128,59 +173,31 @@ def chain_chooser():
 	print('First of what EVMs would you like to "trade"(read gamble) on? Answer with the coresponding capitalized letters, separated by commas')
 	chains = input("Ethereum mainnet (E), Arbitrum (A), Optimism (O), Polygon (P), Avalanche (V), Fantom (F), Binance smart chain (B) or ALL (ALL)\n")
 	chainarr = chains.split(", ")
+	chainarr_formatted = [] 
 	for x in chainarr:
 		if x == "E":
-			print("You have chosen Ethereum mainnet.")
+			chainarr_formatted.append("eth")
 		elif x == "A":
-			print("You have chosen Arbitrum.")
+			chainarr_formatted.append("arb")
 		elif x == "O":
-			print("You have chosen Optimism.")
+			chainarr_formatted.append("op")
 		elif x == "P":
-			print("You have chosen Polygon.")
+			chainarr_formatted.append("matic")
 		elif x == "V":
-			print("You have chosen Avalanche.")
+			chainarr_formatted.append("avax")
 		elif x == "F":
-			print("You have chosen Fantom.")
+			chainarr_formatted.append("ftm")
 		elif x == "B":
-			print("You have chosen Binance Smart Chain.")
+			chainarr_formatted.append("bnb")
 		elif x == "ALL":
 			print("You choose all")
 		else:
 			print("Input error. Please try again.\n")
-	return chainarr
-
-def conf_tinker():
-	conf_specify = custom_choose()
-	if bool(conf_specify):
-		print("Alright, lets define what parameters you want to change")
-		params = spec_params()
-		for x in params:
-			if x == "1":
-				profit_taking_config()
-			if x == "2":
-				profit_target_config()
-			if x == "3":
-				rebalancing_config()
-			if x == "4":
-				bag_sizing()
-			if x == "5":
-				fa_on()
-			if x == "6":
-				fa_passes_settings()
-			if x == "7":
-				stoploss_management()
-	elif not bool(conf_specify):
-		print("You chose changing all parameters, lets go!")
-		profit_taking_config()
-		profit_target_config()
-		rebalancing_config()
-		bag_sizing()
-		fa_on()
-		fa_passes_settings()
-		stoploss_management() #maybe move this before FA options booth here and in the stated functions to make it match the flow stated in the question form
+	return chainarr_formatted
 
 def conf_setup():
 	chains = chain_chooser()
+	print("Choosen chains are:")
 	print(chains)
 	params = param_choose_results()
 	if bool(params):
@@ -195,7 +212,7 @@ def conf_checker(file_exists):
 	if file_exists:
 		print("Configuration file already exists")
 	else:
-		print("File does not exist")
+		print("Conf-file does not exist")
 		print("Let's set it up!")
 		conf_setup()
 
