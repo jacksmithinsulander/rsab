@@ -155,53 +155,39 @@ def conf_tinker():
 			if x == "1":
 				profit_taking = profit_taking_config()
 				inverse_params.remove("1")
-#				return profit_taking
 			elif x == "2":
 				tp = profit_target_config()
 				inverse_params.remove("2")
-#				return tp
 			elif x == "3":
 				rebalance = rebalancing_config()
 				inverse_params.remove("3")
-#				return rebalance
 			elif x == "4":
 				bag = bag_sizing()
 				inverse_params.remove("4")
-#				return bag
 			elif x == "5":
 				fa = fa_on()
 				inverse_params.remove("5")
-#				return fa
 			elif x == "6":
 				fa_passes = fa_passes_settings()
 				inverse_params.remove("6")
-#				return fa_passes
 			elif x == "7":
 				sl = stoploss_management()
 				inverese_params.remove("7")
-#				return sl
 		for y in inverse_params:
 			if y == "1":
 				profit_taking = default.profitSizePercentages
-#				return profit_taking
 			elif y == "2":
 				tp = default.profitTargets
-#				return tp
 			elif y == "3":
 				rebalance = default.rebalancing
-#				return rebalance
 			elif y == "4":
 				bag = default.bagSizing
-#				return bag
 			elif y == "5":
 				fa = default.fa
-#				return fa
 			elif y == "6":
 				fa_passes = default.faStrictness
-#				return fa_passes
 			elif y == "7":
 				sl = default.stoplossManagement
-#				return sl
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking = profit_taking_config()
@@ -265,7 +251,6 @@ def conf_setup():
 		tinker_results = conf_tinker()
 		print(tinker_results)
 		configuration = Object()
-		#configuration.chains = chains
 		configuration.profitSizePercentages = tinker_results[0]
 		configuration.profitTargets = tinker_results[1]
 		configuration.rebalancing = bool(tinker_results[2])
