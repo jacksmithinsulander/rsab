@@ -104,13 +104,6 @@ def sl_chooser():
 	sl_arr = sl_param_choose.split(", ")
 	return sl_arr
 
-def tryVar(var):
-	try:
-		val = var
-	except NameError:
-		return None
-	return val
-
 def stoploss_management():
 	print("=======================================================================")
 	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them. \n")
@@ -140,16 +133,13 @@ def stoploss_management():
 			if x == "A":
 				trailing_sl = Object()
 				trailing_sl.type = "200MA"
+				stoploss_conf.append(trailing_sl)
 			elif x == "B":
 				static_sl = set_static_stoploss()
+				stoploss_conf.append(static_sl)
 			elif x == "C":
 			 	deadline_sl = set_timebased_stoploss()
-		if tryVar(trailing_sl) is None:
-			 stoploss_conf.append(trailing_sl)
-		if tryVar(static_sl) is None:
-			stoploss_conf.append(static_sl)
-		if tryVar(deadline_sl) is None:
-			stoploss_conf.append(deadline_sl)		
+			 	stoploss_conf.append(deadline_sl)
 	elif stoploss_settings == "F":
 		print("You selected none of them, crazy.")
 		stoploss_conf = Object()
@@ -222,7 +212,7 @@ def conf_tinker():
 				inverse_params.remove("6")
 			elif x == "7":
 				sl = stoploss_management()
-				inverese_params.remove("7")
+				inverse_params.remove("7")
 		for y in inverse_params:
 			if y == "1":
 				profit_taking = default.profitSizePercentages
