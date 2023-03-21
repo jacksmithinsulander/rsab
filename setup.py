@@ -150,28 +150,59 @@ def conf_tinker():
 	if bool(conf_specify):
 		print("Alright, lets define what parameters you want to change")
 		params = spec_params()
+		inverse_params = ["1", "2", "3", "4", "5", "6", "7"]
 		for x in params:
 			if x == "1":
 				profit_taking = profit_taking_config()
+				inverse_params.remove("1")
 				return profit_taking
-			if x == "2":
+			elif x == "2":
 				tp = profit_target_config()
+				inverse_params.remove("2")
 				return tp
-			if x == "3":
+			elif x == "3":
 				rebalance = rebalancing_config()
+				inverse_params.remove("3")
 				return rebalance
-			if x == "4":
+			elif x == "4":
 				bag = bag_sizing()
+				inverse_params.remove("4")
 				return bag
-			if x == "5":
+			elif x == "5":
 				fa = fa_on()
+				inverse_params.remove("5")
 				return fa
-			if x == "6":
+			elif x == "6":
 				fa_passes = fa_passes_settings()
+				inverse_params.remove("6")
 				return fa_passes
-			if x == "7":
+			elif x == "7":
 				sl = stoploss_management()
+				inverese_params.remove("7")
 				return sl
+		for y in inverse_params:
+			if y == "1":
+				profit_taking = default.profitSizePercentages
+				return profit_taking
+			elif y == "2":
+				tp = default.profitTargets
+				return tp
+			elif y == "3":
+				rebalance = default.rebalancing
+				return rebalance
+			elif y == "4":
+				bag = default.bagSizing
+				return bag
+			elif y == "5":
+				fa = default.fa
+				return fa
+			elif y == "6":
+				fa_passes = default.faStrictness
+				return fa_passes
+			elif y == "7":
+				sl = default.stoplossManagement
+				return sl
+
 	elif not bool(conf_specify):
 		print("You chose changing all parameters, lets go!")
 		profit_taking = profit_taking_config()
