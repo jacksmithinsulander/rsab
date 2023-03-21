@@ -328,12 +328,25 @@ def conf_setup():
 
 check_file = os.path.isfile("./conf.json")
 
-def conf_checker(file_exists):
-	if file_exists:
-		print("Configuration file already exists")
-	else:
-		print("Conf-file does not exist")
-		print("Let's set it up!")
+def conf_checker(file_exists, b):
+	if b == 0:
+		if file_exists:
+			print("Configuration file already exists")
+			overwrite = input("Overwrite it? ( Y / N) \n")
+			if overwrite == "Y":
+				print("Okay, lets overwrite it!")
+				return conf_checker(check_file, 1)
+			elif overwrite == "N":
+				print("Ait, nothing is changed")
+			else:
+				print("Input error, retry")
+				return conf_checker(check_file, 0)
+		else:
+			print("Conf-file does not exist")
+			print("Let's set it up!")
+			conf_setup()
+	elif b == 1:
+		os.remove("./conf.json")
 		conf_setup()
 
-conf_checker(check_file)
+conf_checker(check_file, 0)
