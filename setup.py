@@ -202,8 +202,6 @@ def custom_choose():
 		print("Input error, retry")
 		return custom_choose()
 
-#add recursion for retrys like this https://stackoverflow.com/questions/12828771/how-to-go-back-to-first-if-statement-if-no-choices-are-valid
-
 def conf_tinker():
 	conf_specify = custom_choose()
 	if bool(conf_specify):
