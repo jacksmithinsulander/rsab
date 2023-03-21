@@ -23,10 +23,11 @@ def profit_taking_config():
 	profit_taking = input('How many % profits do you want to take on each target levels? Answer with numbers ended by % sign, i.e. "50 %" or "100 %"(if you want to sell it all on first target)\n')
 	if (profit_taking[:-2].isdigit() and 
 		int(profit_taking.removesuffix(" %")) <= 100):
-		print("Yes!")
 		return int(profit_taking.removesuffix(" %"))
+		print("Perfect")
 	else:
 		print("Something went wrong, retry")
+		return profit_taking_config()
 
 def profit_target_config():
 	print("=======================================================================")
@@ -36,6 +37,7 @@ def profit_target_config():
 		return int(tp.removesuffix(" %"))
 	else:
 		print("Something went wrong, retry")
+		return profit_target_config()
 
 def rebalancing_config():
 	print("=======================================================================")
@@ -46,6 +48,9 @@ def rebalancing_config():
 	elif want_rebalancing == "N":
 		print("Rebalancing is OFF")
 		return 0
+	else: 
+		print("Something went wrong, retry")
+		return rebalancing_config()
 
 def bag_sizing():
 	print("=======================================================================")
@@ -59,6 +64,9 @@ def bag_sizing():
 		static_size = input("You chose static bag sizing. How many biden bucks would you like to gamble for each trade?\n")
 		sizing.type = "static"
 		sizing.universalSize = int(static_size.removesuffix(" %"))
+	else:
+		print("Something went wrong, retry")
+		return bag_sizing()
 	return sizing
 
 def fa_on():
@@ -70,6 +78,9 @@ def fa_on():
 	elif fa_toggle == "B":
 		print("FA is turned off")
 		return 0
+	else:
+		print("Something went wrong, retry")
+		return fa_on()
 
 def fa_passes_settings():
 	print("=======================================================================")
@@ -83,6 +94,9 @@ def fa_passes_settings():
 	elif fa_passes == "C":
 		print("2/3")
 		return 2
+	else:
+		print("Something went wrong, retry")
+		return fa_passes_settings()
 
 def set_static_stoploss():
 	stoploss = input("How many % loss would you like your stoploss to be at?\n")
@@ -90,6 +104,7 @@ def set_static_stoploss():
 	stoploss_obj.type = "static"
 	stoploss_obj.percentLoss = stoploss
 	return stoploss_obj
+	
 	
 def set_timebased_stoploss():
 	deadline = input("How many days would you like to hold the shitcoin for?\n")
@@ -146,6 +161,7 @@ def stoploss_management():
 		stoploss_conf.type = "none"
 	else:
 		print("Input error. Please try again.\n")
+		return stoploss_management()
 	return stoploss_conf
 
 def spec_params():
@@ -182,6 +198,9 @@ def custom_choose():
 		return 0
 	elif change_selection == "B":
 		return 1
+	else:
+		print("Input error, retry")
+		return custom_choose()
 
 #add recursion for retrys like this https://stackoverflow.com/questions/12828771/how-to-go-back-to-first-if-statement-if-no-choices-are-valid
 
@@ -252,6 +271,7 @@ def param_choose_results():
 		return 1
 	else:
 		print("Didnt understand your input, try again\n")
+		return param_choose_results()
 
 def chain_chooser():
 	print("Hello you filthy, degenerate ape. Lets set up this shitcoinbot of yours")
@@ -279,6 +299,7 @@ def chain_chooser():
 			print("You choose all")
 		else:
 			print("Input error. Please try again.\n")
+			return chain_chooser()
 	return chainarr_formatted
 
 def conf_setup():
