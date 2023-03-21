@@ -85,14 +85,14 @@ def fa_passes_settings():
 		return 2
 
 def set_static_stoploss():
-	stoploss = input("How many % loss would you like your stoploss to be at?")
+	stoploss = input("How many % loss would you like your stoploss to be at?\n")
 	stoploss_obj = Object()
 	stoploss_obj.type = "static"
 	stoploss_obj.percentLoss = stoploss
 	return stoploss_obj
 	
 def set_timebased_stoploss():
-	deadline = input("How many days would you like to hold the shitcoin for?")
+	deadline = input("How many days would you like to hold the shitcoin for?\n")
 	deadline_obj = Object()
 	deadline_obj.type = "days"
 	deadline_obj.durationInDays = deadline
@@ -100,16 +100,9 @@ def set_timebased_stoploss():
 
 def sl_chooser():
 	print('Please specify what options youd like, sepparate them with ", " (commas that is)')
-	sl_param_choose = input("(A) 200MA, (B) static stoploss or (C) timebased stoploss")
+	sl_param_choose = input("(A) 200MA, (B) static stoploss or (C) timebased stoploss\n")
 	sl_arr = sl_param_choose.split(", ")
 	return sl_arr
-
-def tryVar(var):
-	try:
-		val = var
-	except NameError:
-		return None
-	return val
 
 def stoploss_management():
 	print("=======================================================================")
@@ -140,13 +133,13 @@ def stoploss_management():
 			if x == "A":
 				trailing_sl = Object()
 				trailing_sl.type = "200MA"
+				stoploss_conf.append(trailing_sl)
 			elif x == "B":
 				static_sl = set_static_stoploss()
+				stoploss_conf.append(static_sl)
 			elif x == "C":
 			 	deadline_sl = set_timebased_stoploss()
-		if tryVar(trailing_sl) is None else stoploss_conf.append(trailing_sl)
-		if tryVar(static_sl) is None else stoploss_conf.append(static_sl)
-		if tryVar(deadline_sl) is None else stoploss_conf.append(deadline_sl)		
+			 	stoploss_conf.append(deadline_sl)
 	elif stoploss_settings == "F":
 		print("You selected none of them, crazy.")
 		stoploss_conf = Object()
@@ -219,7 +212,7 @@ def conf_tinker():
 				inverse_params.remove("6")
 			elif x == "7":
 				sl = stoploss_management()
-				inverese_params.remove("7")
+				inverse_params.remove("7")
 		for y in inverse_params:
 			if y == "1":
 				profit_taking = default.profitSizePercentages
