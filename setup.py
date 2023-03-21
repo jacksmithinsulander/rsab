@@ -84,29 +84,76 @@ def fa_passes_settings():
 		print("2/3")
 		return 2
 
+def set_static_stoploss():
+	stoploss = input("How many % loss would you like your stoploss to be at?")
+	stoploss_obj = Object()
+	stoploss_obj.type = "static"
+	stoploss_obj.percentLoss = stoploss
+	return stoploss_obj
+	
+def set_timebased_stoploss():
+	deadline = input("How many days would you like to hold the shitcoin for?")
+	deadline_obj = Object()
+	deadline_obj.type = "days"
+	deadline_obj.durationInDays = deadline
+	return deadline_obj
+
+def sl_chooser():
+	print('Please specify what options youd like, sepparate them with ", " (commas that is)')
+	sl_param_choose = input("(A) 200MA, (B) static stoploss or (C) timebased stoploss")
+	sl_arr = sl_param_choose.split(", ")
+	return sl_arr
+
+def tryVar(var):
+	try:
+		val = var
+	except NameError:
+		return None
+	return val
+
 def stoploss_management():
 	print("=======================================================================")
 	stoploss_settings = input("The alternatives for potential stoplosses are (A) stoploss on the 200MA on the 4hr chart, (B) a static stoploss, (C) a timebased stoploss, (D) all of them, (E) some of them or (F) none of them. \n")
 	if stoploss_settings == "A":
 		print("You selected 200MA stoploss")
-		return "200MA"
+		stoploss_conf = Object()
+		stoploss_conf.type = "200MA"
 	elif stoploss_settings == "B":
 		print("You selected a static stoploss")
-		return "stoploss"
+		stoploss_conf = set_static_stoploss()
 	elif stoploss_settings == "C":
 		print("You selected a timebased stoploss")
-		return "timebased"
+		stoploss_conf = set_timebased_stoploss
 	elif stoploss_settings == "D":
 		print("You selected all of the options.")
-		#will need more configuring
-		return "all"
+		stoploss_conf = []
+		trailing_sl = Object()
+		trailing_sl.type = "200MA"
+		static_sl = set_static_stoploss()
+		deadline_sl = set_timebased_stoploss()
+		stoploss_conf.append(trailing_slm, static_sl, deadline_sl)
 	elif stoploss_settings  == "E":
 		print("You selected some of them, lets specify your selection.")
-		#will need more configuration
+		sl_selection = sl_chooser()
+		stoploss_conf = []
+		for x in sl_selection:
+			if x == "A":
+				trailing_sl = Object()
+				trailing_sl.type = "200MA"
+			elif x == "B":
+				static_sl = set_static_stoploss()
+			elif x == "C":
+			 	deadline_sl = set_timebased_stoploss()
+		if tryVar(trailing_sl) is None else stoploss_conf.append(trailing_sl)
+		if tryVar(static_sl) is None else stoploss_conf.append(static_sl)
+		if tryVar(deadline_sl) is None else stoploss_conf.append(deadline_sl)		
 	elif stoploss_settings == "F":
 		print("You selected none of them, crazy.")
+		stoploss_conf = Object()
+		stoploss_conf.type = "none"
 	else:
 		print("Input error. Please try again.\n")
+	return stoploss_conf
 
 def spec_params():
 	print("=======================================================================")
