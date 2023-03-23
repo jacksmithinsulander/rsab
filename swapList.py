@@ -38,8 +38,22 @@ swapList = {
             'address': '0x5F1fe642060B5B9658C15721Ea22E982643c095c',
             'eventName': 'PoolCreated',
             'poolAddress': 'pool'}
-
+    },
+    'arbitrum': {
+        'uniswap3': {
+            'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+            'eventName': 'PoolCreated',
+            'poolAddress': 'pool'},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'eventName': 'PairCreated',
+            'poolAddress': 'pair'},
+        'kyberswap': {
+            'address': '0x1c758aF0688502e49140230F6b0EBd376d429be5',
+            'eventName': 'PoolCreated',
+            'poolAddress': 'pool'}
     }
+
 }
 
 # Balancer still needs to be added, but has different syntax for their contracts.
