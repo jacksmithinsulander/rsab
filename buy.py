@@ -1,7 +1,11 @@
 from web3 import Web3
 import abi
+from dotenv import load_dotenv
+import os
 
-w3 = Web3(Web3.HTTPProvider('https://goerli.infura.io/v3/f69d94ced2f84d9d80b56b82c1b4e181'))
+load_dotenv()
+
+w3 = Web3(Web3.HTTPProvider(''))
 result = w3.isConnected()
 print('Web3 is connected? ', result)
 
