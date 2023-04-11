@@ -9,14 +9,20 @@ from eth_account import Account
 load_dotenv()
 
 acc = Account.from_key(os.getenv("PRIVATE_KEY"))
+
 assert acc.address == Web3.to_checksum_address(os.getenv("WALLET_ADDRESS"))
 
+print('Accoutn: ', acc.address)
 #my_address = os.getenv("WALLET_ADDRESS")
 infura_api = os.getenv("INFURA_API")
 
+print(infura_api)
+
 w3 = Web3(Web3.HTTPProvider(infura_api))
-result = w3.isConnected()
-print('Web3 is connected? ', result)
+#result = w3.isConnected()
+#print('Web3 is connected? ', result)
+
+assert w3.eth.chain_id == 5
 
 codec = RouterCodec() 
 
@@ -39,6 +45,7 @@ uni_token_address = Web3.to_checksum_address("0x1f9840a85d5aF5bf1D1762F925BDADdC
 v2_path = [weth_token_address, uni_token_address]
 v2_in_amount = int(0.001 * 10**18)
 v2_out_amount = 0
+total_in_amount = v2_in_amount
 
 encoded_data = (
 	codec
