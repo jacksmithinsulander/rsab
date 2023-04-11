@@ -6,4 +6,5 @@ db/foundPools.db
 db/__pycache__
 apiKeys.py
 moralis_key.py
+.env
 sql/config.py
