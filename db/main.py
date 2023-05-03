@@ -14,6 +14,7 @@ import db.printAllPools
 
 # Mock data
 con = sqlite3.connect("mockdata/foundPools.db")
+conPassedFA = sqlite3.connect("mockdata/passedFa.db")
 
 _net = 1
 _netShort = 2
@@ -28,6 +29,23 @@ _token2Symbol = 10
 
 with con:
     con.execute("""
+        CREATE TABLE if not exists pools(
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            net TEXT,
+            netShort TEXT,
+            netExtra TEXT,
+            poolMainContract TEXT,
+            poolAddress TEXT UNIQUE,
+            timeCreated INTEGER,
+            token1Address TEXT,
+            token1Symbol TEXT,
+            token2Address TEXT,
+            token2Symbol TEXT
+        );
+    """)
+
+with conPassedFA:
+    conPassedFA.execute("""
         CREATE TABLE if not exists pools(
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             net TEXT,
@@ -96,3 +114,25 @@ def countPools():
 
 def checkIfSaved(address):
     return db.checkIfSaved.main(con, address)
+
+
+def addPoolToPassedFA(net,
+                      netShort,
+                      netExtra,
+                      poolMainContract,
+                      poolAddress,
+                      timeCreated,
+                      token1Address,
+                      token1Symbol,
+                      token2Address,
+                      token2Symbol):
+    db.addPool.main(conPassedFA, net,
+                    netShort,
+                    netExtra,
+                    poolMainContract,
+                    poolAddress,
+                    timeCreated,
+                    token1Address,
+                    token1Symbol,
+                    token2Address,
+                    token2Symbol)
