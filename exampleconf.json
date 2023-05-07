@@ -1,4 +1,4 @@
-apeConf = {
+{
 	"chains":["eth", "arb", "op", "matic", "avax", "ftm", "bnb"], 
 	"profitSizePercentages": 50,
 	"profitTargets": 100,
