@@ -58,3 +58,26 @@ weth_balance = weth_instance.functions.balanceOf(acc.address).call()
 
 #print(contract_abi)
 print(usdc_balance, weth_balance)
+ 
+def check_values(x, y):
+    threshold_x = (x + y) * 0.4
+    threshold_y = (x + y) * 0.6
+    print("Now x and y are: ", x, y)
+    print("And they should be: ", threshold_x, threshold_y)
+    if x > threshold_x:
+        print("now x is: ", x)
+        excess_x = x - threshold_x
+        x -= excess_x
+        print("Adjusted x to threshold_x:", x)
+    elif y > threshold_y:
+        print("now y is", y)
+        excess_y = y - threshold_y
+        y -= excess_y
+        print("Adjusted y to threshold_y:", y)
+
+# Example usage
+check_values(10, 5)
+check_values(4, 10)
+check_values(5, 5)
+check_values(55555, 1)
+check_values(420, 666)
