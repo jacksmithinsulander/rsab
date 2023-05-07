@@ -1,13 +1,14 @@
-import apiKeys
+import api_keys
 
-rpcList = {
+rpc_list = {
     'ethereum': {
-        'links': [f"https://mainnet.infura.io/v3/{apiKeys.infura}"],
+        'links': [f"https://mainnet.infura.io/v3/{api_keys.infura}"],
         'short': "eth",
         'extra': "ether"
-    },  # "https://polygon.llamarpc.com",
+    },  
     'polygon': {
         'links': ["https://polygon-bor.publicnode.com", "https://polygon.blockpi.network/v1/rpc/public", "https://rpc.ankr.com/polygon"],
+        # "https://polygon.llamarpc.com",
         'short': "polygon",
         'extra': "polygon"
     },
