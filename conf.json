@@ -8,9 +8,7 @@
 		"universalSize": 1
 	},
 	"stoplossManagement": [
-		{"type": "200MA"},
-		//{"type": "static", "percentLoss": 15},
-		//{"type": "Days", "durationsInDays": 5}
+		{"type": "200MA"}
 	],
 	"fa": true,
 	"faStrictness": 2 
