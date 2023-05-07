@@ -1,12 +1,28 @@
+import sys
+sys.path.append("../..")
 from datetime import datetime
 from time import sleep
 from web3 import Web3
 import db.main as db
-from swapList import swapList
-from rpcList import rpcList
+from modules.onchain.swapList import swapList
+from modules.onchain.rpcList import rpcList
 from web3.middleware import geth_poa_middleware
-
+import json
 import abi
+import os
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+grandparent_dir = os.path.abspath(os.path.join(parent_dir, os.pardir))
+sys.path.append(grandparent_dir)
+
+config_file_path = os.path.join(grandparent_dir, 'conf.json')
+
+with open(config_file_path, "r") as file:
+    conf = json.load(file)
+
+print(conf)
 
 balancer = 0
 lastBlocks = {
