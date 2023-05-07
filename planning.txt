@@ -1,8 +1,0 @@
-files that should read the config files:
-
-/modules/scanner/poolScanner.py - reading what chains to scan
-/modules/swap/swap.py - reading buy in size
-/modules/fa/doFaOnFoundPoolsMockdata.py - reading threshold for passing the fa
-/modules/calculation/calc_tp.py - reading tp target
-
-
