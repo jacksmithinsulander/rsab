@@ -1,23 +1,17 @@
+
+import sys
+sys.path.append("../..")
+
+
 from datetime import datetime
-from time import sleep
-from web3 import Web3
-import db.main as db
-from modules.onchain.swap_list import swap_list
-from modules.onchain.rpc_list import rpc_list
-from web3.middleware import geth_poa_middleware
-import json
 from modules.onchain import abi
-
-
-
-
-# import os
-# current_dir = os.path.dirname(os.path.abspath(__file__))
-# parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-# grandparent_dir = os.path.abspath(os.path.join(parent_dir, os.pardir))
-# sys.path.append(grandparent_dir)
-# config_file_path = os.path.join(grandparent_dir, 'conf.json')
-
+import json
+from web3.middleware import geth_poa_middleware
+from modules.onchain.rpc_list import rpc_list
+from modules.onchain.swap_list import swap_list
+import db.main as db
+from web3 import Web3
+from time import sleep
 
 class Scanner:
     def __init__(self):
@@ -42,15 +36,17 @@ class Scanner:
             now = datetime.now().strftime("%H:%M:%S")
             print(f"# {now} ######################################")
             for net in rpc_list:
-                rpc_link = rpc_list[net]['links'][self.balancer % len(rpc_list[net]['links'])]
+                rpc_link = rpc_list[net]['links'][self.balancer %
+                                                  len(rpc_list[net]['links'])]
                 w3 = Web3(Web3.HTTPProvider(rpc_link))
                 if (net == 'polygon'):
                     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
                 current_block = w3.eth.block_number
                 # fromBlock = lastBlock - 50
-                print(f"  # Checking {net} # Blocks {self.last_blocks[net]}-{current_block}")
+                print(
+                    f"  # Checking {net} # Blocks {self.last_blocks[net]}-{current_block}")
                 print(f"  # Using {rpc_link}")
-                #print(f"Connection to {net}: {w3.isConnected()}")
+                # print(f"Connection to {net}: {w3.isConnected()}")
                 for swap in swap_list[net]:
                     print(
                         f"    # Checking for pools by {swap}")
@@ -59,32 +55,36 @@ class Scanner:
 
                     exec(
                         f"self.get_pools = contract.events.{swap_list[net][swap]['event_name']}.get_logs")
-                    latest_pools = self.get_pools(fromBlock=self.last_blocks[net])
+                    latest_pools = self.get_pools(
+                        fromBlock=self.last_blocks[net])
 
                     for pool in latest_pools:
                         pool_address = pool['args'][swap_list[net][swap]
-                                                ['pool_address']]
+                                                    ['pool_address']]
                         if (db.checkIfSaved(pool_address)):
                             print(f'      Already saved {pool_address}')
                         else:
                             token1address = pool['args']['token0']
-                            token1 = w3.eth.contract(token1address, abi=abi.erc20)
+                            token1 = w3.eth.contract(
+                                token1address, abi=abi.erc20)
                             token1symbol = token1.functions.symbol().call()
 
                             token2address = pool['args']['token1']
-                            token2 = w3.eth.contract(token2address, abi=abi.erc20)
+                            token2 = w3.eth.contract(
+                                token2address, abi=abi.erc20)
                             token2symbol = token2.functions.symbol().call()
 
-                            unixTime = w3.eth.get_block(pool['blockNumber']).timestamp
-                            db.addPool(net, 
-                                       rpc_list[net]['short'], 
-                                       rpc_list[net]['extra'], 
-                                       swap_list[net][swap]['address'], 
-                                       pool_address, 
+                            unixTime = w3.eth.get_block(
+                                pool['blockNumber']).timestamp
+                            db.addPool(net,
+                                       rpc_list[net]['short'],
+                                       rpc_list[net]['extra'],
+                                       swap_list[net][swap]['address'],
+                                       pool_address,
                                        unixTime,
-                                       token1address, 
-                                       token1symbol, 
-                                       token2address, 
+                                       token1address,
+                                       token1symbol,
+                                       token2address,
                                        token2symbol)
                 self.last_blocks[net] = current_block
             print(f"Currently {db.countPools()} pools saved")

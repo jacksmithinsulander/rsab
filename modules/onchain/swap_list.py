@@ -10,7 +10,7 @@ swap_list = {
             'pool_address': 'pair'},
         'apeswap': {
             'address': '0xBAe5dc9B19004883d0377419FeF3c2C8832d7d7B',
-            'eventame': 'PairCreated',
+            'event_name': 'PairCreated',
             'pool_address': 'pair'},
         'kyberswap': {
             'address': '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE',
