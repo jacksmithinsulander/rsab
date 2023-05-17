@@ -10,11 +10,11 @@ import db.getPoolsByTokenSymbol
 import db.printAllPools
 
 # Real data
-# con = sqlite3.connect("db/foundPools.db")
+con = sqlite3.connect("db/foundPools.db")
 
-# Mock data
-con = sqlite3.connect("mockdata/foundPools.db")
-conPassedFA = sqlite3.connect("mockdata/passedFa.db")
+# # Mock data
+# con = sqlite3.connect("mockdata/foundPools.db")
+# conPassedFA = sqlite3.connect("mockdata/passedFa.db")
 
 _net = 1
 _netShort = 2
@@ -44,22 +44,22 @@ with con:
         );
     """)
 
-with conPassedFA:
-    conPassedFA.execute("""
-        CREATE TABLE if not exists pools(
-            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-            net TEXT,
-            netShort TEXT,
-            netExtra TEXT,
-            poolMainContract TEXT,
-            poolAddress TEXT UNIQUE,
-            timeCreated INTEGER,
-            token1Address TEXT,
-            token1Symbol TEXT,
-            token2Address TEXT,
-            token2Symbol TEXT
-        );
-    """)
+# with conPassedFA:
+#     conPassedFA.execute("""
+#         CREATE TABLE if not exists pools(
+#             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+#             net TEXT,
+#             netShort TEXT,
+#             netExtra TEXT,
+#             poolMainContract TEXT,
+#             poolAddress TEXT UNIQUE,
+#             timeCreated INTEGER,
+#             token1Address TEXT,
+#             token1Symbol TEXT,
+#             token2Address TEXT,
+#             token2Symbol TEXT
+#         );
+#     """)
 
 
 def addPool(net,

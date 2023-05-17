@@ -8,3 +8,6 @@ apiKeys.py
 moralis_key.py
 .env
 sql/config.py
+api_keys.py
+*.pyc
+.vscode/settings.json
