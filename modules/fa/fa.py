@@ -35,7 +35,7 @@ def multi_fa(link, token, chain):
     #   try:
     #     fa_score = WebDriverWait(driver, timeout=40).until(
     #         EC.presence_of_element_located((By.XPATH, element_xpath)))
-    # except:
+    # except Exception:
     #     print("token not found on tokensniffer")
     #     is_passed = 0
     #     return is_passed
@@ -77,19 +77,19 @@ def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, c
     try:
         tokensniffer_result = multi_fa(tokensniffer, token, chain_short)
         print("tokensniffer checked for token: " + name)
-    except:
+    except Exception:
         print("err tokensniffer for token: " + name)
         tokensniffer_result = 0
     try:
         dextools_result = multi_fa(dextools, lp, chain_extra)
         print("dextools checked for token: " + name)
-    except:
+    except Exception:
         print("err dextools for token: " + name)
         dextools_result = 0
     try:
         dexscreener_result = dexscreener_fa(lp, chain)
         print("dexscreener checked for token: " + name)
-    except:
+    except Exception:
         print("err dexscreener for token: " + name)
         dexscreener_result = 0
     full_result = tokensniffer_result + dextools_result + dexscreener_result
