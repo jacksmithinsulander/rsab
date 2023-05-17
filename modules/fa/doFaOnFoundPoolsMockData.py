@@ -37,8 +37,13 @@ for pool in pools:
                          pool[7], pool[5], pool[2], pool[3], pool[1])
 
         # if 3/3 -- add to new db
-        if result == 1:
+        if result > 1 and db.check_if_saved('pools_passed_fa', pool[_pool_address]) == False:
             # db.add_pool('pools_passed_fa', pool[1], pool[2], pool[3], pool[4],
             #                      pool[5], pool[6], pool[7], pool[8], pool[9], pool[10])
             db.copy_pool('pools_found', 'pools_passed_fa', pool[_pool_address])
+
+            #example
+            #db.edit_pool('pools_passed_fa', pool[_pool_address], 'passed_fa1', 1)
+                         #name of table   , pool address       , column name , 1 for true
+
             print(pool[8] + " added to DB")
