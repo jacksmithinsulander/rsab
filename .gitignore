@@ -2,7 +2,7 @@
 apiKey.py
 /__pycache__
 datascraped.json
-db/foundPools.db
+db/found_pools.db
 db/__pycache__
 apiKeys.py
 moralis_key.py

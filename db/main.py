@@ -1,46 +1,65 @@
 import sqlite3
-import db.addPool
-import db.checkIfSaved
-import db.countPools
-import db.deleteByAddress
-import db.getAllPools
-import db.getPoolByAddress
-import db.getPoolsByTokenAddress
-import db.getPoolsByTokenSymbol
-import db.printAllPools
+import db.add_pool
+import db.check_if_saved
+import db.copy_pool
+import db.count_pools
+import db.delete_by_address
+import db.get_all_pools
+import db.get_by_address
+import db.get_by_token_address
+import db.get_by_token_symbol
+import db.print_all_pools
 
 # Real data
-con = sqlite3.connect("db/foundPools.db")
+con = sqlite3.connect("db/pools.db")
 
 # # Mock data
-# con = sqlite3.connect("mockdata/foundPools.db")
+# con = sqlite3.connect("mockdata/found_pools.db")
 # conPassedFA = sqlite3.connect("mockdata/passedFa.db")
 
 _net = 1
-_netShort = 2
-_netExtra = 3
-_poolMainContract = 4
-_poolAddress = 5
-_timeCreated = 6
-_token1Address = 7
-_token1Symbol = 8
-_token2Address = 9
-_token2Symbol = 10
+_net_short = 2
+_net_extra = 3
+_pool_main_contract = 4
+_pool_address = 5
+_time_created = 6
+_token1_address = 7
+_token1_symbol = 8
+_token2_address = 9
+_token2_symbol = 10
 
 with con:
     con.execute("""
-        CREATE TABLE if not exists pools(
+        CREATE TABLE if not exists pools_found(
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             net TEXT,
-            netShort TEXT,
-            netExtra TEXT,
-            poolMainContract TEXT,
-            poolAddress TEXT UNIQUE,
-            timeCreated INTEGER,
-            token1Address TEXT,
-            token1Symbol TEXT,
-            token2Address TEXT,
-            token2Symbol TEXT
+            net_short TEXT,
+            net_extra TEXT,
+            pool_main_contract TEXT,
+            pool_address TEXT UNIQUE,
+            time_created INTEGER,
+            token1_address TEXT,
+            token1_symbol TEXT,
+            token2_address TEXT,
+            token2_symbol TEXT
+        );
+    """)
+    con.execute("""
+        CREATE TABLE if not exists pools_passed_fa(
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            net TEXT,
+            net_short TEXT,
+            net_extra TEXT,
+            pool_main_contract TEXT,
+            pool_address TEXT UNIQUE,
+            time_created INTEGER,
+            token1_address TEXT,
+            token1_symbol TEXT,
+            token2_address TEXT,
+            token2_symbol TEXT,
+            passed_fa1 INTEGER,
+            passed_fa2 INTEGER,
+            passed_fa3 INTEGER
         );
     """)
 
@@ -49,90 +68,86 @@ with con:
 #         CREATE TABLE if not exists pools(
 #             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 #             net TEXT,
-#             netShort TEXT,
-#             netExtra TEXT,
-#             poolMainContract TEXT,
-#             poolAddress TEXT UNIQUE,
-#             timeCreated INTEGER,
-#             token1Address TEXT,
-#             token1Symbol TEXT,
-#             token2Address TEXT,
-#             token2Symbol TEXT
+#             net_short TEXT,
+#             net_extra TEXT,
+#             pool_main_contract TEXT,
+#             pool_address TEXT UNIQUE,
+#             time_created INTEGER,
+#             token1_address TEXT,
+#             token1_symbol TEXT,
+#             token2_address TEXT,
+#             token2_symbol TEXT
 #         );
 #     """)
 
 
-def addPool(net,
-            netShort,
-            netExtra,
-            poolMainContract,
-            poolAddress,
-            timeCreated,
-            token1Address,
-            token1Symbol,
-            token2Address,
-            token2Symbol):
-    db.addPool.main(con, net,
-                    netShort,
-                    netExtra,
-                    poolMainContract,
-                    poolAddress,
-                    timeCreated,
-                    token1Address,
-                    token1Symbol,
-                    token2Address,
-                    token2Symbol)
+def add_pool(table,
+            net,
+            net_short,
+            net_extra,
+            pool_main_contract,
+            pool_address,
+            time_created,
+            token1_address,
+            token1_symbol,
+            token2_address,
+            token2_symbol):
+    db.add_pool.main(con, table, net,
+                    net_short,
+                    net_extra,
+                    pool_main_contract,
+                    pool_address,
+                    time_created,
+                    token1_address,
+                    token1_symbol,
+                    token2_address,
+                    token2_symbol)
+
+def check_if_saved(table, address):
+    return db.check_if_saved.main(con, table, address)
+
+def copy_pool(from_table, to_table, address):
+    db.copy_pool.main(con, from_table, to_table, address)
+
+def count_pools(table):
+    return db.count_pools.main(con, table)
+
+def delete_by_address(table, address):
+    db.delete_by_address.main(con, table, address)
+
+def get_all_pools(table):
+    return db.get_all_pools.main(con, table)
+
+def get_by_address(table, address):
+    return db.get_by_address.main(con, table, address)
+
+def get_by_token_address(table, address):
+    return db.get_by_token_address.main(con, table, address)
+
+def get_by_token_symbol(table, symbol):
+    return db.get_by_token_symbol.main(con, table, symbol)
+
+def print_all_pools(table):
+    db.print_all_pools.main(con, table)
 
 
-def getAllPools():
-    return db.getAllPools.main(con)
-
-
-def printAllPools():
-    db.printAllPools.main(con)
-
-
-def getPoolByAddress(address):
-    return db.getPoolByAddress.main(con, address)
-
-
-def getPoolsByTokenAddress(address):
-    return db.getPoolsByTokenAddress.main(con, address)
-
-
-def getPoolsByTokenSymbol(symbol):
-    return db.getPoolsByTokenSymbol.main(con, symbol)
-
-
-def deleteByAddress(address):
-    db.deleteByAddress.main(con, address)
-
-
-def countPools():
-    return db.countPools.main(con)
-
-
-def checkIfSaved(address):
-    return db.checkIfSaved.main(con, address)
-
-
-def addPoolToPassedFA(net,
-                      netShort,
-                      netExtra,
-                      poolMainContract,
-                      poolAddress,
-                      timeCreated,
-                      token1Address,
-                      token1Symbol,
-                      token2Address,
-                      token2Symbol):
-    db.addPool.main(conPassedFA, net,
-                    netShort,
-                    netExtra,
-                    poolMainContract,
-                    poolAddress,
-                    timeCreated,
-                    token1Address,
-                    token1Symbol,
-                    token2Address,
-                    token2Symbol)
+# def addPoolToPassedFA(net,
+#                       net_short,
+#                       net_extra,
+#                       pool_main_contract,
+#                       pool_address,
+#                       time_created,
+#                       token1_address,
+#                       token1_symbol,
+#                       token2_address,
+#                       token2_symbol):
+#     db.add_pool.main(conPassedFA, net,
+#                     net_short,
+#                     net_extra,
+#                     pool_main_contract,
+#                     pool_address,
+#                     time_created,
+#                     token1_address,
+#                     token1_symbol,
+#                     token2_address,
+#                     token2_symbol)
