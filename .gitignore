@@ -2,7 +2,7 @@
 apiKey.py
 /__pycache__
 datascraped.json
-db/foundPools.db
+db/found_pools.db
 db/__pycache__
 apiKeys.py
 moralis_key.py
@@ -11,3 +11,4 @@ sql/config.py
 api_keys.py
 *.pyc
 .vscode/settings.json
+db/pools.db

@@ -1,6 +1,6 @@
-def main(con, address):
+def main(con, table, address):
     sql = f"""
-    SELECT count(1) FROM pools WHERE poolAddress='{address}';
+    SELECT count(1) FROM {table} WHERE pool_address='{address}';
     """
     with con:
         r = con.execute(sql).fetchone()

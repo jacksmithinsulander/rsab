@@ -29,7 +29,7 @@ class Scanner:
         for net in rpc_list:
             self.rpc_link = rpc_list[net]['links'][0]
             self.w3 = Web3(Web3.HTTPProvider(self.rpc_link))
-            self.last_blocks[net] = self.w3.eth.block_number - 50
+            self.last_blocks[net] = self.w3.eth.block_number - 500
 
     def start(self):
         while True:
@@ -61,33 +61,33 @@ class Scanner:
                     for pool in latest_pools:
                         pool_address = pool['args'][swap_list[net][swap]
                                                     ['pool_address']]
-                        if (db.checkIfSaved(pool_address)):
+                        if (db.check_if_saved("pools_found", pool_address)):
                             print(f'      Already saved {pool_address}')
                         else:
-                            token1address = pool['args']['token0']
+                            token1_address = pool['args']['token0']
                             token1 = w3.eth.contract(
-                                token1address, abi=abi.erc20)
-                            token1symbol = token1.functions.symbol().call()
+                                token1_address, abi=abi.erc20)
+                            token1_symbol = token1.functions.symbol().call()
 
-                            token2address = pool['args']['token1']
+                            token2_address = pool['args']['token1']
                             token2 = w3.eth.contract(
-                                token2address, abi=abi.erc20)
-                            token2symbol = token2.functions.symbol().call()
+                                token2_address, abi=abi.erc20)
+                            token2_symbol = token2.functions.symbol().call()
 
                             unixTime = w3.eth.get_block(
                                 pool['blockNumber']).timestamp
-                            db.addPool(net,
+                            db.add_pool("pools_found", net,
                                        rpc_list[net]['short'],
                                        rpc_list[net]['extra'],
                                        swap_list[net][swap]['address'],
                                        pool_address,
                                        unixTime,
-                                       token1address,
-                                       token1symbol,
-                                       token2address,
-                                       token2symbol)
+                                       token1_address,
+                                       token1_symbol,
+                                       token2_address,
+                                       token2_symbol)
                 self.last_blocks[net] = current_block
-            print(f"Currently {db.countPools()} pools saved")
+            print(f"Currently {db.count_pools('pools_found')} pools saved")
             print(f"Sleeping 30 seconds before next check")
             sleep(30)
             print("###########################################")
