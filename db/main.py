@@ -4,6 +4,7 @@ import db.check_if_saved
 import db.copy_pool
 import db.count_pools
 import db.delete_by_address
+import db.edit_pool
 import db.get_all_pools
 import db.get_by_address
 import db.get_by_token_address
@@ -114,6 +115,9 @@ def count_pools(table):
 
 def delete_by_address(table, address):
     db.delete_by_address.main(con, table, address)
+
+def edit_pool(table, address, column, new_value):
+    db.edit_pool.main(con, table, address, column, new_value)
 
 def get_all_pools(table):
     return db.get_all_pools.main(con, table)
