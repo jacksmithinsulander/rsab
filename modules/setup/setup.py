@@ -1,6 +1,3 @@
-import os.path
-import json
-
 class Object:
 	def toJSON(self):
 		return json.dumps(self, default=lambda o: o.__dict__,
@@ -326,8 +323,6 @@ def conf_setup():
 	f.write(configuration.toJSON())
 	f.close
 
-check_file = os.path.isfile("./conf.json")
-
 def conf_checker(file_exists, b):
 	if b == 0:
 		if file_exists:
@@ -348,5 +343,3 @@ def conf_checker(file_exists, b):
 	elif b == 1:
 		os.remove("./conf.json")
 		conf_setup()
-
-conf_checker(check_file, 0)
