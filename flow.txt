@@ -1,11 +1,11 @@
-1. Makefile ---> will just install python and adding the executeable to path, and also chmodding the executeable since it will run with a shebang line. We will also have to make sure at this stage that we are fetching the needed programs, as well as switching to a venv as described in our venv file
+1. Makefile ---> will just install python and adding the executeable to path, and also chmodding the executeable since it will run with a shebang line. We will also have to make sure at this stage that we are fetching the needed programs, as well as switching to a venv as described in our venv file. The services will be created using make init
 
   make
   make clean install #from this point the user should be able to run the main "executeable" (not sure if this is the correct term for a scripting lang)
 
   besides this we should have a consice way of uninstalling, maybe an uninstall script, since this bot probably will create a lot of moving parts (at least 3)
 
-2. after this you should be able to type "sssb" from anywhere in the terminal, which should get you to the setup
+2. after this you should be able to type "rsab" from anywhere in the terminal, which should get you to the setup
 
 3. *setup process* #Think this is mostly correct, might have to do some tiny tweaks to it
 
@@ -17,3 +17,9 @@
 
 7. And maybe the best way to do the rest of the computations will be through using cronjobs. Think this might be best done somewhat compartmentalized, so maybe we'll go with FA scans every 15 minutes and then TA scans every 5 minutes. 
 
+
+Flags:
+
+-u --update     = Updating
+-i --init       = If you want to redo the config file
+-r --restart    = Stop and restartign bot

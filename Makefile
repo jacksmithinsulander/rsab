@@ -11,10 +11,24 @@ RMV             := sudo rm -rf
 ROOT_CP         := sudo cp
 PIP_RMV         := pip3 uninstall -y
 RBT             := echo "rebooting now, ssh back in 5 minutes :)" && sudo reboot
+PY              := python3
+VENV            := virtualenv
+BOT_DIR         := ${HOME}/rsab
+BOT_PATH        := ${HOME}/rsab/main.py
+BRCPTH          := ${HOME}/.bashrc
 
 install:
 	$(APTUPD)
-	$(APT) python3 python3-venv
+	$(APT) python3 python3-virtualenv
 	sudo -H pip3 install --upgrade pip
+	$(VENV) .rsab_venv
+	. $(BOT_DIR)/.rsab_venv/bin/activate
+	$(PIP3) $(BOT_DIR)/requirements.txt
+	echo "alias rsab=$(BOT_PATH)" >> $(BRCPTH)
+	source $(BRCPTH)
+	chmod +x $(BOT_PATH)
 
 clean:
+
+init:
+	
