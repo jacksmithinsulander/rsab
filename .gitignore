@@ -12,3 +12,4 @@ api_keys.py
 *.pyc
 .vscode/settings.json
 db/pools.db
+.rsab_venv

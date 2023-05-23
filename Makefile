@@ -24,7 +24,7 @@ install:
 	$(VENV) .rsab_venv
 	. $(BOT_DIR)/.rsab_venv/bin/activate
 	$(PIP3) $(BOT_DIR)/requirements.txt
-	echo "alias rsab=$(BOT_PATH)" >> $(BRCPTH)
+	echo "alias rsab=$(PY) $(BOT_PATH)" >> $(BRCPTH)
 	source $(BRCPTH)
 	chmod +x $(BOT_PATH)
 
