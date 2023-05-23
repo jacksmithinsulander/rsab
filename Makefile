@@ -7,6 +7,7 @@ SYSTEMD_START   := sudo systemctl start
 SYSTEMD_STOP    := sudo systemctl stop
 SYSTEMD_RELOAD  := sudo systemctl daemon-reload
 SYSTEMD_RESTART := sudo systemctl restart
+SERVICE_DIR     := /etc/systemd/system
 RMV             := sudo rm -rf
 ROOT_CP         := sudo cp
 PIP_RMV         := pip3 uninstall -y
@@ -30,5 +31,5 @@ install:
 
 clean:
 
-init:
+start:
 	

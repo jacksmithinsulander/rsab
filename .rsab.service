@@ -1,0 +1,8 @@
+[Unit]
+Description=Rug Safe Aping Bot
+
+[Service]
+User=debian
+ExecStart=/bin/bash -c "source ~/.bashrc && rsab"
+
+[Install]
