@@ -32,4 +32,6 @@ install:
 clean:
 
 start:
-	
+	$(ROOT_CP) $(BOT_DIR)/.rsab.service $(SERVICE_DIR)/rsab.service
+	$(SYSTEMD_START) rsab
+	$(SYSTEMD_ENABLE) rsab

@@ -31,6 +31,10 @@ parser.add_argument(
 #parser.add_argument("-f", "--flagRemoval", help="Removes the record flag")
 #parser.add_argument("-fs", "--faScan", help="Do the FA scan")
 #parser.add_argument("-ts","--taScan", help="Do the TA scan")
+#parser.add_argument("-s","--start", help="Start the bot")
+parser.add_argument(
+	"-t", "--test", action="store_true", help="Temporary dev test"
+	)
 
 args = parser.parse_args()
 
@@ -38,7 +42,6 @@ print(args)
 
 flag_file = ".flag.txt"
 check_file = os.path.isfile("./conf.json")
-
 
 def mainfunc():
 	if os.path.exists(flag_file):
@@ -49,10 +52,14 @@ def mainfunc():
 		print("Setup successful, ")
 		start_bot = input("Do you want to start the bot? (Y / N)")
 		if start_bot == "Y":
-			print(Starting bot...)
+			print("Starting bot...")
+			start_bot()
 		elif start_bot == "N":
 			print("Alrighty, you can start the bot at anytime now using the -s flag")
 		else:
-			print(Sorry, didn´t understant the input, retry please)
+			print("Sorry, didn't understant the input, retry please")
 			return mainfunc()
 		open(flag_file, "w").close()
+
+if args.test:
+	start_scanner()
