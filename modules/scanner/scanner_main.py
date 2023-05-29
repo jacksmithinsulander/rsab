@@ -1,18 +1,11 @@
-
-import sys
-sys.path.append("../..")
-
-
-from datetime import datetime
 from modules.onchain import abi
-import json
-from web3.middleware import geth_poa_middleware
 from modules.onchain.rpc_list import rpc_list
 from modules.onchain.swap_list import swap_list
 from modules.balancer.balancer_main import Balancer
 import db.main as db
 from web3 import Web3
 from time import sleep
+
 
 class Scanner:
     def __init__(self):
