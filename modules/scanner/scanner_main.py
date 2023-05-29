@@ -9,6 +9,7 @@ import json
 from web3.middleware import geth_poa_middleware
 from modules.onchain.rpc_list import rpc_list
 from modules.onchain.swap_list import swap_list
+from modules.balancer.balancer_main import Balancer
 import db.main as db
 from web3 import Web3
 from time import sleep
@@ -19,16 +20,17 @@ class Scanner:
             self.conf = json.load(file)
         print(f"Loaded with config:\n{self.conf}")
 
-        self.balancer = 0
+        # self.balancer = 0
         self.last_blocks = {
             'ethereum': 0,
             'polygon': 0,
             'arbitrum': 0
         }
+        self.balancer = Balancer()
 
         for net in rpc_list:
-            self.rpc_link = rpc_list[net]['links'][0]
-            self.w3 = Web3(Web3.HTTPProvider(self.rpc_link))
+            # self.rpc_link = rpc_list[net]['links'][0]
+            self.w3 = self.balancer.w3(net) #Web3(Web3.HTTPProvider(self.rpc_link))
             self.last_blocks[net] = self.w3.eth.block_number - 500
 
     def start(self):
@@ -36,16 +38,16 @@ class Scanner:
             now = datetime.now().strftime("%H:%M:%S")
             print(f"# {now} ######################################")
             for net in rpc_list:
-                rpc_link = rpc_list[net]['links'][self.balancer %
-                                                  len(rpc_list[net]['links'])]
-                w3 = Web3(Web3.HTTPProvider(rpc_link))
+                # rpc_link = rpc_list[net]['links'][self.balancer %
+                #                                   len(rpc_list[net]['links'])]
+                w3 = self.balancer.w3(net)#Web3(Web3.HTTPProvider(rpc_link))
                 if (net == 'polygon'):
                     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
                 current_block = w3.eth.block_number
                 # fromBlock = lastBlock - 50
                 print(
                     f"  # Checking {net} # Blocks {self.last_blocks[net]}-{current_block}")
-                print(f"  # Using {rpc_link}")
+                # print(f"  # Using {rpc_link}")
                 # print(f"Connection to {net}: {w3.isConnected()}")
                 for swap in swap_list[net]:
                     print(
@@ -91,4 +93,4 @@ class Scanner:
             print(f"Sleeping 30 seconds before next check")
             sleep(30)
             print("###########################################")
-            self.balancer += 1
+            # self.balancer += 1
