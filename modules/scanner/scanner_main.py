@@ -5,6 +5,9 @@ from modules.balancer.balancer_main import Balancer
 import db.main as db
 from web3 import Web3
 from time import sleep
+from datetime import datetime
+import json
+from web3.middleware import geth_poa_middleware
 
 
 class Scanner:
