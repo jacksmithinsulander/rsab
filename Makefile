@@ -19,14 +19,15 @@ BOT_PATH        := ${HOME}/rsab/main.py
 BRCPTH          := ${HOME}/.bashrc
 
 install:
-	$(APTUPD)
-	$(APT) python3 python3-virtualenv
-	sudo -H pip3 install --upgrade pip
-	$(VENV) .rsab_venv
-	. $(BOT_DIR)/.rsab_venv/bin/activate
-	$(PIP3) $(BOT_DIR)/requirements.txt
-	echo "alias rsab=$(PY) $(BOT_PATH)" >> $(BRCPTH)
-	source $(BRCPTH)
+	$(APTUPD) && \
+	$(APT) python3 python3-virtualenv && \
+	pip3 install --upgrade pip && \
+	$(VENV) .rsab_venv && \
+	. $(BOT_DIR)/.rsab_venv/bin/activate && \
+	$(PIP3) -r $(BOT_DIR)/requirements.txt && \
+	touch $(BRCPTH) && \
+	echo "alias rsab='$(PY) $(BOT_PATH)'" >> $(BRCPTH) && \
+	. $(BRCPTH) && \
 	chmod +x $(BOT_PATH)
 
 clean:
