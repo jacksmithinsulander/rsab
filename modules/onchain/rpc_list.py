@@ -1,8 +1,8 @@
-import api_keys
+"import api_keys
 
 rpc_list = {
     'ethereum': {
-        'links': [f"https://mainnet.infura.io/v3/{api_keys.infura}"],
+        'links': [f"https://endpoints.omniatech.io/v1/eth/mainnet/public"],
         'short': "eth",
         'extra': "ether"
     },  
