@@ -37,8 +37,8 @@ class Scanner:
                 # rpc_link = rpc_list[net]['links'][self.balancer %
                 #                                   len(rpc_list[net]['links'])]
                 w3 = self.balancer.w3(net)#Web3(Web3.HTTPProvider(rpc_link))
-                if (net == 'polygon'):
-                    w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+                # if (net == 'polygon'):
+                #     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
                 current_block = w3.eth.block_number
                 # fromBlock = lastBlock - 50
                 print(
