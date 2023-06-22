@@ -13,6 +13,8 @@ class Balancer():
         
     def w3(self, network):
         w3 = Web3(Web3.HTTPProvider(rpc_list[network]['links'][self.balancer[network]]))
+        if (network == "polygon"):
+            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         # print("first", self.balancer[network])
         self.balancer[network] += 1
         # print("second", self.balancer[network])
