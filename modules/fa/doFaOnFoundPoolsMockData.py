@@ -1,6 +1,8 @@
-
+import sys
+sys.path.append('../..')
 import db.main as db
 from modules.fa.fa import full_fa
+
 _net = 1
 _net_short = 2
 _net_extra = 3
