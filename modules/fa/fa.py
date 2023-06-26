@@ -37,10 +37,13 @@ def dexscreener_fa(network, pool):
 def dextools_fa(network, pool):
 	custom_url = dextools_url_base + pool.lower() + "&chain=" + network + "&audit=true&locks=true"
 	res = requests.get(custom_url, headers=headers)
-	res_json = json.loads(res.json())
-	
-
-	#print(res_json["report"]["scam"]["total"])
+	res_json = res.json()
+	dext_score = res_json["data"][0]["dextScore"]["total"]
+	if dext_score >= 80:
+		is_passed = 1
+	elif dext_score <= 90:
+		is_passed = 0
+	return is_passed
 
 def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, chain):
 	print("Name: ", name)
@@ -50,9 +53,9 @@ def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, c
 	print("Chain extra: ", chain_extra)
 	print("Chain: ", chain)
 	goplus_analysis = goplus_fa(chain_short, token)
-	#print("Goplus: ", goplus_analysis)
+	print("Goplus: ", goplus_analysis)
 	dexscreener_analysis = dexscreener_fa(chain, lp)
-	print("Dexscreener: ", dexscreener_analysis)
+	#print("Dexscreener: ", dexscreener_analysis)
 	dextools_analysis = dextools_fa(chain_extra, lp)
 	#print("Dextools: ", dextools_analysis)
 
