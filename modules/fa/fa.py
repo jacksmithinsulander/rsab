@@ -19,16 +19,28 @@ def goplus_fa(network, token):
 	return res_json
 
 def dexscreener_fa(network, pool):
-	custom_url = dexscreener_url_base + network + ":" + pool
+	custom_url = dexscreener_url_base + network + ":" + pool + "/counter"
 	res = requests.get(custom_url, headers=headers)
-	res_json = res.json()	
-	return res_json
+	res_json = res.json()
+	n1 = res_json["report"]["scam"]["total"]
+	n2 = res_json["rating"]["poop"]["total"]
+	p1 = res_json["rating"]["fire"]["total"] 
+	p2 = res_json["rating"]["rocket"]["total"]
+	bull_ratings = p1 + p2
+	bear_ratings = n1 + n2
+	if bull_ratings >= (bear_ratings * 1.5):
+		is_passed = 1
+	elif bull_ratings <= (bear_ratings * 1.5):
+		is_passed = 0
+	return is_passed
 
 def dextools_fa(network, pool):
 	custom_url = dextools_url_base + pool.lower() + "&chain=" + network + "&audit=true&locks=true"
 	res = requests.get(custom_url, headers=headers)
-	res_json = res.json()
-	return res_json
+	res_json = json.loads(res.json())
+	
+
+	#print(res_json["report"]["scam"]["total"])
 
 def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, chain):
 	print("Name: ", name)
@@ -38,10 +50,10 @@ def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, c
 	print("Chain extra: ", chain_extra)
 	print("Chain: ", chain)
 	goplus_analysis = goplus_fa(chain_short, token)
-	print("Goplus: ", goplus_analysis)
+	#print("Goplus: ", goplus_analysis)
 	dexscreener_analysis = dexscreener_fa(chain, lp)
 	print("Dexscreener: ", dexscreener_analysis)
 	dextools_analysis = dextools_fa(chain_extra, lp)
-	print("Dextools: ", dextools_analysis)
+	#print("Dextools: ", dextools_analysis)
 
 
