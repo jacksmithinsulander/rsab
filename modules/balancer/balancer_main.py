@@ -21,7 +21,7 @@ class Balancer():
         if (network == "polygon"):
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         # print("last", self.balancer[network])
-        if (w3.isConnected()):
+        if (w3.is_connected()):
             print(f"RPC: {rpc_list[network]['links'][self.balancer[network]]}")
             return w3
         else:
