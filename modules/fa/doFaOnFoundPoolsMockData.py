@@ -35,8 +35,7 @@ for pool in pools:
         # print(pool[8], tokensniffer_url, dextools_url,
         #       pool[7], pool[5], pool[2], pool[3], pool[1])
         # print(pool[7])
-        result = full_fa(pool[8], tokensniffer_url, dextools_url,
-                         pool[7], pool[5], pool[2], pool[3], pool[1])
+        result = full_fa(pool[8], pool[7], pool[5], pool[2], pool[3], pool[1])
 
         # if 3/3 -- add to new db
         if result > 1 and db.check_if_saved('pools_passed_fa', pool[_pool_address]) == False:
