@@ -65,5 +65,5 @@ def mainfunc():
 		open(flag_file, "w").close()
 
 if args.test:
-	#start_scanner()
-	iterate()
+	start_scanner()
+	#iterate()
