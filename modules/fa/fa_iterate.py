@@ -1,5 +1,4 @@
 import sys
-sys.path.append('../..')
 import db.main as db
 from modules.fa.fa import full_fa
 

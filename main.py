@@ -32,12 +32,14 @@ parser.add_argument(
 #parser.add_argument("-u", "--update", help="Update to latest version")
 #parser.add_argument("-r", "--restart", help="Stop and restart the bot")
 #parser.add_argument("-f", "--flagRemoval", help="Removes the record flag")
-#parser.add_argument("-fs", "--faScan", help="Do the FA scan")
+parser.add_argument(
+	"-fs", "--faScan", action="store_true", help="Do the FA scan")
 #parser.add_argument("-ts","--taScan", help="Do the TA scan")
 #parser.add_argument("-s","--start", help="Start the bot")
 parser.add_argument(
-	"-t", "--test", action="store_true", help="Temporary dev test"
-	)
+	"-fe", "--fetch", action="store_true", help="Perform new scan to fetch tokens")
+parser.add_argument(
+	"-t", "--test", action="store_true", help="Temporary dev test")
 
 args = parser.parse_args()
 
@@ -64,6 +66,8 @@ def mainfunc():
 			return mainfunc()
 		open(flag_file, "w").close()
 
-if args.test:
+if args.fetch:
 	start_scanner()
-	#iterate()
+elif args.faScan:
+	iterate()
+
