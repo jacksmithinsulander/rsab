@@ -1,6 +1,7 @@
 from web3 import Web3
 from abi import ERC20ABI, LPABI
 import decimal
+import db.main as db
 
 web3 = Web3(Web3.HTTPProvider("https://eth.llamarpc.com"))
 
@@ -35,4 +36,7 @@ def price_fetch():
 	for block in range(creation_block, latest_block + 1):
 		uni_v2_price(block)
 
-price_fetch()
+
+def iterate_ta():
+	pools = db.get_all_pools("pools_passed")
+	print(pools)

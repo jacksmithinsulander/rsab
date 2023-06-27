@@ -1,4 +1,3 @@
-import sys
 import db.main as db
 from modules.fa.fa import full_fa
 

@@ -13,6 +13,7 @@ from time import sleep
 from modules.fa.fa_iterate import iterate
 from modules.setup.setup import conf_checker
 from modules.scanner.scanner_main import Scanner
+from modules.calculation.price_fetch import ta_scanner
 
 scanner = Scanner()
 
@@ -33,8 +34,9 @@ parser.add_argument(
 #parser.add_argument("-r", "--restart", help="Stop and restart the bot")
 #parser.add_argument("-f", "--flagRemoval", help="Removes the record flag")
 parser.add_argument(
-	"-fs", "--faScan", action="store_true", help="Do the FA scan")
-#parser.add_argument("-ts","--taScan", help="Do the TA scan")
+	"-fs", "--fa_scan", action="store_true", help="Do the FA scan")
+parser.add_argument(
+	"-ts","--ta_scan", action="store_true", help="Do the TA scan")
 #parser.add_argument("-s","--start", help="Start the bot")
 parser.add_argument(
 	"-fe", "--fetch", action="store_true", help="Perform new scan to fetch tokens")
@@ -68,6 +70,6 @@ def mainfunc():
 
 if args.fetch:
 	start_scanner()
-elif args.faScan:
+elif args.fa_scan:
 	iterate()
-
+elif args.ta_scan:
