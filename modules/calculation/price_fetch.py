@@ -1,23 +1,38 @@
-from web3 import Web3 
-import json
+from web3 import Web3
+from abi import ERC20ABI, LPABI
+import decimal
 
-w3 = Web3(Web3.HTTPProvider("https://polygon.llamarpc.com"))
+web3 = Web3(Web3.HTTPProvider("https://eth.llamarpc.com"))
 
-result = w3.is_connected()
-print('Web3 is connected? ', result)
+print(web3.is_connected())
 
-contract_abi = json.loads('[{"inputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint8","name":"decimals","type":"uint8"},{"internalType":"uint256","name":"supply","type":"uint256"},{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"feeWallet","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]')
+lpAddress = web3.to_checksum_address("0x43A73Aaed6Aed1b1F5a693d77dD18C3121f24CAC")
+#lpAddress = web3.to_checksum_address(input("Enter LP address: "))
+lpContract = web3.eth.contract(address=lpAddress, abi=LPABI)
+def uni_v2_price(block_num):
+	token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
+	reserves = lpContract.functions.getReserves().call(block_identifier=block_num)
+	print(reserves)
+	tkc0 = web3.eth.contract(address=token0, abi=ERC20ABI)
+	tkc1 = web3.eth.contract(address=token1, abi=ERC20ABI)
+	decimal0 = tkc0.functions.decimals().call()
+	decimal1 = tkc1.functions.decimals().call()
+	print(decimal0, decimal1)
+	reserve0 = float(reserves[0] / 10 **decimal0)
+	reserve1 = float(reserves[1] / 10 **decimal1)
+	price = reserve1 / reserve0
+	print("Reserve 0 = ", reserve0)
+	print("Reserve 1 = ", reserve1)
+	form_price = "{:.10f}".format(price)
+	print(form_price)
 
-contract_address = "0xE238Ecb42C424E877652AD82d8A939183A04C35f"
+#token_price()
 
-contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+def price_fetch():
+	creation_block = 17257452 #Lets find a more elegant way to do this later, maybe if this information is saved in our database?
+	latest_block = web3.eth.block_number
+	print(creation_block, latest_block)
+	for block in range(creation_block, latest_block + 1):
+		uni_v2_price(block)
 
-current_block = w3.eth.get_block('latest')['number']
-
-events = contract.events.transfer().getPastEvents(
-	"earliest", "latest",
-	{"fromBlock": 40683048, "toBlock": current_block }
-)
-
-for event in events:
-	print(event)
+price_fetch()
