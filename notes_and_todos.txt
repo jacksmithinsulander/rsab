@@ -1,0 +1,5 @@
+We still have to look closer on modules/fa/fa.py:
+Firstly check if the input values for different names on the chain is necessarry
+, since we might be able to pull all of that off using the parser I wrote
+Also check if the pased tokens get the correct values in the database
+Also check if the gosecurity checker is reasonable since it is king of handcoded

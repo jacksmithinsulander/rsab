@@ -1,6 +1,7 @@
 import requests
 import json
 from modules.fa.chain_translator import translator
+from modules.fa.parser import token_parser
 
 headers = {
 	'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
@@ -97,7 +98,11 @@ def dextools_fa(network, pool):
 	return is_passed
 
 def full_fa(name, token, lp, chain_short, chain_extra, chain):
-	goplus_analysis = goplus_fa(chain_short, token)
+	print(name, token, lp, chain_short, chain_extra, chain)
+	chain_name_arr = token_parser(chain)
+	print(chain_name_arr)
+	print(chain_name_arr[0])
+	goplus_analysis = goplus_fa(chain_name_arr[0], token)
 	dexscreener_analysis = dexscreener_fa(chain, lp)
 	dextools_analysis = dextools_fa(chain_extra, lp)
 	full_result = (goplus_analysis + dexscreener_analysis + dextools_analysis)
