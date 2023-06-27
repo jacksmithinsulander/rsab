@@ -71,10 +71,10 @@ def goplus_fa(network, token):
 			score -= 5
 		else:
 			score -= 1
-	if score >= 0:
+	if score >= 20:
 		is_passed = 1
 		print("Go is PASSED")
-	elif score <= 0:
+	elif score <= 20:
 		is_passed = 0
 	print("Go score: ", score)
 	return is_passed
@@ -101,12 +101,13 @@ def dextools_fa(network, pool):
 		network + "&audit=true&locks=true")
 	res = requests.get(custom_url, headers=headers)
 	res_json = res.json()
-	dext_score = res_json["data"][0]["dextScore"]["total"]
-	if dext_score >= 70:
+	dext_score = int(res_json["data"][0]["dextScore"]["total"])
+	if dext_score >= 50:
 		is_passed = 1
 		print("Dextools is PASSED")
-	elif dext_score <= 70:
+	elif dext_score <= 50:
 		is_passed = 0
+	print("dext_score is :", dext_score)
 	return is_passed
 
 def full_fa(name, token, lp, chain_short, chain_extra, chain):
