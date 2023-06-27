@@ -13,7 +13,7 @@ from time import sleep
 from modules.fa.fa_iterate import iterate
 from modules.setup.setup import conf_checker
 from modules.scanner.scanner_main import Scanner
-from modules.calculation.price_fetch import ta_scanner
+from modules.calculation.price_fetch import iterate_ta
 
 scanner = Scanner()
 
@@ -73,3 +73,4 @@ if args.fetch:
 elif args.fa_scan:
 	iterate()
 elif args.ta_scan:
+	ta_iterate()
