@@ -1,100 +1,104 @@
-from selenium.webdriver.remote.webdriver import By
-import selenium.webdriver.support.expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-import undetected_chromedriver as uc
-import cloudscraper
+import requests
 import json
+from modules.fa.chain_translator import translator
 
-driver = uc.Chrome()
+headers = {
+	'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
+	'Cookie': '_pk_ref.4.b299=%5B%22%22%2C%22%22%2C1687783998%2C%22https%3A%2F%2Ft.co%2F%22%5D; _pk_id.4.b299=ad4433ca8065d35b.1687783998.; _pk_ses.4.b299=1; __cf_bm=nzKBmFdipBO3WOZSCGc2uHpiWBytTCzAquJC1xYEmZk-1687786726-0-Af0dwaPEP2k1gm0IXWKEjCdwrKE79kIQsNNdIz1peQqeZQJjXBwtry0lKemsAQruY/+50I+HEd3ZZW2yvn6/bZvlTMP6VYXmwZEnKTnyqNKJ'
+}
 
-# Token info that we will fetch from the database
-# token_address = "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39"
-# token_chain_short = "eth"
-# token_chain = "ethereum"
-# token_chain_extra = "ether"
-# token_lp_pair = "0x9e0905249CeEFfFB9605E034b534544684A58BE6"
-# token_name = "Hex"
+goplus_url_base = 'https://api.gopluslabs.io/api/v1/token_security/'
+dexscreener_url_base = 'https://cfw.dexscreener.com/sc/dex:'
+dextools_url_base = 'https://www.dextools.io/shared/data/pair?address='
 
-# Website links
-# tokensniffer_url = "https://tokensniffer.com/token/"
-# dextools_url = "https://www.dextools.io/app/en/"
+def goplus_fa(network, token):
+	chain = translator(network)
+	custom_url = goplus_url_base + chain + "?contract_addresses=" + token
+	res = requests.get(custom_url)
+	res_json = res.json()
+	token_data = res_json.get("result", {}).get(token.lower(), {})
 
+	score = 0
+	
+	bull_variables = {
+		"anti_whale": "is_anti_whale",
+		"open_source": "is_open_source",
+	}
 
-def multi_fa(link, token, chain):
-    if "tokensniffer" in link:
-        site_url = link + chain + "/" + token
-        element_xpath = '//*[@id="__next"]/div/main/div[2]/div[2]/div[1]/table[1]/tbody/tr[1]/td/h2/span'
-    else:
-        site_url = link + chain + "/pair-explorer/" + token
-        element_xpath = '//*[@id="progressDext"]/div/div/strong'
-    driver.get(site_url)
+	bear_variables = {
+		"anti_whale_modifiable": "anti_whale_modifiable",
+		"can_take_ownership": "can_take_back_ownership",
+		"honeypot_detect": "is_honeypot",
+		"honeypot_deployer": "honeypot_with_same_creator",
+		"proxy": "is_proxy",
+		"blacklist": "is_blacklisted",
+		"transfer_pausable": "transfer_pausable",
+		"mintable": "is_minteable"
+	}
 
-    fa_score = WebDriverWait(driver, timeout=40).until(
-        EC.presence_of_element_located((By.XPATH, element_xpath)))
+	creator_percent = token_data.get("creator_percent")
+	holder_count = token_data.get("holder_count")
 
-    #   try:
-    #     fa_score = WebDriverWait(driver, timeout=40).until(
-    #         EC.presence_of_element_located((By.XPATH, element_xpath)))
-    # except Exception:
-    #     print("token not found on tokensniffer")
-    #     is_passed = 0
-    #     return is_passed
+	if float(creator_percent) >= 0.1:
+		score -= 5
+	else:
+		score += 5
 
-    if "/100" in fa_score.text:
-        result_int = int(fa_score.text.removesuffix("/100"))
-    else:
-        result_int = int(fa_score.text)
+	if int(holder_count) >= 100:
+		score += 5
+	else:
+		score -= 5
 
-    if result_int >= 70:
-        is_passed = 1
-    else:
-        is_passed = 0
-    return is_passed
+	for var, key in bull_variables.items():
+		value = token_data.get(key)
+		if value == 1:
+			score += 5
+		else: 
+			score -= 5
+		
+	for var, key in bear_variables.items():
+		value = token_data.get(key)
+		if value == 0:
+			score += 5
+		else: 
+			score -= 5
+	if score >= 0:
+		is_passed = 1
+	elif score <= 0:
+		is_passed = 0
+	return is_passed
 
+def dexscreener_fa(network, pool):
+	custom_url = dexscreener_url_base + network + ":" + pool + "/counter"
+	res = requests.get(custom_url, headers=headers)
+	res_json = res.json()
+	n1 = res_json["report"]["scam"]["total"]
+	n2 = res_json["rating"]["poop"]["total"]
+	p1 = res_json["rating"]["fire"]["total"] 
+	p2 = res_json["rating"]["rocket"]["total"]
+	bull_ratings = p1 + p2
+	bear_ratings = n1 + n2
+	if bull_ratings >= (bear_ratings * 1.5):
+		is_passed = 1
+	elif bull_ratings <= (bear_ratings * 1.5):
+		is_passed = 0
+	return is_passed
 
-def dexscreener_fa(token, chain):
-    token_url = "https://cfw.dexscreener.com/sc/dex:" + \
-        chain + ":" + token + "/counter"
-    scraper = cloudscraper.create_scraper(
-        delay=10,   browser={'custom': 'ScraperBot/1.0', })
-    r = scraper.get(token_url)
-    y = json.loads(r.text)
-    # Wanna add a separate function that  creates these ratings though some kind of iteration
-    scam_ratings = y["report"]["scam"]["total"]
-    shit_ratings = y["rating"]["poop"]["total"]
-    fire_ratings = y["rating"]["fire"]["total"]
-    moon_ratings = y["rating"]["rocket"]["total"]
-    bear_ratings = scam_ratings + shit_ratings
-    bull_ratings = fire_ratings + moon_ratings
-    if bull_ratings >= (bear_ratings * 1.5):
-        is_passed = 1
-    else:
-        is_passed = 0
-    return is_passed
+def dextools_fa(network, pool):
+	custom_url = (dextools_url_base + pool.lower() + "&chain=" + 
+		network + "&audit=true&locks=true")
+	res = requests.get(custom_url, headers=headers)
+	res_json = res.json()
+	dext_score = res_json["data"][0]["dextScore"]["total"]
+	if dext_score >= 80:
+		is_passed = 1
+	elif dext_score <= 90:
+		is_passed = 0
+	return is_passed
 
-
-def full_fa(name, tokensniffer, dextools, token, lp, chain_short, chain_extra, chain):
-    try:
-        tokensniffer_result = multi_fa(tokensniffer, token, chain_short)
-        print("tokensniffer checked for token: " + name)
-    except Exception:
-        print("err tokensniffer for token: " + name)
-        tokensniffer_result = 0
-    try:
-        dextools_result = multi_fa(dextools, lp, chain_extra)
-        print("dextools checked for token: " + name)
-    except Exception:
-        print("err dextools for token: " + name)
-        dextools_result = 0
-    try:
-        dexscreener_result = dexscreener_fa(lp, chain)
-        print("dexscreener checked for token: " + name)
-    except Exception:
-        print("err dexscreener for token: " + name)
-        dexscreener_result = 0
-    full_result = tokensniffer_result + dextools_result + dexscreener_result
-    print("Token " + name + " passed " + str(full_result) + "/3")
-    return full_result
-
-# full_fa(token_name, tokensniffer_url, dextools_url, token_address,
-#         token_lp_pair, token_chain_short, token_chain_extra, token_chain)
+def full_fa(name, token, lp, chain_short, chain_extra, chain):
+	goplus_analysis = goplus_fa(chain_short, token)
+	dexscreener_analysis = dexscreener_fa(chain, lp)
+	dextools_analysis = dextools_fa(chain_extra, lp)
+	full_result = (goplus_analysis + dexscreener_analysis + dextools_analysis)
+	return full_result
