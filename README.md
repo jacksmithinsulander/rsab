@@ -1,6 +1,6 @@
 <h1>Rug Safe Aping Bot</h1>
 <h2>Installation:</h2>
-<pre>
+<pre style="font-family: monospace; color: #ff0000; background-color: #f9f9f9;">
  ____  _   _  ____   ____    _    _____ _____      _    ____ ___ _   _  ____ 
 |  _ \| | | |/ ___| / ___|  / \  |  ___| ____|    / \  |  _ \_ _| \ | |/ ___|
 | |_) | | | | |  _  \___ \ / _ \ | |_  |  _|     / _ \ | |_) | ||  \| | |  _ 
