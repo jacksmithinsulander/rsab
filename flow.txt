@@ -19,7 +19,13 @@
 
 
 Flags:
-
--u --update     = Updating
--i --init       = If you want to redo the config file
--r --restart    = Stop and restartign bot
+-u  --update        = Updating to latest version using github
+-i  --init          = If you want to redo the config file
+-g  --flagRemoval   = Removes the record flag
+-r  --restart       = Stop and restartign bot
+-x  --stop          = Stop bot
+-t  --test          = For Development testing
+-s  --start         = Start the bot
+-fs --faScan        = Perform the FA scan
+-ts --taScan        = Perform the TA scan
+-f  --fetch         = Scan for new tokens
