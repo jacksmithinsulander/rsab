@@ -7,6 +7,7 @@ web3 = Web3(Web3.HTTPProvider("https://eth.llamarpc.com"))
 print(web3.is_connected())
 
 lpAddress = web3.to_checksum_address("0x43A73Aaed6Aed1b1F5a693d77dD18C3121f24CAC")
+#lpAddress = web3.to_checksum_address(input("Enter LP address: "))
 lpContract = web3.eth.contract(address=lpAddress, abi=LPABI)
 def uni_v2_price(block_num):
 	token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
