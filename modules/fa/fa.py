@@ -52,21 +52,31 @@ def goplus_fa(network, token):
 
 	for var, key in bull_variables.items():
 		value = token_data.get(key)
+		if value:
+			value = int(value)
 		if value == 1:
 			score += 5
-		else: 
+		elif value == 0: 
 			score -= 5
+		else:
+			score -=1
 		
 	for var, key in bear_variables.items():
 		value = token_data.get(key)
+		if value:
+			value = int(value)
 		if value == 0:
 			score += 5
-		else: 
+		elif value == 1: 
 			score -= 5
+		else:
+			score -= 1
 	if score >= 0:
 		is_passed = 1
+		print("Go is PASSED")
 	elif score <= 0:
 		is_passed = 0
+	print("Go score: ", score)
 	return is_passed
 
 def dexscreener_fa(network, pool):
@@ -81,6 +91,7 @@ def dexscreener_fa(network, pool):
 	bear_ratings = n1 + n2
 	if bull_ratings >= (bear_ratings * 1.5):
 		is_passed = 1
+		print("Dexscreener is PASSED")
 	elif bull_ratings <= (bear_ratings * 1.5):
 		is_passed = 0
 	return is_passed
@@ -91,17 +102,16 @@ def dextools_fa(network, pool):
 	res = requests.get(custom_url, headers=headers)
 	res_json = res.json()
 	dext_score = res_json["data"][0]["dextScore"]["total"]
-	if dext_score >= 80:
+	if dext_score >= 70:
 		is_passed = 1
-	elif dext_score <= 90:
+		print("Dextools is PASSED")
+	elif dext_score <= 70:
 		is_passed = 0
 	return is_passed
 
 def full_fa(name, token, lp, chain_short, chain_extra, chain):
 	print(name, token, lp, chain_short, chain_extra, chain)
 	chain_name_arr = token_parser(chain)
-	print(chain_name_arr)
-	print(chain_name_arr[0])
 	goplus_analysis = goplus_fa(chain_name_arr[0], token)
 	dexscreener_analysis = dexscreener_fa(chain, lp)
 	dextools_analysis = dextools_fa(chain_extra, lp)
