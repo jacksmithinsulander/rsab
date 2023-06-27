@@ -101,4 +101,5 @@ def full_fa(name, token, lp, chain_short, chain_extra, chain):
 	dexscreener_analysis = dexscreener_fa(chain, lp)
 	dextools_analysis = dextools_fa(chain_extra, lp)
 	full_result = (goplus_analysis + dexscreener_analysis + dextools_analysis)
+	print("Score is: ", full_result)
 	return full_result

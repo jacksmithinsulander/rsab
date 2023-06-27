@@ -10,6 +10,7 @@ import db.main as db
 from web3 import Web3
 from time import sleep
 
+from modules.fa.fa_iterate import iterate
 from modules.setup.setup import conf_checker
 from modules.scanner.scanner_main import Scanner
 
@@ -64,4 +65,5 @@ def mainfunc():
 		open(flag_file, "w").close()
 
 if args.test:
-	start_scanner()
+	#start_scanner()
+	iterate()

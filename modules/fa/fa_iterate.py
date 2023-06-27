@@ -14,18 +14,23 @@ _token1_symbol = 8
 _token2_address = 9
 _token2_symbol = 10
 
-pools = db.get_all_pools("pools_found")
-for pool in pools:
-    if pool[8] == "WETH":
-        newPool = list(pool)
-        weth = newPool[8]
-        token = newPool[10]
-        newPool[8] = token
-        newPool[10] = weth
-        pool = tuple(newPool)
 
-    if pool[1] == "ethereum" and pool[8] != "fUSDC-6e5e":
-        result = full_fa(pool[8], pool[7], pool[5], pool[2], pool[3], pool[1])
-        if result > 1 and db.check_if_saved('pools_passed_fa', pool[_pool_address]) == False:
-            db.copy_pool('pools_found', 'pools_passed_fa', pool[_pool_address])
-            print(pool[8] + " added to DB")
+def iterate():
+	pools = db.get_all_pools("pools_found")
+	for pool in pools:
+		if pool[8] == "WETH":
+			newPool = list(pool)
+			weth = newPool[8]
+			token = newPool[10]
+			newPool[8] = token
+			newPool[10] = weth
+			pool = tuple(newPool)
+
+		if pool[1] == "ethereum" and pool[8] != "fUSDC-6e5e":
+			result = full_fa(
+				pool[8], pool[7], pool[5], pool[2], pool[3], pool[1])
+			if result > 1 and db.check_if_saved(
+				'pools_passed_fa', pool[_pool_address]) == False:
+				db.copy_pool(
+					'pools_found', 'pools_passed_fa', pool[_pool_address])
+				print(pool[8] + " added to DB")
