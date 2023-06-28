@@ -51,9 +51,64 @@ swap_list = {
         'kyberswap': {
             'address': '0x1c758aF0688502e49140230F6b0EBd376d429be5',
             'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'apeswap': {
+            'address': '0xCf083Be4164828f00cAE704EC15a36D711491284',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'optimism': {
+        'uniswap3': {
+            'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x2abE8750e4a65584d7452316356128C936273e0D',
+            'event_name': 'PoolCreated',
             'pool_address': 'pool'}
+    },
+    'fantom': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x78df70615ffc8066cc0887917f2Cd72092C86409',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
+    },
+    'avalanche': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
+    },
+    'metis': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'harmony': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'pulsechain': {
+        'pulsex': {
+            'address': '0x1715a3E4A142d8b698131108995174F37aEBA10D',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
     }
-
 }
 
 # Balancer still needs to be added, but has different syntax for their contracts.
