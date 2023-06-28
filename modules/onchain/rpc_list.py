@@ -84,7 +84,6 @@ rpc_list = {
         	"https://rpc.fantom.network",
         	"https://rpc2.fantom.network",
         	"https://rpc3.fantom.network",
-        	"https://fantom-mainnet.public.blastapi.io",
         	"https://1rpc.io/ftm",
         	"https://fantom.blockpi.network/v1/rpc/public",
         	"https://fantom.publicnode.com",
@@ -95,12 +94,9 @@ rpc_list = {
         'extra': "fantom"
     },
     'avalanche': {
-        'links': ["https://api.avax.network/ext/bc/C/rpc",
-        	"https://avax.rpcgator.com",
+        'links': ["https://avax.rpcgator.com",
         	"https://avalanche.public-rpc.com",
         	"https://rpc.ankr.com/avalanche",
-        	"https://blastapi.io/public-api/avalanche",
-        	"https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc",
         	"https://avalancheapi.terminet.io/ext/bc/C/rpc",
         	"https://avalanche-c-chain.publicnode.com",
         	"https://1rpc.io/avax/c",
