@@ -64,38 +64,71 @@ rpc_list = {
         'extra': "arbitrum"
     },
     'optimism': {
-        'links': ["",
+        'links': ["https://mainnet.optimism.io",
+        	"https://rpc.ankr.com/optimism",
+        	"https://1rpc.io/op",
+        	"https://optimism.blockpi.network/v1/rpc/public",
+        	"https://endpoints.omniatech.io/v1/op/mainnet/public",
+        	"https://optimism.api.onfinality.io/public",
+        	"https://rpc.optimism.gateway.fm",
+        	"https://optimism.publicnode.com"
         	],
         'short': "op",
         'extra': "optimism"
     },
     'fantom': {
-        'links': ["",
+        'links': ["https://rpcapi.fantom.network",
+        	"https://endpoints.omniatech.io/v1/fantom/mainnet/public",
+        	"https://rpc.ftm.tools",
+        	"https://rpc.ankr.com/fantom",
+        	"https://rpc.fantom.network",
+        	"https://rpc2.fantom.network",
+        	"https://rpc3.fantom.network",
+        	"https://fantom-mainnet.public.blastapi.io",
+        	"https://1rpc.io/ftm",
+        	"https://fantom.blockpi.network/v1/rpc/public",
+        	"https://fantom.publicnode.com",
+        	"https://fantom.api.onfinality.io/public",
+        	"https://rpc.fantom.gateway.fm"
         	],
         'short': "ftm",
         'extra': "fantom"
     },
     'avalanche': {
-        'links': ["",
+        'links': ["https://api.avax.network/ext/bc/C/rpc",
+        	"https://avax.rpcgator.com",
+        	"https://avalanche.public-rpc.com",
+        	"https://rpc.ankr.com/avalanche",
+        	"https://blastapi.io/public-api/avalanche",
+        	"https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc",
+        	"https://avalancheapi.terminet.io/ext/bc/C/rpc",
+        	"https://avalanche-c-chain.publicnode.com",
+        	"https://1rpc.io/avax/c",
+        	"https://avalanche.blockpi.network/v1/rpc/public",
+        	"https://avalanche.api.onfinality.io/public/ext/bc/C/rpc",
+        	"https://endpoints.omniatech.io/v1/avax/mainnet/public"
         	],
         'short': "avax",
         'extra': "avalanche"
     },
     'metis': {
-        'links': ["",
-        	],
+        'links': ["https://andromeda.metis.io/?owner=1088"],
         'short': "metis",
         'extra': "andromeda"
     },
     'harmony': {
-        'links': ["",
+        'links': ["https://api.harmony.one",
+        	"https://a.api.s0.t.hmny.io",
+        	"https://api.s0.t.hmny.io",
+        	"https://rpc.ankr.com/harmony",
+        	"https://harmony.api.onfinality.io/public",
+        	"https://1rpc.io/one"
         	],
         'short': "one",
         'extra': "harmony"
     },
     'pulsechain': {
-        'links': ["",
-        	],
+        'links': ["https://rpc.pulsechain.com"],
         'short': "pls",
         'extra': "pulse"
     },
