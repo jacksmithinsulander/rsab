@@ -87,7 +87,7 @@ swap_list = {
             'event_name': 'PairCreated',
             'pool_address': 'pair'},
         'kyberswap': {
-            'address': '',
+            'address': '0x10908C875D865C66f271F5d3949848971c9595C9',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
