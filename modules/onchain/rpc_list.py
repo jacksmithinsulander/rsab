@@ -62,5 +62,41 @@ rpc_list = {
         	],
         'short': "arbitrum",
         'extra': "arbitrum"
-    }
+    },
+    'optimism': {
+        'links': ["",
+        	],
+        'short': "op",
+        'extra': "optimism"
+    },
+    'fantom': {
+        'links': ["",
+        	],
+        'short': "ftm",
+        'extra': "fantom"
+    },
+    'avalanche': {
+        'links': ["",
+        	],
+        'short': "avax",
+        'extra': "avalanche"
+    },
+    'metis': {
+        'links': ["",
+        	],
+        'short': "metis",
+        'extra': "andromeda"
+    },
+    'harmony': {
+        'links': ["",
+        	],
+        'short': "one",
+        'extra': "harmony"
+    },
+    'pulsechain': {
+        'links': ["",
+        	],
+        'short': "pls",
+        'extra': "pulse"
+    },
 }
