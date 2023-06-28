@@ -16,7 +16,6 @@ rpc_list = {
         	"https://eth.api.onfinality.io/public",
         	"https://core.gashawk.io/rpc",
         	"https://rpc.eth.gateway.fm",
-        	"https://eth.meowrpc.com",
         	"https://eth.drpc.org",
         	"https://mainnet.gateway.tenderly.co",
         	"https://gateway.tenderly.co/public/mainnet"
@@ -60,7 +59,6 @@ rpc_list = {
         	"https://arbitrum.api.onfinality.io/public",
         	"https://rpc.arb1.arbitrum.gateway.fm",
         	"https://arbitrum-one.publicnode.com",
-        	"https://arbitrum.meowrpc.com"
         	],
         'short': "arbitrum",
         'extra': "arbitrum"

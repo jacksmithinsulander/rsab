@@ -71,6 +71,7 @@ class Scanner:
                             token2 = w3.eth.contract(
                                 token2_address, abi=abi.erc20)
                             token2_symbol = token2.functions.symbol().call()
+                            print("Testing if this is correct: ", swap)
 
                             unixTime = w3.eth.get_block(
                                 pool['blockNumber']).timestamp
