@@ -71,7 +71,6 @@ class Scanner:
                             token2 = w3.eth.contract(
                                 token2_address, abi=abi.erc20)
                             token2_symbol = token2.functions.symbol().call()
-                            print("Testing if this is correct: ", swap)
 
                             unixTime = w3.eth.get_block(
                                 pool['blockNumber']).timestamp
@@ -84,7 +83,8 @@ class Scanner:
                                        token1_address,
                                        token1_symbol,
                                        token2_address,
-                                       token2_symbol)
+                                       token2_symbol,
+                                       swap)
                 self.last_blocks[net] = current_block
             print(f"Currently {db.count_pools('pools_found')} pools saved")
             print(f"Sleeping 30 seconds before next check")

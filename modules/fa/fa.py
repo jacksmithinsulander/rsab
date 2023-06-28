@@ -40,10 +40,16 @@ def goplus_fa(network, token):
 	creator_percent = token_data.get("creator_percent")
 	holder_count = token_data.get("holder_count")
 
-	if float(creator_percent) >= 0.1:
-		score -= 5
+	#print("creator percent: ", creator_percent)
+	#print("Holder count: ", holder_count)
+
+	if creator_percent:
+		if float(creator_percent) >= 0.1:
+			score -= 5
+		else:
+			score += 5
 	else:
-		score += 5
+		score -= 5
 
 	if int(holder_count) >= 100:
 		score += 5
