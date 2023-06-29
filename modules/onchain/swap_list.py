@@ -16,7 +16,10 @@ swap_list = {
             'address': '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'pancakeswap': {}
+        'pancakeswap': {},
+        'dodo': {},
+        'balancer': {},
+        'pangolin': {}
     },
     'polygon': {
         'uniswap3': {
@@ -38,7 +41,10 @@ swap_list = {
         'kyberswap': {
             'address': '0x5F1fe642060B5B9658C15721Ea22E982643c095c',
             'event_name': 'PoolCreated',
-            'pool_address': 'pool'}
+            'pool_address': 'pool'},
+        'dodo': {},
+        'balancer': {},
+        'pangolin': {}
     },
     'arbitrum': {
         'uniswap3': {
@@ -58,7 +64,10 @@ swap_list = {
             'event_name': 'PairCreated',
             'pool_address': 'pair'},
         'traderjoe': {},
-        'camelot': {}
+        'camelot': {},
+        'dodo': {},
+        'balancer': {},
+        'pangolin': {}
     },
     'optimism': {
         'uniswap3': {
@@ -73,7 +82,9 @@ swap_list = {
             'address': '0x2abE8750e4a65584d7452316356128C936273e0D',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'beethovenx': {}
+        'beethovenx': {},
+        'dodo': {},
+        'pangolin': {}
     },
     'fantom': {
         'sushiv2': {
@@ -84,7 +95,9 @@ swap_list = {
             'address': '0x78df70615ffc8066cc0887917f2Cd72092C86409',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'beethovenx': {}
+        'beethovenx': {},
+        'spookyswap': {},
+        'pangolin': {}
     },
     'avalanche': {
         'sushiv2': {
@@ -95,7 +108,9 @@ swap_list = {
             'address': '0x10908C875D865C66f271F5d3949848971c9595C9',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'traderjoe': {}
+        'traderjoe': {},
+        'dodo': {},
+        'pangolin': {}
     },
     'metis': {
         'sushiv2': {
@@ -117,13 +132,17 @@ swap_list = {
     },
     'binance': {
         'pancakeswap': {},
+        'uniswap': {},
         'sushiswap': {},
         'apeswap': {},
-        'kyberswap': {}
+        'kyberswap': {},
+        'traderjoe': {},
+        'pangolin': {}
     },
     'boba': {
-        'sushiswap': {}
-        
+        'sushiswap': {},
+        'dodo': {},
+        'oolongswap': {}
     }
 }
 
