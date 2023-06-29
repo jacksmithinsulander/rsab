@@ -16,12 +16,14 @@ swap_list = {
             'address': '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'pancakeswap': {},
         'dodo': {
             'address': '0x5336edE8F971339F6c0e304c66ba16F1296A2Fbe',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {}
+        'balancer': {
+            'address': '0x897888115Ada5773E02aA29F775430BFB5F34c51',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
     },
     'polygon': {
         'uniswap3': {
@@ -48,7 +50,10 @@ swap_list = {
             'address': '0xd24153244066F0afA9415563bFC7Ba248bfB7a51',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {}
+        'balancer': {
+            'address': '0xFc8a407Bba312ac761D8BFe04CE1201904842B76',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
     },
     'arbitrum': {
         'uniswap3': {
@@ -71,12 +76,16 @@ swap_list = {
             'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
             'event_name': 'LBPairCreated',
             'pool_address': 'LBPair'},
-        'camelot': {},
+        'camelot': {
+            ''},
         'dodo': {
             'address': '0xa6Cf3d163358aF376ec5e8B7Cc5e102a05FdE63D',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {}
+        'balancer': {
+            'address': '0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
     },
     'optimism': {
         'uniswap3': {
@@ -96,6 +105,10 @@ swap_list = {
             'address': '0xDb9C53F2cED34875685B607c97A61a65DA2F30a8',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
+        'balancer': {
+            'address': '0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
     },
     'fantom': {
         'sushiv2': {
@@ -129,7 +142,11 @@ swap_list = {
         'pangolin': {
             'address': '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
             'event_name': 'PairCreated',
-            'pool_address': 'pair'}
+            'pool_address': 'pair'},
+        'balancer': {
+            'address': '0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
     },
     'metis': {
         'sushiv2': {
@@ -150,7 +167,10 @@ swap_list = {
             'pool_address': 'pair'}
     },
     'binance': {
-        'pancakeswap': {},
+        'pancakeswap': {
+            'address': '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
         'uniswap3': {
             'address': '0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7',
             'event_name': 'PoolCreated',
