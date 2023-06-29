@@ -64,13 +64,11 @@ rpc_list = {
         'extra': "arbitrum"
     },
     'optimism': {
-        'links': ["https://mainnet.optimism.io",
-        	"https://rpc.ankr.com/optimism",
+        'links': ["https://rpc.ankr.com/optimism",
         	"https://1rpc.io/op",
         	"https://optimism.blockpi.network/v1/rpc/public",
         	"https://endpoints.omniatech.io/v1/op/mainnet/public",
         	"https://optimism.api.onfinality.io/public",
-        	"https://rpc.optimism.gateway.fm",
         	"https://optimism.publicnode.com"
         	],
         'short': "op",
@@ -94,8 +92,7 @@ rpc_list = {
         'extra': "fantom"
     },
     'avalanche': {
-        'links': ["https://avax.rpcgator.com",
-        	"https://avalanche.public-rpc.com",
+        'links': ["https://avalanche.public-rpc.com",
         	"https://rpc.ankr.com/avalanche",
         	"https://avalancheapi.terminet.io/ext/bc/C/rpc",
         	"https://avalanche-c-chain.publicnode.com",
@@ -128,4 +125,35 @@ rpc_list = {
         'short': "pls",
         'extra': "pulse"
     },
+    'binance': {
+        'links': ["https://bsc-dataseed.binance.org", 
+        	"https://bsc-dataseed1.defibit.io",
+        	"https://bsc-dataseed1.ninicoin.io",
+        	"https://bsc-dataseed2.defibit.io",
+        	"https://bsc-dataseed3.defibit.io",
+        	"https://bsc-dataseed4.defibit.io",
+        	"https://bsc-dataseed2.ninicoin.io",
+        	"https://bsc-dataseed3.ninicoin.io",
+        	"https://bsc-dataseed4.ninicoin.io",
+        	"https://bsc-dataseed1.binance.org",
+        	"https://bsc-dataseed2.binance.org",
+        	"https://bsc-dataseed3.binance.org",
+        	"https://bsc-dataseed4.binance.org",
+        	"https://rpc-bsc.48.club",
+        	"https://koge-rpc-bsc.48.club",
+        	"https://endpoints.omniatech.io/v1/bsc/mainnet/public",
+        	"https://rpc.ankr.com/bsc",
+        	"https://bscrpc.com",
+        	"https://binance.nodereal.io",
+        	"https://nodes.vefinetwork.org/smartchain",
+        	"https://1rpc.io/bnb",
+        	"https://bsc.rpc.blxrbdn.com",
+        	"https://bsc.blockpi.network/v1/rpc/public",
+        	"https://bnb.api.onfinality.io/public",
+        	"https://bsc.publicnode.com",
+        	"https://bsc-mainnet.public.blastapi.io"
+        	],
+        'short': "bsc",
+        'extra': 'binance smart chain'
+    }
 }

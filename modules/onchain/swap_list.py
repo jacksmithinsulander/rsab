@@ -15,7 +15,8 @@ swap_list = {
         'kyberswap': {
             'address': '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE',
             'event_name': 'PoolCreated',
-            'pool_address': 'pool'}
+            'pool_address': 'pool'},
+        'pancakeswap': {}
     },
     'polygon': {
         'uniswap3': {
@@ -55,7 +56,9 @@ swap_list = {
         'apeswap': {
             'address': '0xCf083Be4164828f00cAE704EC15a36D711491284',
             'event_name': 'PairCreated',
-            'pool_address': 'pair'}
+            'pool_address': 'pair'},
+        'traderjoe': {},
+        'camelot': {}
     },
     'optimism': {
         'uniswap3': {
@@ -69,7 +72,8 @@ swap_list = {
         'kyberswap': {
             'address': '0x2abE8750e4a65584d7452316356128C936273e0D',
             'event_name': 'PoolCreated',
-            'pool_address': 'pool'}
+            'pool_address': 'pool'},
+        'beethovenx': {}
     },
     'fantom': {
         'sushiv2': {
@@ -79,7 +83,8 @@ swap_list = {
         'kyberswap': {
             'address': '0x78df70615ffc8066cc0887917f2Cd72092C86409',
             'event_name': 'PoolCreated',
-            'pool_address': 'pool'}
+            'pool_address': 'pool'},
+        'beethovenx': {}
     },
     'avalanche': {
         'sushiv2': {
@@ -89,7 +94,8 @@ swap_list = {
         'kyberswap': {
             'address': '0x10908C875D865C66f271F5d3949848971c9595C9',
             'event_name': 'PoolCreated',
-            'pool_address': 'pool'}
+            'pool_address': 'pool'},
+        'traderjoe': {}
     },
     'metis': {
         'sushiv2': {
@@ -108,6 +114,16 @@ swap_list = {
             'address': '0x1715a3E4A142d8b698131108995174F37aEBA10D',
             'event_name': 'PairCreated',
             'pool_address': 'pair'}
+    },
+    'binance': {
+        'pancakeswap': {},
+        'sushiswap': {},
+        'apeswap': {},
+        'kyberswap': {}
+    },
+    'boba': {
+        'sushiswap': {}
+        
     }
 }
 
