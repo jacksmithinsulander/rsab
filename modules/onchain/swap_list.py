@@ -21,8 +21,7 @@ swap_list = {
             'address': '0x5336edE8F971339F6c0e304c66ba16F1296A2Fbe',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {},
-        'pangolin': {}
+        'balancer': {}
     },
     'polygon': {
         'uniswap3': {
@@ -49,8 +48,7 @@ swap_list = {
             'address': '0xd24153244066F0afA9415563bFC7Ba248bfB7a51',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {},
-        'pangolin': {}
+        'balancer': {}
     },
     'arbitrum': {
         'uniswap3': {
@@ -69,14 +67,16 @@ swap_list = {
             'address': '0xCf083Be4164828f00cAE704EC15a36D711491284',
             'event_name': 'PairCreated',
             'pool_address': 'pair'},
-        'traderjoe': {},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
         'camelot': {},
         'dodo': {
             'address': '0xa6Cf3d163358aF376ec5e8B7Cc5e102a05FdE63D',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'balancer': {},
-        'pangolin': {}
+        'balancer': {}
     },
     'optimism': {
         'uniswap3': {
@@ -96,7 +96,6 @@ swap_list = {
             'address': '0xDb9C53F2cED34875685B607c97A61a65DA2F30a8',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'pangolin': {}
     },
     'fantom': {
         'sushiv2': {
@@ -108,8 +107,7 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
         'beethovenx': {},
-        'spookyswap': {},
-        'pangolin': {}
+        'spookyswap': {}
     },
     'avalanche': {
         'sushiv2': {
@@ -120,12 +118,18 @@ swap_list = {
             'address': '0x10908C875D865C66f271F5d3949848971c9595C9',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'traderjoe': {},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
         'dodo': {
             'address': '0xb7865a5ceE051d35B09A48b624D7057d3362655a',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'pangolin': {}
+        'pangolin': {
+            'address': '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
     },
     'metis': {
         'sushiv2': {
@@ -163,8 +167,10 @@ swap_list = {
             'address': '0x878dFE971d44e9122048308301F540910Bbd934c',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'traderjoe': {},
-        'pangolin': {},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
         'dodo': {
             'address': '0xd9CAc3D964327e47399aebd8e1e6dCC4c251DaAE',
             'event_name': 'NewDPP',
