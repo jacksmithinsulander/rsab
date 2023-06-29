@@ -155,5 +155,11 @@ rpc_list = {
         	],
         'short': "bsc",
         'extra': 'binance smart chain'
+    },
+    'boba': {
+    	'links': ["https://mainnet.boba.network",
+    		"https://boba-ethereum.gateway.tenderly.co",
+    		"https://gateway.tenderly.co/public/boba-ethereum"
+    	],
     }
 }

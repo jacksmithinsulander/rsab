@@ -26,7 +26,9 @@ class Scanner:
             'avalanche': 0,
             'metis': 0,
             'harmony': 0,
-            'pulsechain': 0
+            'pulsechain': 0,
+            'binance': 0,
+            'boba': 0
         }
         self.balancer = Balancer()
 
