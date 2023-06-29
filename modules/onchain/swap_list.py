@@ -132,15 +132,31 @@ swap_list = {
     },
     'binance': {
         'pancakeswap': {},
-        'uniswap': {},
-        'sushiswap': {},
-        'apeswap': {},
-        'kyberswap': {},
+        'uniswap3': {
+            'address': '0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'apeswap': {
+            'address': '0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x878dFE971d44e9122048308301F540910Bbd934c',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
         'traderjoe': {},
-        'pangolin': {}
+        'pangolin': {},
+        'dodo': {}
     },
     'boba': {
-        'sushiswap': {},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
         'dodo': {},
         'oolongswap': {}
     }
