@@ -17,7 +17,10 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
         'pancakeswap': {},
-        'dodo': {},
+        'dodo': {
+            'address': '0x5336edE8F971339F6c0e304c66ba16F1296A2Fbe',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'balancer': {},
         'pangolin': {}
     },
@@ -42,7 +45,10 @@ swap_list = {
             'address': '0x5F1fe642060B5B9658C15721Ea22E982643c095c',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'dodo': {},
+        'dodo': {
+            'address': '0xd24153244066F0afA9415563bFC7Ba248bfB7a51',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'balancer': {},
         'pangolin': {}
     },
@@ -65,7 +71,10 @@ swap_list = {
             'pool_address': 'pair'},
         'traderjoe': {},
         'camelot': {},
-        'dodo': {},
+        'dodo': {
+            'address': '0xa6Cf3d163358aF376ec5e8B7Cc5e102a05FdE63D',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'balancer': {},
         'pangolin': {}
     },
@@ -83,7 +92,10 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
         'beethovenx': {},
-        'dodo': {},
+        'dodo': {
+            'address': '0xDb9C53F2cED34875685B607c97A61a65DA2F30a8',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'pangolin': {}
     },
     'fantom': {
@@ -109,7 +121,10 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
         'traderjoe': {},
-        'dodo': {},
+        'dodo': {
+            'address': '0xb7865a5ceE051d35B09A48b624D7057d3362655a',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'pangolin': {}
     },
     'metis': {
@@ -150,14 +165,20 @@ swap_list = {
             'pool_address': 'pool'},
         'traderjoe': {},
         'pangolin': {},
-        'dodo': {}
+        'dodo': {
+            'address': '0xd9CAc3D964327e47399aebd8e1e6dCC4c251DaAE',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'}
     },
     'boba': {
         'sushiv2': {
             'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
             'event_name': 'PairCreated',
             'pool_address': 'pair'},
-        'dodo': {},
+        'dodo': {
+            'address': '0x3a60A76aCAe8feeC74D6B5b665d4DBaab2abC406',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
         'oolongswap': {}
     }
 }
