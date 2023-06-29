@@ -77,7 +77,9 @@ swap_list = {
             'event_name': 'LBPairCreated',
             'pool_address': 'LBPair'},
         'camelot': {
-            ''},
+            'address': '0x6EcCab422D763aC031210895C81787E87B43A652',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
         'dodo': {
             'address': '0xa6Cf3d163358aF376ec5e8B7Cc5e102a05FdE63D',
             'event_name': 'NewDPP',
@@ -100,7 +102,10 @@ swap_list = {
             'address': '0x2abE8750e4a65584d7452316356128C936273e0D',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'beethovenx': {},
+        'beethovenx': {
+            'address': '0xa523f47A933D5020b23629dDf689695AA94612Dc',
+            'event_name': 'GaugeCreated',
+            'pool_àddress': 'gauge'},
         'dodo': {
             'address': '0xDb9C53F2cED34875685B607c97A61a65DA2F30a8',
             'event_name': 'NewDPP',
@@ -119,8 +124,14 @@ swap_list = {
             'address': '0x78df70615ffc8066cc0887917f2Cd72092C86409',
             'event_name': 'PoolCreated',
             'pool_address': 'pool'},
-        'beethovenx': {},
-        'spookyswap': {}
+        'beethovenx': {
+            'address': '0x2C774732c93CE393eC8125bDA49fb3737Ae6F473',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'spookyswap': {
+            'address': '0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
     },
     'avalanche': {
         'sushiv2': {
@@ -205,7 +216,10 @@ swap_list = {
             'address': '0x3a60A76aCAe8feeC74D6B5b665d4DBaab2abC406',
             'event_name': 'NewDPP',
             'pool_address': 'dpp'},
-        'oolongswap': {}
+        'oolongswap': {
+            'address': '0x7DDaF116889D655D1c486bEB95017a8211265d29',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
     }
 }
 
