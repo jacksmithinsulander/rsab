@@ -12,6 +12,7 @@ _token1_symbol = 8
 _token2_address = 9
 _token2_symbol = 10
 _dex = 11
+_creation_block = 12
 
 accepted_pairing_tokens = [
 	"WETH", "USDT", "USDC", "WBNB", "BUSD", "WMATIC", "WPLS", "DAI"

@@ -29,6 +29,7 @@ _token1_symbol = 8
 _token2_address = 9
 _token2_symbol = 10
 _dex = 11
+_creation_block = 12
 
 with con:
     con.execute("""
@@ -44,7 +45,8 @@ with con:
             token1_symbol TEXT,
             token2_address TEXT,
             token2_symbol TEXT,
-            dex TEXT
+            dex TEXT,
+            creation_block INTEGER
         );
     """)
     con.execute("""
@@ -61,6 +63,7 @@ with con:
             token2_address TEXT,
             token2_symbol TEXT,
             dex TEXT,
+            creation_block INTEGER,
             passed_fa1 INTEGER,
             passed_fa2 INTEGER,
             passed_fa3 INTEGER
@@ -96,7 +99,8 @@ def add_pool(table,
             token1_symbol,
             token2_address,
             token2_symbol,
-            dex):
+            dex,
+            creation_block):
     db.add_pool.main(con, table, net,
                     net_short,
                     net_extra,
@@ -107,7 +111,8 @@ def add_pool(table,
                     token1_symbol,
                     token2_address,
                     token2_symbol,
-                    dex)
+                    dex,
+                    creation_block)
 
 def check_if_saved(table, address):
     return db.check_if_saved.main(con, table, address)

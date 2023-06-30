@@ -9,7 +9,9 @@ def main(con, from_table, to_table, address):
             token1_address,
             token1_symbol,
             token2_address,
-            token2_symbol)
+            token2_symbol,
+            dex,
+            creation_block)
         SELECT net,
             net_short,
             net_extra,
@@ -19,7 +21,9 @@ def main(con, from_table, to_table, address):
             token1_address,
             token1_symbol,
             token2_address,
-            token2_symbol FROM {from_table} 
+            token2_symbol,
+            dex,
+            creation_block FROM {from_table} 
         WHERE pool_address="{address}";
     """
     # print(sql)

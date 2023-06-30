@@ -69,7 +69,6 @@ rpc_list = {
         	"https://optimism.blockpi.network/v1/rpc/public",
         	"https://endpoints.omniatech.io/v1/op/mainnet/public",
         	"https://optimism.api.onfinality.io/public",
-        	"https://optimism.publicnode.com"
         	],
         'short': "op",
         'extra': "optimism"
@@ -136,7 +135,7 @@ rpc_list = {
         	"https://bsc.publicnode.com"
         	],
         'short': "bsc",
-        'extra': 'binance smart chain'
+        'extra': 'bsc'
     },
     'boba': {
     	'links': ["https://mainnet.boba.network",

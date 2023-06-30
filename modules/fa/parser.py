@@ -8,7 +8,8 @@ def token_parser(token):
 		"avalanche": ["avax", "avax", "avalanche"],
 		"metis": ["metis", "andromeda", "metis"],
 		"harmony": ["one", "one", "harmony"],
-		"pulsechain": ["pls", "pulse", "pulsechain"]
+		"pulsechain": ["pls", "pulse", "pulsechain"],
+		"binance": ["bsc", "binance smart chain", "binance"]
 	}
 	result = cases.get(token, "Unrecognised token!")
 	return result

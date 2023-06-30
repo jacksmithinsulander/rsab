@@ -13,6 +13,8 @@ dexscreener_url_base = 'https://cfw.dexscreener.com/sc/dex:'
 dextools_url_base = 'https://www.dextools.io/shared/data/pair?address='
 
 def goplus_fa(network, token):
+	if network == "pls":
+		return 1 #temporary solution, have to figure something out here
 	chain = translator(network)
 	custom_url = goplus_url_base + chain + "?contract_addresses=" + token
 	res = requests.get(custom_url)
@@ -105,6 +107,7 @@ def dexscreener_fa(network, pool):
 def dextools_fa(network, pool):
 	custom_url = (dextools_url_base + pool.lower() + "&chain=" + 
 		network + "&audit=true&locks=true")
+	print(custom_url)
 	res = requests.get(custom_url, headers=headers)
 	res_json = res.json()
 	dext_score = int(res_json["data"][0]["dextScore"]["total"])
