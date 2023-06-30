@@ -1,5 +1,6 @@
 from web3 import Web3
 from modules.calculation.abi import ERC20ABI, LPABI
+from modules.balancer.balancer_main import Balancer
 import decimal
 
 #web3 = Web3(Web3.HTTPProvider("https://eth.llamarpc.com"))
@@ -10,7 +11,9 @@ import decimal
 #lpAddress = web3.to_checksum_address(input("Enter LP address: "))
 #lpContract = web3.eth.contract(address=lpAddress, abi=LPABI)
 
-def uni_v2_price(block_num):
+def __init__(self):
+
+def uni_v2_price(block_num, token0, token1, pool, net, dex):
 	#token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
 	#reserves = lpContract.functions.getReserves().call(block_identifier=block_num)
 	print(reserves)
@@ -29,10 +32,10 @@ def uni_v2_price(block_num):
 
 #token_price()
 
-def price_fetch(creation_block, token_1, token_2, pool, net, dex):
+def price_fetch(creation_block, token0, token1, pool, net, dex):
 	#creation_block = 17257452 #Lets find a more elegant way to do this later, maybe if this information is saved in our database?
 	latest_block = web3.eth.block_number
 	print(creation_block, latest_block)
 	for block in range(creation_block, latest_block + 1):
-		uni_v2_price(block)
+		uni_v2_price(block, token0, token1, pool, net, dex)
 
