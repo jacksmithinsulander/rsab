@@ -32,7 +32,7 @@ def uni_v2_price(block_num, token0, token1, pool, net, dex):
 
 #token_price()
 
-def price_fetch(creation_block, token0, token1, pool, net, dex):
+def price_fetch(web3, creation_block, token0, token1, pool, net, dex):
 	#creation_block = 17257452 #Lets find a more elegant way to do this later, maybe if this information is saved in our database?
 	latest_block = web3.eth.block_number
 	print(creation_block, latest_block)
