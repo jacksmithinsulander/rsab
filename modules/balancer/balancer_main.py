@@ -18,7 +18,7 @@ class Balancer():
         # print("second", self.balancer[network])
         self.balancer[network] = self.balancer[network] % len(rpc_list[network]['links'])
         w3 = Web3(Web3.HTTPProvider(rpc_list[network]['links'][self.balancer[network]]))
-        if (network == "polygon"):
+        if (network == "polygon" or network == "binance"):
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         # print("last", self.balancer[network])
         if (w3.is_connected()):

@@ -10,10 +10,10 @@ import db.main as db
 from web3 import Web3
 from time import sleep
 
-from modules.fa.fa_iterate import iterate
+from modules.fa.fa_iterate import iterate as iterate_fa
+from modules.ta.ta_iterate import iterate as iterate_ta
 from modules.setup.setup import conf_checker
 from modules.scanner.scanner_main import Scanner
-from modules.calculation.price_fetch import iterate_ta
 
 scanner = Scanner()
 
@@ -71,6 +71,6 @@ def mainfunc():
 if args.fetch:
 	start_scanner()
 elif args.fa_scan:
-	iterate()
+	iterate_fa()
 elif args.ta_scan:
-	ta_iterate()
+	iterate_ta()

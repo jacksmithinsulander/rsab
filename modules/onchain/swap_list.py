@@ -15,6 +15,14 @@ swap_list = {
         'kyberswap': {
             'address': '0x833e4083B7ae46CeA85695c4f7ed25CDAd8886dE',
             'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'dodo': {
+            'address': '0x5336edE8F971339F6c0e304c66ba16F1296A2Fbe',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'balancer': {
+            'address': '0x897888115Ada5773E02aA29F775430BFB5F34c51',
+            'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
     'polygon': {
@@ -37,6 +45,14 @@ swap_list = {
         'kyberswap': {
             'address': '0x5F1fe642060B5B9658C15721Ea22E982643c095c',
             'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'dodo': {
+            'address': '0xd24153244066F0afA9415563bFC7Ba248bfB7a51',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'balancer': {
+            'address': '0xFc8a407Bba312ac761D8BFe04CE1201904842B76',
+            'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
     'arbitrum': {
@@ -51,9 +67,160 @@ swap_list = {
         'kyberswap': {
             'address': '0x1c758aF0688502e49140230F6b0EBd376d429be5',
             'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'apeswap': {
+            'address': '0xCf083Be4164828f00cAE704EC15a36D711491284',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
+        'camelot': {
+            'address': '0x6EcCab422D763aC031210895C81787E87B43A652',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'dodo': {
+            'address': '0xa6Cf3d163358aF376ec5e8B7Cc5e102a05FdE63D',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'balancer': {
+            'address': '0xc7E5ED1054A24Ef31D827E6F86caA58B3Bc168d7',
+            'event_name': 'PoolCreated',
             'pool_address': 'pool'}
+    },
+    'optimism': {
+        'uniswap3': {
+            'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x2abE8750e4a65584d7452316356128C936273e0D',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'beethovenx': {
+            'address': '0xa523f47A933D5020b23629dDf689695AA94612Dc',
+            'event_name': 'GaugeCreated',
+            'pool_àddress': 'gauge'},
+        'dodo': {
+            'address': '0xDb9C53F2cED34875685B607c97A61a65DA2F30a8',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'balancer': {
+            'address': '0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
+    },
+    'fantom': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x78df70615ffc8066cc0887917f2Cd72092C86409',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'beethovenx': {
+            'address': '0x2C774732c93CE393eC8125bDA49fb3737Ae6F473',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'spookyswap': {
+            'address': '0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'avalanche': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x10908C875D865C66f271F5d3949848971c9595C9',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
+        'dodo': {
+            'address': '0xb7865a5ceE051d35B09A48b624D7057d3362655a',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'pangolin': {
+            'address': '0xefa94DE7a4656D787667C749f7E1223D71E9FD88',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'balancer': {
+            'address': '0x230a59F4d9ADc147480f03B0D3fFfeCd56c3289a',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'}
+    },
+    'metis': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'harmony': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'pulsechain': {
+        'pulsex': {
+            'address': '0x1715a3E4A142d8b698131108995174F37aEBA10D',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
+    },
+    'binance': {
+        'pancakeswap': {
+            'address': '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'uniswap3': {
+            'address': '0xdB1d10011AD0Ff90774D0C6Bb92e5C5c8b4461F7',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'apeswap': {
+            'address': '0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'kyberswap': {
+            'address': '0x878dFE971d44e9122048308301F540910Bbd934c',
+            'event_name': 'PoolCreated',
+            'pool_address': 'pool'},
+        'traderjoe': {
+            'address': '0x8e42f2F4101563bF679975178e880FD87d3eFd4e',
+            'event_name': 'LBPairCreated',
+            'pool_address': 'LBPair'},
+        'dodo': {
+            'address': '0xd9CAc3D964327e47399aebd8e1e6dCC4c251DaAE',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'}
+    },
+    'boba': {
+        'sushiv2': {
+            'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'},
+        'dodo': {
+            'address': '0x3a60A76aCAe8feeC74D6B5b665d4DBaab2abC406',
+            'event_name': 'NewDPP',
+            'pool_address': 'dpp'},
+        'oolongswap': {
+            'address': '0x7DDaF116889D655D1c486bEB95017a8211265d29',
+            'event_name': 'PairCreated',
+            'pool_address': 'pair'}
     }
-
 }
 
 # Balancer still needs to be added, but has different syntax for their contracts.
