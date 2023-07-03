@@ -11,7 +11,7 @@ import decimal
 #lpAddress = web3.to_checksum_address(input("Enter LP address: "))
 #lpContract = web3.eth.contract(address=lpAddress, abi=LPABI)
 
-def __init__(self):
+# def __init__(self):
 
 def uni_v2_price(block_num, token0, token1, pool, net, dex):
 	#token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
