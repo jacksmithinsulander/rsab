@@ -3,10 +3,11 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from modules.onchain.rpc_list import rpc_list
 from time import sleep
-
+from loguru import logger
 
 class Balancer():
     def __init__(self):
+        logger.debug('init started')
         # print("Created")
         self.balancer = {}
         for network in rpc_list:
@@ -22,9 +23,10 @@ class Balancer():
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         # print("last", self.balancer[network])
         if (w3.is_connected()):
-            print(f"RPC: {rpc_list[network]['links'][self.balancer[network]]}")
+            logger.debug(f"Returning W3 on {rpc_list[network]['links'][self.balancer[network]]}")
             return w3
         else:
+            logger.debug(f"Unable to connect to {rpc_list[network]['links'][self.balancer[network]]}")
             # print("not connected trying again")
             # print(f"balancer: {self.balancer[network]}")
             sleep(0.5)
