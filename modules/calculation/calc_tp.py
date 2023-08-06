@@ -1,3 +1,4 @@
+from loguru import logger
 from random import randint
 import os
 import json
@@ -12,7 +13,7 @@ with open(config_file_path, "r") as file:
     conf = json.load(file)
 
 profit_target = conf["profitTargets"]
-print(profit_target)
+logger.debug(profit_target)
 
 mock_price = randint(100, 999)/100.00
 #mock_price = 7
