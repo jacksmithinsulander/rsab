@@ -8,7 +8,6 @@ from loguru import logger
 class Balancer():
     def __init__(self):
         logger.debug('init started')
-        # print("Created")
         self.balancer = {}
         for network in rpc_list:
             self.balancer[network] = 0
