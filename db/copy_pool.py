@@ -1,3 +1,4 @@
+from loguru import logger
 def main(con, from_table, to_table, address):
     sql = f"""
         INSERT INTO {to_table} ( net,
@@ -26,6 +27,6 @@ def main(con, from_table, to_table, address):
             creation_block FROM {from_table} 
         WHERE pool_address="{address}";
     """
-    # print(sql)
+    logger.debug(sql)
     with con:
         con.execute(sql)
