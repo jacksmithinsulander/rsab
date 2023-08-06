@@ -1,5 +1,8 @@
+from loguru import logger
+
 import db.main as db
 from modules.fa.fa import full_fa
+
 
 _net = 1
 _net_short = 2
@@ -26,7 +29,7 @@ def pair_token_finder(token):
 
 def iterate():
 	pools = db.get_all_pools("pools_found")
-	print(pools)
+	logger.debug(pools)
 	for pool in pools:		
 		if (pair_token_finder(pool[8])):
 			newPool = list(pool)
@@ -51,4 +54,4 @@ def iterate():
 				'pools_passed_fa', pool[_pool_address]) == False:
 				db.copy_pool(
 					'pools_found', 'pools_passed_fa', pool[_pool_address])
-				print(pool[8] + " added to DB")
+				logger.debug(pool[8] + " added to DB")
