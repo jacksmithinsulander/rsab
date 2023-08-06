@@ -51,8 +51,6 @@ class Scanner:
                 # fromBlock = lastBlock - 50
                 logger.info(
                     f"Checking {net} # Blocks {self.last_blocks[net]}-{current_block}")
-                # print(f"  # Using {rpc_link}")
-                # print(f"Connection to {net}: {w3.isConnected()}")
                 for swap in swap_list[net]:
                     logger.info(
                         f"Checking for pools on {swap}")
