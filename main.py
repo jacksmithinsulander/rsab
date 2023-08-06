@@ -9,6 +9,7 @@ from web3.middleware import geth_poa_middleware
 import db.main as db
 from web3 import Web3
 from time import sleep
+from loguru import logger
 
 from modules.fa.fa_iterate import iterate as iterate_fa
 from modules.ta.ta_iterate import iterate as iterate_ta
