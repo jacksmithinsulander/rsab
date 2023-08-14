@@ -25,6 +25,7 @@ hexbytes==0.3.1
 hjson==3.1.0
 idna==3.4
 jsonschema==4.17.3
+loguru==0.7.0
 lru-dict==1.2.0
 moralis==0.1.22
 multidict==6.0.4
