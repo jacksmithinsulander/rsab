@@ -1,6 +1,7 @@
 from web3 import Web3
 import abi
 from dotenv import load_dotenv
+from loguru import logger
 import os
 import json
 from uniswap_universal_router_decoder import FunctionRecipient, RouterCodec
@@ -12,11 +13,11 @@ acc = Account.from_key(os.getenv("PRIVATE_KEY"))
 
 assert acc.address == Web3.to_checksum_address(os.getenv("WALLET_ADDRESS"))
 
-print('Accoutn: ', acc.address)
+logger.debug('Accoutn: ', acc.address)
 #my_address = os.getenv("WALLET_ADDRESS")
 infura_api = os.getenv("INFURA_API")
 
-print(infura_api)
+logger.debug(infura_api)
 
 w3 = Web3(Web3.HTTPProvider(infura_api))
 #result = w3.isConnected()
@@ -34,7 +35,7 @@ abi = json.loads('[{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\
 
 #Test token usd
 contract_instance = w3.eth.contract(address=uni, abi=abi)
-print(contract_instance.all_functions())
+logger.debug(contract_instance.all_functions())
 usdc = 0x07865c6E87B9F70255377e024ace6630C1Eaa37F
 chain = "goerli"
 dex = "uniswap"
@@ -70,8 +71,8 @@ tx_params = {
 }
 
 e = w3.eth.estimate_gas(tx_params)
-print(e)
+logger.debug(e)
 
 raw_transaction = w3.eth.account.sign_transaction(tx_params, acc.key).rawTransaction
 trx_hash = w3.eth.send_raw_transaction(raw_transaction)
-print(trx_hash.hex())
+logger.debug(trx_hash.hex())

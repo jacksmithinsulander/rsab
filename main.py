@@ -9,6 +9,7 @@ from web3.middleware import geth_poa_middleware
 import db.main as db
 from web3 import Web3
 from time import sleep
+from loguru import logger
 
 from modules.fa.fa_iterate import iterate as iterate_fa
 from modules.ta.ta_iterate import iterate as iterate_ta
@@ -45,26 +46,26 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-print(args)
+logger.debug(args)
 
 flag_file = ".flag.txt"
 check_file = os.path.isfile("./conf.json")
 
 def mainfunc():
 	if os.path.exists(flag_file):
-		print("This program has been run before")
+		logger.info("This program has been run before")
 	else: 
-		print("First time running the program")
+		logger.info("First time running the program")
 		conf_checker(check_file, 0)
-		print("Setup successful, ")
+		logger.info("Setup successful, ")
 		start_bot = input("Do you want to start the bot? (Y / N)")
 		if start_bot == "Y":
-			print("Starting bot...")
+			logger.info("Starting bot...")
 			start_bot()
 		elif start_bot == "N":
-			print("Alrighty, you can start the bot at anytime now using the -s flag")
+			logger.info("Alrighty, you can start the bot at anytime now using the -s flag")
 		else:
-			print("Sorry, didn't understant the input, retry please")
+			logger.info("Sorry, didn't understant the input, retry please")
 			return mainfunc()
 		open(flag_file, "w").close()
 
