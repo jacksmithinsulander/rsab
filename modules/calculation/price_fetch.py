@@ -13,7 +13,7 @@ import decimal
 
 # def __init__(self):
 
-def uni_v2_price(block_num, token0, token1, pool, net, dex):
+def uni_v2_price(web3, block_num, token0, token1, pool, net, dex):
 	#token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
 	#reserves = lpContract.functions.getReserves().call(block_identifier=block_num)
 	#print(reserves)
@@ -37,5 +37,5 @@ def price_fetch(web3, creation_block, token0, token1, pool, net, dex):
 	latest_block = web3.eth.block_number
 	print(creation_block, latest_block)
 	for block in range(creation_block, latest_block + 1):
-		uni_v2_price(block, token0, token1, pool, net, dex)
+		uni_v2_price(web3, block, token0, token1, pool, net, dex)
 
