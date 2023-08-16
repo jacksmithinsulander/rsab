@@ -24,5 +24,5 @@ def iterate():
 		#price_fetch()
 		print(pool)
 		result = price_fetch(
-			w3, pool[12], pool[10], pool[9], pool[5], pool[1], pool[1])
+			w3, pool[12], pool[9], pool[7], pool[5], pool[1], pool[1])
 
