@@ -17,6 +17,7 @@ def uni_v2_price(web3, block_num, token0, token1, pool, net, dex):
 	#token0, token1 = lpContract.functions.token0().call(), lpContract.functions.token1().call()
 	#reserves = lpContract.functions.getReserves().call(block_identifier=block_num)
 	#print(reserves)
+	print(token0, token1)
 	tkc0 = web3.eth.contract(address=token0, abi=ERC20ABI)
 	tkc1 = web3.eth.contract(address=token1, abi=ERC20ABI)
 	decimal0 = tkc0.functions.decimals().call()
