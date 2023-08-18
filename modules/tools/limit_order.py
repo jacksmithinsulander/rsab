@@ -24,6 +24,15 @@ def get_price(token1, token2, lp, abi):
     print(f"Token bal = {token_amount}")
     print(f"Reserve bal = {reserve_amount}")
     print(f"Token price = {format(price, '.20f')}")
-    
+    return format(price, ".20f") 
 
-get_price(token_address, weth_address, lp_address, erc20_abi)
+#get_price(token_address, weth_address, lp_address, erc20_abi)
+
+
+#Psuedocode
+#def limitorder():
+    #price = get_price(token_address, weth_address, lp_address, erc20_abi)
+    #if price > tp price && func_purpose == sell:
+    #    sell
+    #elif price < && func_purpose == buy:
+    #   buy
