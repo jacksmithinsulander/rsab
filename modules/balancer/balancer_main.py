@@ -4,6 +4,7 @@ from web3.middleware import geth_poa_middleware
 from modules.onchain.rpc_list import rpc_list
 from time import sleep
 from loguru import logger
+from modules.balancer.http_connector import get_tor_session
 
 class Balancer():
     def __init__(self):
@@ -17,7 +18,9 @@ class Balancer():
         self.balancer[network] += 1
         # print("second", self.balancer[network])
         self.balancer[network] = self.balancer[network] % len(rpc_list[network]['links'])
-        w3 = Web3(Web3.HTTPProvider(rpc_list[network]['links'][self.balancer[network]]))
+        session = get_tor_session()
+        w3 = Web3(Web3.HTTPProvider(
+            rpc_list[network]['links'][self.balancer[network]], session=session))
         if (network == "polygon" or network == "binance"):
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         # print("last", self.balancer[network])
