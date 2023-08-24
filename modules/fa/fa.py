@@ -10,7 +10,7 @@ headers = {
 
 goplus_url_base = 'https://api.gopluslabs.io/api/v1/token_security/'
 dexscreener_url_base = 'https://cfw.dexscreener.com/sc/dex:'
-dextools_url_base = 'https://www.dextools.io/shared/data/pair?address='
+#dextools_url_base = 'https://www.dextools.io/shared/data/pair?address='
 
 def goplus_fa(network, token):
 	if network == "pls":
@@ -104,27 +104,27 @@ def dexscreener_fa(network, pool):
 		is_passed = 0
 	return is_passed
 
-def dextools_fa(network, pool):
-	custom_url = (dextools_url_base + pool.lower() + "&chain=" + 
-		network + "&audit=true&locks=true")
-	print(custom_url)
-	res = requests.get(custom_url, headers=headers)
-	res_json = res.json()
-	dext_score = int(res_json["data"][0]["dextScore"]["total"])
-	if dext_score >= 50:
-		is_passed = 1
-		print("Dextools is PASSED")
-	elif dext_score <= 50:
-		is_passed = 0
-	print("dext_score is :", dext_score)
-	return is_passed
+#def dextools_fa(network, pool):
+#	custom_url = (dextools_url_base + pool.lower() + "&chain=" + 
+#		network + "&audit=true&locks=true")
+#	print(custom_url)
+#	res = requests.get(custom_url, headers=headers)
+#	res_json = res.json()
+#	dext_score = int(res_json["data"][0]["dextScore"]["total"])
+#	if dext_score >= 50:
+#		is_passed = 1
+#		print("Dextools is PASSED")
+#	elif dext_score <= 50:
+#		is_passed = 0
+#	print("dext_score is :", dext_score)
+#	return is_passed
 
 def full_fa(name, token, lp, chain_short, chain_extra, chain):
 	print(name, token, lp, chain_short, chain_extra, chain)
 	chain_name_arr = token_parser(chain)
 	goplus_analysis = goplus_fa(chain_name_arr[0], token)
 	dexscreener_analysis = dexscreener_fa(chain, lp)
-	dextools_analysis = dextools_fa(chain_extra, lp)
-	full_result = (goplus_analysis + dexscreener_analysis + dextools_analysis)
+	#dextools_analysis = dextools_fa(chain_extra, lp)
+	full_result = (goplus_analysis + dexscreener_analysis)
 	print("Score is: ", full_result)
 	return full_result
