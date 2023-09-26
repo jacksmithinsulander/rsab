@@ -1,5 +1,5 @@
 import db.main as db
-from modules.calculation.price_fetch import price_fetch
+from modules.tools.price import get_price
 from modules.balancer.balancer_main import Balancer
 
 _net = 1
@@ -23,6 +23,6 @@ def iterate():
 		w3 = balancer.w3(pool[_net])
 		#price_fetch()
 		print(pool)
-		result = price_fetch(
+		result = get_price(
 			w3, pool[12], pool[9], pool[7], pool[5], pool[1], pool[1])
 
