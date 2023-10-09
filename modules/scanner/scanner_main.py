@@ -18,39 +18,30 @@ class Scanner:
             self.conf = json.load(file)
         logger.info(f"Loaded with config:\n{self.conf}")
 
-        # self.balancer = 0
-        self.last_blocks = {
-            'ethereum': 0,
-            'polygon': 0,
-            'arbitrum': 0,
-            'optimism': 0,
-            'fantom': 0,
-            'avalanche': 0,
-            'metis': 0,
-            'harmony': 0,
-            'pulsechain': 0,
-            'binance': 0,
-            'boba': 0
-        }
+        logger.debug(self.conf['chains'])
+        self.last_blocks = {}
+        for chain in self.conf['chains']:
+            self.last_blocks[chain] = 0
+
         self.balancer = Balancer()
 
         logger.debug('Setting up start blocks for each chain')
-        for net in rpc_list:
+        for net in self.conf['chains']:
             logger.debug(f"Checking last block for {net}")
-            self.w3 = self.balancer.w3(net) 
+            self.w3 = self.balancer.w3(net)
             self.last_blocks[net] = self.w3.eth.block_number - 500
-            logger.debug(f"Last block for {net} is set to {self.last_blocks[net]}")
-        
+            logger.debug(
+                f"Last block for {net} is set to {self.last_blocks[net]}")
 
     def start(self):
         while True:
             now = datetime.now().strftime("%H:%M:%S")
-            for net in rpc_list:
-                w3 = self.balancer.w3(net)#Web3(Web3.HTTPProvider(rpc_link))
+            for net in self.conf['chains']:
+                w3 = self.balancer.w3(net)
                 current_block = w3.eth.block_number
-                # fromBlock = lastBlock - 50
+                block_amount = current_block - self.last_blocks[net]
                 logger.info(
-                    f"Checking {net} # Blocks {self.last_blocks[net]}-{current_block}")
+                    f"Checking {net} # Blocks {self.last_blocks[net]}-{current_block} ({block_amount})")
                 for swap in swap_list[net]:
                     logger.info(
                         f"Checking for pools on {swap}")
@@ -66,7 +57,8 @@ class Scanner:
                         pool_address = pool['args'][swap_list[net][swap]
                                                     ['pool_address']]
                         if (db.check_if_saved("pools_found", pool_address)):
-                            logger.info(f'Already saved {pool_address} ({pool["args"]["token0"]}-{pool["args"]["token1"]})')
+                            logger.info(
+                                f'Already saved {pool_address} ({pool["args"]["token0"]}-{pool["args"]["token1"]})')
                         else:
                             token1_address = pool['args']['token0']
                             token1 = w3.eth.contract(
@@ -82,18 +74,19 @@ class Scanner:
                             unixTime = w3.eth.get_block(
                                 pool['blockNumber']).timestamp
                             db.add_pool("pools_found", net,
-                                       rpc_list[net]['short'],
-                                       rpc_list[net]['extra'],
-                                       swap_list[net][swap]['address'],
-                                       pool_address,
-                                       unixTime,
-                                       token1_address,
-                                       token1_symbol,
-                                       token2_address,
-                                       token2_symbol,
-                                       swap,
-                                       creation_block)
+                                        rpc_list[net]['short'],
+                                        rpc_list[net]['extra'],
+                                        swap_list[net][swap]['address'],
+                                        pool_address,
+                                        unixTime,
+                                        token1_address,
+                                        token1_symbol,
+                                        token2_address,
+                                        token2_symbol,
+                                        swap,
+                                        creation_block)
                 self.last_blocks[net] = current_block
-            logger.info(f"Currently {db.count_pools('pools_found')} pools saved")
+            logger.info(
+                f"Currently {db.count_pools('pools_found')} pools saved")
             logger.info(f"Sleeping 30 seconds before next check")
             sleep(30)
