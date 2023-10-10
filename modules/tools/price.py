@@ -1,6 +1,7 @@
 from web3 import Web3
+from loguru import logger
 
-#TEST DATA
+# TEST DATA
 token_address = "0xe4eFDd2eb216A4620cfA55c5cC67Bd09DC64Ff24"
 lp_address = "0x1D9992600D22D336E9aB9F0807989FEb945aEDCe"
 weth_address = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
@@ -9,7 +10,8 @@ erc20_abi = '[{"constant": true,"inputs": [],"name": "name","outputs": [{"name":
 
 eth = "https://eth.llamarpc.com"
 web3 = Web3(Web3.HTTPProvider(eth))
-print(f"Is web3 connected? {web3.is_connected()}")
+logger.debug(f"Is web3 connected? {web3.is_connected()}")
+
 
 def get_price(token1, token2, lp, abi):
     token = web3.eth.contract(address=token1, abi=abi)
@@ -21,7 +23,7 @@ def get_price(token1, token2, lp, abi):
     reserve_decimals = reserve.functions.decimals().call()
     reserve_amount = reserve_float / 10 ** reserve_decimals
     price = reserve_amount / token_amount
-    print(f"Token bal = {token_amount}")
-    print(f"Reserve bal = {reserve_amount}")
-    print(f"Token price = {format(price, '.20f')}")
-    return format(price, ".20f"), token 
+    logger.debug(f"Token bal = {token_amount}")
+    logger.debug(f"Reserve bal = {reserve_amount}")
+    logger.debug(f"Token price = {format(price, '.20f')}")
+    return format(price, ".20f"), token

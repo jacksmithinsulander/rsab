@@ -1,6 +1,7 @@
 import requests
-
+from loguru import logger
 url = "http://ip-api.com/json/"
+
 
 def get_tor_session():
     session = requests.Session()
@@ -16,6 +17,6 @@ def get_tor_session():
     session.mount('https://', adapter)
 
     response = session.get(url)
-    print(response.text)
+    logger.debug(response.text)
 
     return session
