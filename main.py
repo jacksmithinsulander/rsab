@@ -1,20 +1,31 @@
 #!/home/debian/rsab/.rsab_venv/bin/python3
 
-import os
-import argparse
-import json
-import subprocess
-from datetime import datetime
-from web3.middleware import geth_poa_middleware
-import db.main as db
-from web3 import Web3
-from time import sleep
-from loguru import logger
-
-from modules.fa.fa_iterate import iterate as iterate_fa
-from modules.ta.ta_iterate import iterate as iterate_ta
-from modules.setup.setup import conf_checker
 from modules.scanner.scanner_main import Scanner
+from modules.setup.setup import conf_checker
+from modules.ta.ta_iterate import iterate as iterate_ta
+from modules.fa.fa_iterate import iterate as iterate_fa
+from time import sleep
+from web3 import Web3
+import db.main as db
+from web3.middleware import geth_poa_middleware
+from datetime import datetime
+import subprocess
+import json
+import argparse
+import os
+from loguru import logger
+import sys
+
+
+def in_venv():
+    return sys.prefix != sys.base_prefix
+
+
+if not in_venv():
+    logger.error("NOT IN VENV")
+    logger.info("Please start this script in a virtual environment")
+    logger.info("Exiting")
+    exit()
 
 
 def start_bot():
