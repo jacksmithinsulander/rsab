@@ -1,5 +1,5 @@
 rpc_list = {
-    'ethereum': {
+    'eth': {
         'links': ["https://endpoints.omniatech.io/v1/eth/mainnet/public",
                   "https://eth.llamarpc.com",
                   "https://rpc.ankr.com/eth",
@@ -23,7 +23,7 @@ rpc_list = {
         'short': "eth",
         'extra': "ether"
     },
-    'polygon': {
+    'matic': {
         'links': ["https://polygon-bor.publicnode.com",
                   "https://polygon.blockpi.network/v1/rpc/public",
                   "https://rpc.ankr.com/polygon",
@@ -47,7 +47,7 @@ rpc_list = {
         'short': "polygon",
         'extra': "polygon"
     },
-    'arbitrum': {
+    'arb': {
         'links': ["https://arbitrum.blockpi.network/v1/rpc/public",
                   "https://endpoints.omniatech.io/v1/arbitrum/one/public",
                   "https://arb1.arbitrum.io/rpc",
@@ -63,7 +63,7 @@ rpc_list = {
         'short': "arbitrum",
         'extra': "arbitrum"
     },
-    'optimism': {
+    'op': {
         'links': ["https://rpc.ankr.com/optimism",
                   "https://1rpc.io/op",
                   "https://optimism.blockpi.network/v1/rpc/public",
@@ -73,7 +73,7 @@ rpc_list = {
         'short': "op",
         'extra': "optimism"
     },
-    'fantom': {
+    'ftm': {
         'links': ["https://rpcapi.fantom.network",
                   "https://endpoints.omniatech.io/v1/fantom/mainnet/public",
                   "https://rpc.ftm.tools",
@@ -90,7 +90,7 @@ rpc_list = {
         'short': "ftm",
         'extra': "fantom"
     },
-    'avalanche': {
+    'avax': {
         'links': ["https://avalanche.public-rpc.com",
                   "https://rpc.ankr.com/avalanche",
                   "https://avalancheapi.terminet.io/ext/bc/C/rpc",
@@ -124,7 +124,7 @@ rpc_list = {
         'short': "pls",
         'extra': "pulse"
     },
-    'binance': {
+    'bnb': {
         'links': ["https://rpc.ankr.com/bsc",
                   "https://bscrpc.com",
                   "https://nodes.vefinetwork.org/smartchain",
