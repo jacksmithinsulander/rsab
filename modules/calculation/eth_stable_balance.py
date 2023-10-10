@@ -1,4 +1,4 @@
-import os 
+import os
 import sys
 import json
 import dotenv
@@ -26,7 +26,7 @@ with open(config_file_path, "r") as file:
 
 rebalancing = conf["rebalancing"]
 
-#For testing purposes I will make the token use usdc and eth on the goerli test net
+# For testing purposes I will make the token use usdc and eth on the goerli test net
 
 logger.debug(rebalancing)
 
@@ -37,7 +37,7 @@ acc = Account.from_key(os.getenv("PRIVATE_KEY"))
 assert acc.address == Web3.to_checksum_address(os.getenv("WALLET_ADDRESS"))
 
 logger.debug('Accoutn: ', acc.address)
-#my_address = os.getenv("WALLET_ADDRESS")
+# my_address = os.getenv("WALLET_ADDRESS")
 infura_api = os.getenv("INFURA_API")
 
 logger.debug(infura_api)
@@ -52,14 +52,15 @@ usdc = Web3.to_checksum_address("0xe27658a36ca8a59fe5cc76a14bde34a51e587ab4")
 usdc_instance = w3.eth.contract(address=usdc, abi=usdc_contract_abi)
 weth_instance = w3.eth.contract(address=weth, abi=weth_contract_abi)
 
-#weth_balance = weth.functions.balanceOf(acc.address).call()
+# weth_balance = weth.functions.balanceOf(acc.address).call()
 usdc_balance = usdc_instance.functions.balanceOf(acc.address).call()
 weth_balance = weth_instance.functions.balanceOf(acc.address).call()
-#usdc_abi = Web3.eth.contract(address=usdc).abi
+# usdc_abi = Web3.eth.contract(address=usdc).abi
 
-#print(contract_abi)
+# logger.debug(contract_abi)
 logger.debug(usdc_balance, weth_balance)
- 
+
+
 def check_values(x, y):
     threshold_x = (x + y) * 0.4
     threshold_y = (x + y) * 0.6
@@ -75,6 +76,7 @@ def check_values(x, y):
         excess_y = y - threshold_y
         y -= excess_y
         logger.debug("Adjusted y to threshold_y:", y)
+
 
 # Example usage
 check_values(10, 5)

@@ -16,16 +16,21 @@ profit_target = conf["profitTargets"]
 logger.debug(profit_target)
 
 mock_price = randint(100, 999)/100.00
-#mock_price = 7
+# mock_price = 7
+
 
 def transform_percentage(percentage_gains):
     number = 1 + (percentage_gains / 100)
     return number
 
-print("The mock price is " + str(mock_price))
+
+logger.debug("The mock price is " + str(mock_price))
+
 
 def generate_tps(buyin_price, percentage_gains):
-	for i in range (10):
-		print(transform_percentage(percentage_gains) ** (i + 1) * buyin_price)
+    for i in range(10):
+        logger.debug(transform_percentage(
+            percentage_gains) ** (i + 1) * buyin_price)
+
 
 generate_tps(mock_price, profit_target)
