@@ -21,7 +21,7 @@ class Balancer():
         session = get_tor_session()
         w3 = Web3(Web3.HTTPProvider(
             rpc_list[network]['links'][self.balancer[network]], session=session))
-        if (network == "polygon" or network == "binance"):
+        if (network == "matic" or network == "bnb"):
             w3.middleware_onion.inject(geth_poa_middleware, layer=0)
         if (w3.is_connected()):
             logger.debug(

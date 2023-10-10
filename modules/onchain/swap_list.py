@@ -1,5 +1,5 @@
 swap_list = {
-    'ethereum': {
+    'eth': {
         'uniswap3': {
             'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
             'event_name': 'PoolCreated',
@@ -25,7 +25,7 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
-    'polygon': {
+    'matic': {
         'uniswap3': {
             'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
             'event_name': 'PoolCreated',
@@ -55,7 +55,7 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
-    'arbitrum': {
+    'arb': {
         'uniswap3': {
             'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
             'event_name': 'PoolCreated',
@@ -89,7 +89,7 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
-    'optimism': {
+    'op': {
         'uniswap3': {
             'address': '0x1F98431c8aD98523631AE4a59f267346ea31F984',
             'event_name': 'PoolCreated',
@@ -115,7 +115,7 @@ swap_list = {
             'event_name': 'PoolCreated',
             'pool_address': 'pool'}
     },
-    'fantom': {
+    'ftm': {
         'sushiv2': {
             'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
             'event_name': 'PairCreated',
@@ -133,7 +133,7 @@ swap_list = {
             'event_name': 'PairCreated',
             'pool_address': 'pair'}
     },
-    'avalanche': {
+    'avax': {
         'sushiv2': {
             'address': '0xc35DADB65012eC5796536bD9864eD8773aBc74C4',
             'event_name': 'PairCreated',
@@ -177,7 +177,7 @@ swap_list = {
             'event_name': 'PairCreated',
             'pool_address': 'pair'}
     },
-    'binance': {
+    'bnb': {
         'pancakeswap': {
             'address': '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
             'event_name': 'PairCreated',
