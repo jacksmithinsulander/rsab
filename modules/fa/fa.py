@@ -44,8 +44,8 @@ def goplus_fa(network, token):
     creator_percent = token_data.get("creator_percent")
     holder_count = token_data.get("holder_count")
 
-    # print("creator percent: ", creator_percent)
-    # print("Holder count: ", holder_count)
+    # logger.debug("creator percent: ", creator_percent)
+    # logger.debug("Holder count: ", holder_count)
 
     if creator_percent:
         if float(creator_percent) >= 0.1:
@@ -110,16 +110,16 @@ def dexscreener_fa(network, pool):
 # def dextools_fa(network, pool):
 # custom_url = (dextools_url_base + pool.lower() + "&chain=" +
 # network + "&audit=true&locks=true")
-# print(custom_url)
+# logger.debug(custom_url)
 # res = requests.get(custom_url, headers=headers)
 # res_json = res.json()
 # dext_score = int(res_json["data"][0]["dextScore"]["total"])
 # if dext_score >= 50:
 # is_passed = 1
-# print("Dextools is PASSED")
+# logger.debug("Dextools is PASSED")
 # elif dext_score <= 50:
 # is_passed = 0
-# print("dext_score is :", dext_score)
+# logger.debug("dext_score is :", dext_score)
 # return is_passed
 
 
