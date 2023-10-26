@@ -13,7 +13,6 @@ rpc_list = {
                   "https://ethereum.blockpi.network/v1/rpc/public",
                   "https://rpc.payload.de",
                   "https://api.zmok.io/mainnet/oaen6dy8ff6hju9k",
-                  "https://eth.api.onfinality.io/public",
                   "https://core.gashawk.io/rpc",
                   "https://rpc.eth.gateway.fm",
                   "https://eth.drpc.org",
