@@ -62,7 +62,14 @@ args = parser.parse_args()
 logger.debug(args)
 
 flag_file = ".flag.txt"
-check_file = os.path.isfile("./conf.json")
+conf_file_exist = os.path.isfile("./conf.json")
+
+if conf_file_exist:
+    with open('conf.json', "r") as file:
+        conf = json.load(file)
+    logger.add(conf['logger']['file'], rotation=conf['logger']['sizeLimit'])
+    logger.debug(
+        f"Saving logs to {conf['logger']['file']} with limit set to {conf['logger']['sizeLimit']}")
 
 
 def mainfunc():
@@ -70,7 +77,7 @@ def mainfunc():
         logger.info("This program has been run before")
     else:
         logger.info("First time running the program")
-        conf_checker(check_file, 0)
+        conf_checker(conf_file_exist, 0)
         logger.info("Setup successful, ")
         start_bot = input("Do you want to start the bot? (Y / N)")
         if start_bot == "Y":
