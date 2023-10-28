@@ -11,5 +11,9 @@
 		{"type": "200MA"}
 	],
 	"fa": true,
-	"faStrictness": 2 
+	"faStrictness": 2,
+	"logger": {
+		"file": "rsab.log",
+		"sizeLimit": "500 MB"
+	}
 }
