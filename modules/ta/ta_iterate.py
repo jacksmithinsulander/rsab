@@ -1,7 +1,10 @@
 import db.main as db
+from modules.onchain.rpc_list import rpc_list
 from modules.tools.price import get_price
-from modules.balancer.balancer_main import Balancer
+from web3_balancer import Web3_balancer
 from loguru import logger
+
+tor_toggle_placeholder = True
 
 _net = 1
 _net_short = 2
@@ -19,10 +22,10 @@ _creation_block = 12
 
 def iterate():
     pools = db.get_all_pools("pools_passed_fa")
-    balancer = Balancer()
+    w3 = Web3_balancer(rpc_list, tor=tor_toggle_placeholder)
     # logger.debug(pools)
     for pool in pools:
-        w3 = balancer.w3(pool[_net])
+        w3.net = pool[_net]
         # price_fetch()
         logger.debug(pool)
         result = get_price(

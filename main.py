@@ -67,6 +67,9 @@ conf_file_exist = os.path.isfile("./conf.json")
 if conf_file_exist:
     with open('conf.json', "r") as file:
         conf = json.load(file)
+    logger.remove()
+    # Add option in config for logging level
+    logger.add(sys.stderr, level="DEBUG")
     logger.add(conf['logger']['file'], rotation=conf['logger']['sizeLimit'])
     logger.debug(
         f"Saving logs to {conf['logger']['file']} with limit set to {conf['logger']['sizeLimit']}")
