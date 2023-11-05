@@ -25,8 +25,7 @@ def iterate():
     w3 = Web3_balancer(rpc_list, tor=tor_toggle_placeholder)
     # logger.debug(pools)
     for pool in pools:
-        w3.net = pool[_net]
+        w3.net = pool[_net_short]
         # price_fetch()
         logger.debug(pool)
-        result = get_price(
-            w3, pool[12], pool[9], pool[7], pool[5], pool[1], pool[1])
+        result = get_price(w3, pool)
