@@ -64,31 +64,35 @@ class Scanner:
                             logger.info(
                                 f'Already saved {pool_address} ({pool["args"]["token0"]}-{pool["args"]["token1"]})')
                         else:
-                            token1_address = pool['args']['token0']
-                            token1 = self.w3.eth.contract(
-                                token1_address, abi=abi.erc20)
-                            token1_symbol = token1.functions.symbol().call()
+                            try:
+                                token1_address = pool['args']['token0']
+                                token1 = self.w3.eth.contract(
+                                    token1_address, abi=abi.erc20)
+                                token1_symbol = token1.functions.symbol().call()
 
-                            token2_address = pool['args']['token1']
-                            token2 = self.w3.eth.contract(
-                                token2_address, abi=abi.erc20)
-                            token2_symbol = token2.functions.symbol().call()
-                            creation_block = pool['blockNumber']
+                                token2_address = pool['args']['token1']
+                                token2 = self.w3.eth.contract(
+                                    token2_address, abi=abi.erc20)
+                                token2_symbol = token2.functions.symbol().call()
+                                creation_block = pool['blockNumber']
 
-                            unixTime = self.w3.eth.get_block(
-                                pool['blockNumber']).timestamp
-                            db.add_pool("pools_found", net,
-                                        rpc_list[net]['short'],
-                                        rpc_list[net]['extra'],
-                                        swap_list[net][swap]['address'],
-                                        pool_address,
-                                        unixTime,
-                                        token1_address,
-                                        token1_symbol,
-                                        token2_address,
-                                        token2_symbol,
-                                        swap,
-                                        creation_block)
+                                unixTime = self.w3.eth.get_block(
+                                    pool['blockNumber']).timestamp
+                                db.add_pool("pools_found", net,
+                                            rpc_list[net]['short'],
+                                            rpc_list[net]['extra'],
+                                            swap_list[net][swap]['address'],
+                                            pool_address,
+                                            unixTime,
+                                            token1_address,
+                                            token1_symbol,
+                                            token2_address,
+                                            token2_symbol,
+                                            swap,
+                                            creation_block)
+                            except KeyError:
+                                logger.error("Failed due to KeyError")
+                                logger.debug(f"pool:\n{pool}")
                 self.last_blocks[net] = current_block
             logger.info(
                 f"Currently {db.count_pools('pools_found')} pools saved")
