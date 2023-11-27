@@ -56,7 +56,8 @@ class Scanner:
                         f"self.get_pools = contract.events.{swap_list[net][swap]['event_name']}.get_logs")
                     latest_pools = self.get_pools(
                         fromBlock=self.last_blocks[net])
-
+                    if (latest_pools is None): #Intermittently, latest_pools is returned as "None"
+                        latest_pools = [] #Duct tape fix
                     for pool in latest_pools:
                         pool_address = pool['args'][swap_list[net][swap]
                                                     ['pool_address']]
